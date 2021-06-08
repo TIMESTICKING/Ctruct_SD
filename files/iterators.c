@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "iterators.h"
-
+#include <stdarg.h>
 
 ///////////////////////////iters for Arraylist
 
@@ -18,10 +18,23 @@ c8 InitITER_4array(ITER_4ARRAY* iter, ArrayList* arr, ENUM_ITERTYPE_4ARRAY type)
 	iter->array = arr;
 	iter->pos = 0;
 	iter->ifInital = 1;
-	iter->hasNext = hasNext_4array;
-	if (type == ITERTYPE_REVERSE_4ARRAY){
-		iter->next = next_reverse_4array;
+	switch(type){
+		case ITERTYPE_REVERSE_4ARRAY:
+			// ÄæÐò 
+			iter->next = next_reverse_4array;
+			iter->hasNext = hasNext_4array;
+			break;
+		case ITERTYPE_2DIVSION_4ARRAY:
+			// ¶þ·Ö
+			iter->temp = INTarr_new(2);
+			(iter->temp)[0] = 0;
+			(iter->temp)[1] = arr->length - 1;
+			iter->pos = (arr->length - 1) / 2;
+			iter->next = next_2divsion_4array;
+			iter->hasNext = hasNext_2div_4array;
+			break; 
 	}
+
 	
 	return ARR_OK;
 }
@@ -54,14 +67,52 @@ c8 hasNext_4array(ITER_4ARRAY* iter){
 		-5: ARR_UN_INIT: Î´³õÊ¼»¯
 		x£ºµØÖ· 
 */
-void* next_reverse_4array(ITER_4ARRAY* iter){
+void* next_reverse_4array(ITER_4ARRAY* iter,...){
 	if (iter->ifInital != 1)
 		return (void*)ARR_UN_INIT; 
 		
-	int ind = iter->array->length - 1 - iter->pos;
+	int ind = -1 - iter->pos;
 	iter->pos++;
 	
 	return get_list(iter->array, ind);
+}
+
+
+c8 hasNext_2div_4array(ITER_4ARRAY* iter, int direction){
+	if (iter->ifInital != 1)
+		return ARR_UN_INIT; 
+		
+	//ARGS_INIT(iter);
+//	int j = va_arg(args, int);
+//	ARGS_END;
+	
+	int *temp = iter->temp;
+	if (temp[1] < temp[0])
+		return ARR_FALSE;
+	
+	return ARR_OK;
+}
+
+
+void* next_2divsion_4array(ITER_4ARRAY* iter, int direction){
+	if (iter->ifInital != 1)
+		return (void*)ARR_UN_INIT; 
+		
+	//ARGS_INIT(iter);
+//	int j = va_arg(args, int);
+//	ARGS_END;
+	
+	int *temp = iter->temp;
+	if (direction==-1){
+		// Íù×óÕÒ 
+		temp[1] = iter->pos - 1;
+	}else if (direction==1){
+		// ÍùÓÒÕÒ
+		temp[0] = iter->pos + 1;
+	}
+	iter->pos = (temp[0] + temp[1]) / 2;
+
+	return get_list(iter->array, iter->pos);;
 }
 
 

@@ -11,6 +11,9 @@
 #define SD_PRINT_HEAD(bigtype,subname)	 SD_PRINT("======%s:%s======",bigtype,subname)
 #define SD_PRINT_END	SD_PRINT("=======================")
 #define LOG_sta(status)		SD_PRINT("### status is %d ###",status)
+#define ARGS_INIT(first_para)		va_list args;\
+									va_start(args, first_para);
+#define ARGS_END					va_end(args);
 
 #define c8 		signed char
 #define u8_ds 	unsigned char
@@ -35,6 +38,7 @@
 
 int index_format(int totalLength,int ind);
 int* INT_new(int number);
+#define INTarr_new(n)	(int*)SD_MALLOC(sizeof(int) * (n));
 
 #endif
 

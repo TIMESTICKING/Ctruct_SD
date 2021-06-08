@@ -29,26 +29,26 @@
 </Folder>
 <Folder name="Other Files">
 </Folder>
-<Attribute topline="1" x="14" y="5">files\arraylist.c</Attribute>
+<Attribute topline="13" x="21" y="15">files\arraylist.c</Attribute>
 <Attribute topline="1" x="13" y="4">files\stacks.c</Attribute>
-<Attribute topline="173" x="22" y="186">main.c</Attribute>
+<Attribute topline="215" x="27" y="235">main.c</Attribute>
 <Attribute topline="110" x="19" y="116">files\cirqueue.c</Attribute>
 <Attribute topline="44" x="4" y="84">files\tree_base.c</Attribute>
 <Attribute topline="334" x="8" y="353">files\linkedList.c</Attribute>
-<Attribute topline="1" x="6" y="29">files\ds_globalVars.c</Attribute>
+<Attribute topline="1" x="40" y="30">files\ds_globalVars.c</Attribute>
 <Attribute topline="27" x="16" y="58">files\set.c</Attribute>
 <Attribute topline="7" x="38" y="12">files\circleList.c</Attribute>
-<Attribute topline="1" x="1" y="6">files\iterators.c</Attribute>
+<Attribute topline="84" x="15" y="90">files\iterators.c</Attribute>
 <Attribute topline="1" x="24" y="9">files\all_dataStructure.h</Attribute>
 <Attribute topline="1" x="1" y="3">files\arraylist.h</Attribute>
-<Attribute topline="1" x="9" y="27">files\ds_globalVars.h</Attribute>
+<Attribute topline="1" x="7" y="9">files\ds_globalVars.h</Attribute>
 <Attribute topline="1" x="1" y="3">files\stacks.h</Attribute>
 <Attribute topline="1" x="40" y="22">files\cirqueue.h</Attribute>
 <Attribute topline="16" x="13" y="37">files\tree_base.h</Attribute>
 <Attribute topline="4" x="57" y="19">files\linkedList.h</Attribute>
 <Attribute topline="1" x="12" y="18">files\set.h</Attribute>
 <Attribute topline="1" x="13" y="8">files\circleList.h</Attribute>
-<Attribute topline="1" x="27" y="10">files\iterators.h</Attribute>
+<Attribute topline="1" x="60" y="12">files\iterators.h</Attribute>
 <FolderState>111</FolderState>
 <DefConfig>mingw5</DefConfig>
 <Builder name="mingw5" type="MinGW" version="1.0">
