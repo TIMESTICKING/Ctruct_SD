@@ -223,24 +223,39 @@ void test_iterators(void){
 	
 	arr.name = "arr1";
 	arr.ADD_one(&arr,INT_new(1));
-	arr.ADD_one(&arr,INT_new(5));	
+	arr.ADD_one(&arr,INT_new(5));
 	arr.ADD_one(&arr,INT_new(6));
 	arr.ADD_one(&arr,INT_new(8));
 	arr.ADD_one(&arr,INT_new(12));
 	arr.ADD_one(&arr,INT_new(124));
+	
+	SD_PRINT("the array is");
+	ITER_4ARRAY iter_posi;
+	InitITER_4array(&iter_posi, &arr, ITERTYPE_POSI_SEQ_4ARRAY);
+	FOR_ITER(iter_posi){
+		printf("%d ", GI(iter_posi, int*));
+	}
+	LN	LN
+	
+			
+	ITER_4ARRAY iter_rev;
+	InitITER_4array(&iter_rev, &arr, ITERTYPE_REVERSE_4ARRAY);
+	FOR_ITER(iter_rev){
+		printf("%d ", GI(iter_rev, int*));
+	}
+	LN	LN
+		
 		
 	ITER_4ARRAY iter;
 	InitITER_4array(&iter, &arr, ITERTYPE_2DIVSION_4ARRAY);
-	
 	ITERDIREC_para_init(dir);
 	int aim = 124;
 	FOR_ITER(iter, dir){
 		int* buff = iter.next(&iter, dir);
 		ITERDIREC_para_judge(dir, *buff, aim);
-	//	printf("%d\n", *buff);
 	}
 	if (ITERDIREC_para_ifFind(dir))
-		printf("find idx is %d\n", iter.pos);
+		printf("find %d at index %d\n", aim, iter.pos);	
 }
 
 

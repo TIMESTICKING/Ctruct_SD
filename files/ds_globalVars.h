@@ -8,6 +8,7 @@
 #define SD_PRINT(...)\
 			printf(__VA_ARGS__);\
 			printf("\n");
+#define LN	printf("\n");
 #define SD_PRINT_HEAD(bigtype,subname)	 SD_PRINT("======%s:%s======",bigtype,subname)
 #define SD_PRINT_END	SD_PRINT("=======================")
 #define LOG_sta(status)		SD_PRINT("### status is %d ###",status)
