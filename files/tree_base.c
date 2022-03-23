@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "tree_base.h"
 #include <stdlib.h>
 
@@ -196,6 +197,7 @@ c8 set_head_tree(Tree *tree,Tree_node *head){
 	if (tree->ifinitial != 1)
 		return ARR_UN_INIT;
 	tree->head = head;
+    return ARR_OK;
 }
 
 
@@ -225,6 +227,8 @@ static c8 DFSnode(Tree_node *node){
 	//报废此节点
 	SD_FREE(node->branches);
 	SD_FREE(node);
+    
+    return ARR_OK;
 }
 
 /**
@@ -239,7 +243,9 @@ c8 free_tree(Tree *tree){
 		
 	DFSnode(tree->head);//深度优先遍历 
 	tree->ifinitial = 0;
-	SD_FREE(tree);
+//	SD_FREE(tree);
+    
+    return ARR_OK;
 }
 
 void print_node_main(Tree_node *node){

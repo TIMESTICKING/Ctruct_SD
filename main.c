@@ -262,13 +262,13 @@ void test_iterators(void){
 int main(int argc, char *argv[])
 {
 //	test_stack();
-//	test_array();
-//	test_cirqueue();	
+	test_array();
+//	test_cirqueue();
 //	
 //	test_linkedList();
-	//test_tree();
+//	test_tree();
 //	testCircleLinkedList();
-	test_iterators();
+//	test_iterators();
 	return 0;
 }
 
