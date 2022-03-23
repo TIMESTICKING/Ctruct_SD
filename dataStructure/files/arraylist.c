@@ -8,9 +8,9 @@
 
 /**
 	Description: 
-		初始化 ArrayList结构体 
+		init ArrayList struct
 	Arguments:
-		int cap:	数组的长度,建议值15 
+		int cap:	length of array, 15 recommend
 	Return:
 		1: ARR_OK
 		3: ARR_MALLOC_FAIL
@@ -45,21 +45,21 @@ c8 InitArrayList(ArrayList* arrlit,u32_ds cap){
 
 /**
 	Description: 
-		动态创建列表 
+		dynamicly create list
 	Arguments:
-		ArrayList** arrlit_pointer:	列表指针的地址
-	 	int cap: 初始数组容量，建议15 
+		ArrayList** arrlit_pointer:	address of list's pointer
+	 	int cap: init list length, 15 recommend
 	Returns:
 		1: ARR_OK
 		3: ARR_MALLOC_FAIL
 */
 c8 CreateArrayList(ArrayList** arrlit_pointer,u32_ds cap){
 	*arrlit_pointer = (ArrayList*)SD_MALLOC(sizeof(ArrayList));
-	if (*arrlit_pointer == (ArrayList*)0) return ARR_MALLOC_FAIL;//内存申请失败
+	if (*arrlit_pointer == (ArrayList*)0) return ARR_MALLOC_FAIL;//memory alloc fail
 	
 	if ( InitArrayList(*arrlit_pointer,cap) == ARR_MALLOC_FAIL	){
 		SD_FREE(*arrlit_pointer);
-		return ARR_MALLOC_FAIL;//初始化新列表失败，申请内存出错 
+		return ARR_MALLOC_FAIL;//init a new list failed, wrong in memory allocing
 	}
 	return ARR_OK;
 }
@@ -67,12 +67,12 @@ c8 CreateArrayList(ArrayList** arrlit_pointer,u32_ds cap){
 
 /**
 	Description: 
-		列表是否需要扩容 
+		if list needs expand cap
 	Arguments:
-		int moree: 需要往列表加入的元素的个数 
+		int moree: number of ele which need to be added
 	Returns:
-		0: ARR_FALSE 不需要扩容
-		1: ARR_OK 需要 
+		0: ARR_FALSE dont need expand
+		1: ARR_OK need expand
 */
 static c8 ifNeed_expand(ArrayList* arrlit,int moree){
 	if ( (*arrlit).length + moree > (*arrlit).capacity )
@@ -82,17 +82,17 @@ static c8 ifNeed_expand(ArrayList* arrlit,int moree){
 
 /**
 	Description: 
-		列表某位开始向右移动step步 
+		move to right 'step' step from some index at list
 	Arguments:
-		int ind: 下标
-	 	int step:移动的格数。正数向右移，负数向左移 
+		int ind: index
+	 	int step:number index to move. positive number move to right, negative to left
 	Returns:
 		1: ARR_OK success
-		2: ARR_MOVE_FAIL 内存移动失败 
+		2: ARR_MOVE_FAIL memory moving fail
 */
 static c8 arr_move(ArrayList* arrlit,int ind,int step){
 	if ( memmove((*arrlit).arr + ind + step,(*arrlit).arr + ind,sizeof(void*) * ((*arrlit).length - ind)) == (void*)0 )
-		//移动失败
+		//move fail
 		return ARR_MOVE_FAIL;
 	return ARR_OK; 
 }
