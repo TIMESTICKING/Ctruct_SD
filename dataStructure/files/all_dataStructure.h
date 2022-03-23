@@ -1,6 +1,7 @@
 #ifndef __ALL_DATASTRUCTURE_H__
 #define __ALL_DATASTRUCTURE_H__
 
+#include "ds_globalVars.h" 
 #include "arrayList.h"
 #include "stacks.h"
 #include "cirqueue.h"

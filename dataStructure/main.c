@@ -229,7 +229,8 @@ void test_iterators(void){
 	arr.ADD_one(&arr,INT_new(12));
 	arr.ADD_one(&arr,INT_new(124));
 	
-	SD_PRINT("the array is");
+	// 正序输出数组 
+	SD_PRINT("===正序输出数组");
 	ITER_4ARRAY iter_posi;
 	InitITER_4array(&iter_posi, &arr, ITERTYPE_POSI_SEQ_4ARRAY);
 	FOR_ITER(iter_posi){
@@ -237,16 +238,18 @@ void test_iterators(void){
 	}
 	LN	LN
 	
-			
+	// 逆序输出数组 
 	ITER_4ARRAY iter_rev;
+	SD_PRINT("===逆序输出数组");
 	InitITER_4array(&iter_rev, &arr, ITERTYPE_REVERSE_4ARRAY);
 	FOR_ITER(iter_rev){
 		printf("%d ", GI(iter_rev, int*));
 	}
 	LN	LN
 		
-		
+	// 二分查找数组 
 	ITER_4ARRAY iter;
+	SD_PRINT("===二分查找数组");
 	InitITER_4array(&iter, &arr, ITERTYPE_2DIVSION_4ARRAY);
 	ITERDIREC_para_init(dir);
 	int aim = 124;
