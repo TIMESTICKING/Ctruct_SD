@@ -4,7 +4,7 @@
 #include "arraylist.h"
 
 typedef struct stacks {
-	ArrayList sta_arr;
+	ArrayList* sta_arr;
 	char *name;
 	c8 (*INSERT_sta)(struct stacks*,void*);
 	int (*COUNT_sta)(struct stacks*);

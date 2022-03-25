@@ -7,7 +7,7 @@
 #define NEXT_LLIST		1
 
 typedef struct lList {
-	Tree tree;
+	Tree *tree;
 	char *name;
 	Tree_node *tail;
 	c8 (*INSERT_ele_byAddr)(struct lList*,Tree_node*,u8_ds,void*);

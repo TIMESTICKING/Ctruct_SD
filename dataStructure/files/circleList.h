@@ -4,7 +4,7 @@
 #include "linkedList.h"
 
 typedef struct cList {
-	LinkedList linkList;
+	LinkedList* linkList;
 	char *name;
 	c8 (*INSERT_ele_atTail)(struct cList*,void*);
 	c8 (*INSERT_ele_atHead)(struct cList*,void*);

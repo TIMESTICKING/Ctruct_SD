@@ -11,7 +11,7 @@
 		1：success 
 */
 c8 InitCircleList(CircleList *clist){
-	InitLinkedList(&(clist->linkList));	
+	CreateLinkedList(&(clist->linkList));
 	clist->name = "circleList_def";
 	clist->ifinitial = 1;
 	
@@ -46,8 +46,8 @@ c8 CreateCircleList(CircleList **clist){
 
 static void head_tail_connect(CircleList *clist){
 	Tree_node *tail,*head;
-	head = get_headNode_llist(&(clist->linkList));
-	tail = get_tailNode_llist(&(clist->linkList));
+	head = get_headNode_llist(clist->linkList);
+	tail = get_tailNode_llist(clist->linkList);
 	(head->branches)[PREVIEW_LLIST] = tail;
 	(tail->branches)[NEXT_LLIST] = head;
 }
@@ -67,7 +67,7 @@ c8 add_ele_atTail_clist(CircleList *clist,void *ele){
 	if (clist->ifinitial != 1)
 		return ARR_UN_INIT;
 		
-	sta = add_ele_atTail(&(clist->linkList),ele);
+	sta = add_ele_atTail(clist->linkList,ele);
 	if (sta != ARR_OK)	return sta;
 	
 	//头尾相连
@@ -91,7 +91,7 @@ c8 add_ele_atHead_clist(CircleList *clist,void *ele){
 	if (clist->ifinitial != 1)
 		return ARR_UN_INIT;
 		
-	sta = add_ele_atHead(&(clist->linkList),ele);
+	sta = add_ele_atHead(clist->linkList,ele);
 	if (sta != ARR_OK)	return sta;
 	
 	//头尾相连
@@ -106,7 +106,7 @@ c8 add_ele_atHead_clist(CircleList *clist,void *ele){
 */
 void free_clist(CircleList *clist){
 	if (clist->ifinitial != 1)
-		free_llist(&(clist->linkList));
+		free_llist(clist->linkList);
 	SD_FREE(clist);
 } 
 
@@ -117,7 +117,7 @@ void free_clist(CircleList *clist){
 		-5：未初始化 
 */
 Tree_node* get_head_clist(CircleList *clist){
-	return get_headNode_llist(&(clist->linkList));
+	return get_headNode_llist(clist->linkList);
 }
 
 /**
@@ -127,7 +127,7 @@ Tree_node* get_head_clist(CircleList *clist){
 		-5：未初始化 
 */
 Tree_node* get_tail_clist(CircleList *clist){
-	return get_tailNode_llist(&(clist->linkList));
+	return get_tailNode_llist(clist->linkList);
 }
 
 /**
@@ -166,17 +166,17 @@ c8 if_eleAddr_exsit_clist(CircleList *clist,void *ele){
 */
 c8 del_byAddr_clist(CircleList *clist,Tree_node *addr){
 	Tree_node *prev,*next;
-	LinkedList *llist = &(clist->linkList);
+	LinkedList *llist = clist->linkList;
 	if (clist->ifinitial != 1 || addr->ifinitial != 1)	return ARR_UN_INIT;	
 	
-	(llist->tree).count--;
+    (llist->tree)->count--;
 	prev = (addr->branches)[PREVIEW_LLIST];
 	next = (addr->branches)[NEXT_LLIST];
 	free_node(addr);//释放节点 
-	if (llist->tail == addr && (llist->tree).head == addr){
+    if (llist->tail == addr && (llist->tree)->head == addr){
 		//仅此节点
 		llist->tail = NULL_node;
-		(llist->tree).head = NULL_node;
+        (llist->tree)->head = NULL_node;
 		return ARR_OK;
 	}
 	//连接prev和next
@@ -185,9 +185,9 @@ c8 del_byAddr_clist(CircleList *clist,Tree_node *addr){
 	if (addr == llist->tail){
 		//删除的节点是尾节点
 		llist->tail = prev; 
-	}else if (addr == (llist->tree).head){
+	}else if (addr == (llist->tree)->head){
 		//删除的节点是头节点
-		(llist->tree).head = next; 
+		(llist->tree)->head = next;
 	}
 	
 	return ARR_OK;
@@ -207,7 +207,7 @@ c8 delete_byInd_clist(CircleList *clist,int ind){
 	if(clist->ifinitial != 1)
 		return ARR_UN_INIT;
 	
-	res = runthrough_llist(&(clist->linkList),ind);//查找地址
+	res = runthrough_llist(clist->linkList,ind);//查找地址
 	if (res == NULL_node)	return ARR_EMPTY_CLIST;
 	
 	return del_byAddr_clist(clist,res);
@@ -225,12 +225,12 @@ c8 delete_byInd_clist(CircleList *clist,int ind){
 u32_ds get_count_clist(CircleList *clist){
 	if (clist->ifinitial != 1)	return ARR_UN_INIT;
 	
-	return ((clist->linkList).tree).count;
+    return ((clist->linkList)->tree)->count;
 }
 
 void print_clist_main(CircleList *clist){
 	SD_PRINT("=>CircleLinkedList=>ifinitial:	%d",clist->ifinitial);
-	print_llist_main(&(clist->linkList));
+	print_llist_main(clist->linkList);
 }
 
 void print_clist(CircleList *clist){

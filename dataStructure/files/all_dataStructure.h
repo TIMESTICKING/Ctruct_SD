@@ -9,6 +9,7 @@
 #include "linkedList.h"
 #include "circleList.h"
 #include "iterators.h"
+#include "dictionary.h"
 
 #endif
 

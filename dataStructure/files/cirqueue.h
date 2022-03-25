@@ -5,7 +5,7 @@
 
 typedef struct cirqueues {
 	char *name;
-	ArrayList cq_arr;
+	ArrayList* cq_arr;
 	int front;
 	int rear;
 	int size;

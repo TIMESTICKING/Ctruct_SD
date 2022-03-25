@@ -111,6 +111,8 @@ void test_cirqueue(){
 			cq2->PRINT_cq(cq2);	
 		}else break;
 	}
+    
+    cq2->FREE_cq(cq2);
 }
 
 void test_tree(void){
@@ -215,6 +217,8 @@ void testCircleLinkedList(void){
 		buff = (int*)(n->ele_addr);
 		printf("data is %d\n",*buff);
 	}
+    
+    clist->FREE_clist(clist);
 }
 
 void test_iterators(void){
@@ -262,16 +266,68 @@ void test_iterators(void){
 }
 
 
+void test_uthash(void){
+    typedef struct {
+        char* id;
+        int field;
+        UT_hash_handle hh;
+    }HashStruct;
+    
+    HashStruct* global=NULL;
+    
+    HashStruct mynumber;
+    mynumber.id = "first";
+    mynumber.field = 6;
+    
+    HashStruct mynumber2;
+    mynumber2.id = "first";
+    mynumber2.field = 8;
+    
+    HASH_ADD_STR(global, id, &mynumber);
+    HASH_ADD_STR(global, id, &mynumber2);
+    HashStruct *res;
+    HASH_FIND_STR(global, "first", res);
+    printf("find number: %d\n", res->field);
+}
+
+
+void test_dict(void){
+    Dictionary mydict;
+    
+    InitDictionary(&mydict);
+    mydict.name = "dict1";
+    mydict.ADD_EDIT_dict(&mydict,"a",INT_new(3));
+    mydict.ADD_EDIT_dict(&mydict,"a",INT_new(7));
+    mydict.ADD_EDIT_dict(&mydict,"b",INT_new(73));
+    
+    Dictionary mydict2;
+    
+    InitDictionary(&mydict2);
+    mydict2.name = "dict2";
+    mydict2.ADD_EDIT_dict(&mydict2,"a",INT_new(5));
+    mydict2.ADD_EDIT_dict(&mydict2,"b",INT_new(11));
+    
+    int* res;
+    res = (int*)mydict.GET_dict(&mydict, "b");
+    SD_PRINT("res is %d", *res);
+    
+    res = (int*)mydict2.GET_dict(&mydict2, "b");
+    SD_PRINT("res is %d", *res);
+}
+
+
 int main(int argc, char *argv[])
 {
-//	test_stack();
-	test_array();
+	test_stack();
+//	test_array();
 //	test_cirqueue();
 //	
 //	test_linkedList();
 //	test_tree();
 //	testCircleLinkedList();
 //	test_iterators();
+//    test_uthash();
+//    test_dict();
 	return 0;
 }
 

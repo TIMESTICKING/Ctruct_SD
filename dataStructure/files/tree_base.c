@@ -243,7 +243,7 @@ c8 free_tree(Tree *tree){
 		
 	DFSnode(tree->head);//深度优先遍历 
 	tree->ifinitial = 0;
-//	SD_FREE(tree);
+	SD_FREE(tree);
     
     return ARR_OK;
 }

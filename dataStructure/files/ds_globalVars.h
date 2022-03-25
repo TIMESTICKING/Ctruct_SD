@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 
+#define SD_DEBUG    1
 #define SD_MALLOC(size)	(malloc(size))
 #define	SD_FREE(point) 	(free(point))
 #define SD_PRINT(...)\
@@ -36,6 +37,13 @@
 #define ARR_INPUT_SAME	-2
 #define ARR_FALSE		0
 #define ARR_EMPTY_CLIST	-3
+
+#define CHECK_INIT(ptr, returntype) \
+do { \
+    if (ptr->ifinitial != 1) \
+        return (returntype)ARR_UN_INIT; \
+}while(0)
+    
 
 int index_format(int totalLength,int ind);
 int* INT_new(int number);
