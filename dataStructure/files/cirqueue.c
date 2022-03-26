@@ -24,9 +24,9 @@ c8 InitCirQueue(CirQueues *cq,int size){
 	cq->name = "cirqueue_def";
 	cq->ENQUEUE_cq = enqueue_cq;
 	cq->DEQUEUE_cq = dequeue_cq;
-	cq->COUNT_cq = count_cq;
-	cq->FREE_cq = free_cq;
-	cq->PRINT_cq = print_cq;
+	cq->COUNT = count_cq;
+	cq->FREE = free_cq;
+	cq->PRINT = print_cq;
 	
 	return ARR_OK;
 }
@@ -166,7 +166,7 @@ void print_cq(CirQueues *cq){
 	SD_PRINT_HEAD("CirqQueues",cq->name);
 	SD_PRINT("=>cirqueue=>ifinitial:	%d",cq->ifInital);
 	SD_PRINT("=>cirqueue=>size:	%d",cq->size);
-	SD_PRINT("=>cirqueue=>count:	%d",cq->COUNT_cq(cq));
+	SD_PRINT("=>cirqueue=>count:	%d",cq->COUNT(cq));
 	SD_PRINT("=>cirqueue=>front:	%d",cq->front);
 	SD_PRINT("=>cirqueue=>rear:	%d",cq->rear);
 	print_arr_main(cq->cq_arr);

@@ -21,10 +21,10 @@ c8 InitStacks(Stacks* stack){
 	(*stack).ifInital = 1;
 	(*stack).name = "stack_def";
 	(*stack).INSERT_sta = insert_stack;
-	(*stack).COUNT_sta = count_sta;
+	(*stack).COUNT = count_sta;
 	(*stack).POP_sta = pop_sta;
-	(*stack).FREE_sta = free_sta;
-	(*stack).PRINT_sta = print_sta;
+	(*stack).FREE = free_sta;
+	(*stack).PRINT = print_sta;
 	
 	return ARR_OK;
 }

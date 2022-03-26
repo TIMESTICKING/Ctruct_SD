@@ -19,7 +19,7 @@ c8 InitLinkedList(LinkedList *llist){
 	llist->INSERT_ele_atTail = add_ele_atTail;
 	llist->INSERT_ele_atHead = add_ele_atHead;
 	llist->DEL_byAddr_llist = delete_node_llist;
-	llist->PRINT_llist = print_llist;
+	llist->PRINT = print_llist;
 	llist->GET_tail_llist = get_tailNode_llist;
 	llist->GET_head_llist = get_headNode_llist;
 	llist->GET_addr_byIndex = getAddr_llist;
@@ -29,9 +29,9 @@ c8 InitLinkedList(LinkedList *llist){
 	llist->ADD_llist_atInd = insert_llist_byInd;
 	llist->COPY_llist = copy_llist;
 	llist->REVERSE_llist = reverse_llist;
-	llist->GET_COUNT_llist = get_count_llist;
+	llist->COUNT = get_count_llist;
 	llist->IF_ELEaddr_exsit_llist = if_eleAddr_exsit_llist;
-	llist->FREE_llist = free_llist;
+	llist->FREE = free_llist;
 	
 	return ARR_OK;
 }

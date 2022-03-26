@@ -22,10 +22,10 @@ typedef struct arraylist {
 	int (*COUNT)(struct arraylist*);
 	c8 (*REVERSE_arr)(struct arraylist*);
 	c8 (*REVERSE_arr_copy)(struct arraylist*,struct arraylist**);
-	void (*FREE_arr)(struct arraylist*);
+	void (*FREE)(struct arraylist*);
 	c8 (*SLICE_arr_copy)(struct arraylist*,struct arraylist**,int,int);
 	c8 (*DEL_arr)(struct arraylist*,int,int);
-	void (*PRINT_arr)(struct arraylist*);
+	void (*PRINT)(struct arraylist*);
 	void (*CLEAR_arr)(struct arraylist*);
 	c8 ifInital;//该结构体是否被初始化，yes； 1 
 }ArrayList;

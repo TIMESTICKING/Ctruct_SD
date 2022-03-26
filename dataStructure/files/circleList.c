@@ -17,13 +17,13 @@ c8 InitCircleList(CircleList *clist){
 	
 	clist->INSERT_ele_atTail = add_ele_atTail_clist;
 	clist->INSERT_ele_atHead = add_ele_atHead_clist;
-	clist->FREE_clist = free_clist;
+	clist->FREE = free_clist;
 	clist->GET_tail_llist = get_tail_clist;
 	clist->GET_head_llist = get_head_clist;
-	clist->PRINT_clist = print_clist;
+	clist->PRINT = print_clist;
 	clist->DEL_byAddr_clist = del_byAddr_clist;
 	clist->DEL_byInd_clist = delete_byInd_clist;
-	clist->GET_COUNT_clist = get_count_clist;
+	clist->COUNT = get_count_clist;
 	clist->IF_ELEaddr_exsit_clist = if_eleAddr_exsit_clist;
 	
 	return ARR_OK;

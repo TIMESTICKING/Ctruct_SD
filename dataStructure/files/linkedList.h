@@ -24,10 +24,10 @@ typedef struct lList {
 	Tree_node* (*GET_addr_byIndex)(struct lList*,int);
 	c8 (*COPY_llist)(struct lList*,struct lList**);
 	c8 (*REVERSE_llist)(struct lList*);
-	u32_ds (*GET_COUNT_llist)(struct lList*);
+	u32_ds (*COUNT)(struct lList*);
 	c8 (*IF_ELEaddr_exsit_llist)(struct lList*,void*);
-	void (*FREE_llist)(struct lList*);
-	void (*PRINT_llist)(struct lList*);
+	void (*FREE)(struct lList*);
+	void (*PRINT)(struct lList*);
 	c8	ifinitial;
 }LinkedList;
 //将Tree_node节点数组中，0下标为前驱节点 ，1为后继 

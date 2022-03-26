@@ -22,10 +22,10 @@ typedef struct trees {
 	c8 (*EDIT_Data_node)(Tree_node*,void*);
 	c8 (*ADD_node)(struct trees*,Tree_node*,u32_ds,Tree_node*);
 	c8 (*SET_head)(struct trees*,Tree_node*);
-	u32_ds (*COUNT_tree)(struct trees*);
+	u32_ds (*COUNT)(struct trees*);
 	Tree_node* (*GET_BRANCH_node)(Tree_node*,u32_ds);
-	void (*PRINT_tree)(struct trees*);
-	c8 (*FREE_tree)(struct trees*);
+	void (*PRINT)(struct trees*);
+	c8 (*FREE)(struct trees*);
 	u32_ds	count;
 	c8		ifinitial;
 }Tree;
