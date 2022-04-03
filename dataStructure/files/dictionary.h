@@ -12,6 +12,10 @@
 #include "uthash.h"
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 typedef struct {
     UT_hash_handle hh;
     char* key;
@@ -37,7 +41,9 @@ void* del_dict(Dictionary* dict, char* key);
 
 
 
-
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 
 #endif /* dictionary_h */

@@ -9,7 +9,7 @@ extern "C"{
 #endif // __cplusplus
 
 
-#define SD_DEBUG    1
+#define SD_DEBUG    0
 
 #define SD_MALLOC(size)	(malloc(size))
 #define	SD_FREE(point) 	(free(point))
