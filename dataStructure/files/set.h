@@ -3,28 +3,37 @@
 
 #include "ds_globalVars.h"
 
+
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
+
 typedef struct set_ds {
 	void* *hashList;
 	char* name;
 	u32_ds length;
-	u32_ds numP;//³ıÁôÓàÊı·¨µÄp£¬±ØĞë<=length£¬½¨ÒéÊÇÖÊÊı 
+	u32_ds numP;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<=lengthï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	c8 ifinitial;
 }Hashset;
 
-
 /**
 	Description: 
-		¾²Ì¬³õÊ¼»¯¼¯ºÏ 
+		ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		u32_ds length£º¹şÏ£Êı×éµÄ³¤¶È
-	 	u32_ds numP£º³ıÁôÓàÊı·¨µÄp£¬±ØĞë<=length£¬½¨ÒéÊÇÖÊÊı 
+		u32_ds lengthï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
+	 	u32_ds numPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<=lengthï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		0£ºnumP´óÓÚÁËlength
-		3£ºÄÚ´æÉêÇëÊ§°Ü
-		1£ºsuccess 
+		0ï¿½ï¿½numPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½length
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
 c8 InitHashset(Hashset *set,u32_ds length,u32_ds numP);
 c8 CreateHashset(Hashset **set,u32_ds length,u32_ds numP);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif
 

@@ -3,12 +3,20 @@
 
 #include <stdlib.h>
 
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 #define SD_MALLOC(size)	(malloc(size))
 #define	SD_FREE(point) 	(free(point))
-#define SD_PRINT(...)\
-			printf(__VA_ARGS__);\
-			printf("\n");
-#define LN	printf("\n");
+
+#ifndef __USER_PRINT
+	#define SD_PRINT(...)\
+				printf(__VA_ARGS__);\
+				printf("\n");
+#endif // __USER_PRINT
+
+#define LN	SD_PRINT("");
 #define SD_PRINT_HEAD(bigtype,subname)	 SD_PRINT("======%s:%s======",bigtype,subname)
 #define SD_PRINT_END	SD_PRINT("=======================")
 #define LOG_sta(status)		SD_PRINT("### status is %d ###",status)
@@ -37,8 +45,16 @@
 #define ARR_FALSE		0
 #define ARR_EMPTY_CLIST	-3
 
+
+
 int index_format(int totalLength,int ind);
 int* INT_new(int number);
+
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
+
 #define INTarr_new(n)	(int*)SD_MALLOC(sizeof(int) * (n));
 
 #endif

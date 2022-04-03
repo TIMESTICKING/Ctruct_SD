@@ -4,6 +4,11 @@
 #include "ds_globalVars.h"
 #include "arraylist.h"
 
+
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 #define FOR_ITER(instance,args...)	while(instance.hasNext(&instance,##args))
 #define GET_ITER(instance,ele_type,args...)	*((ele_type)instance.next(&instance,##args))
 #define GI	GET_ITER
@@ -30,13 +35,12 @@ typedef enum iterDirection {
 typedef struct iter_4array {
 	ArrayList* array;
 	int pos;		// position index
-	int *temp;		// ÌØ±ð±£ÁôµÄÊý×é 
+	int *temp;		// ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	void* (*next)(struct iter_4array*, ...);
 	c8 (*hasNext)(struct iter_4array*,...);
 	
-	c8 ifInital;//¸Ã½á¹¹ÌåÊÇ·ñ±»³õÊ¼»¯£¬yes£» 1 
+	c8 ifInital;//ï¿½Ã½á¹¹ï¿½ï¿½ï¿½Ç·ñ±»³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½yesï¿½ï¿½ 1 
 }ITER_4ARRAY;
-
 
 
 
@@ -50,6 +54,10 @@ void* next_reverse_4array(ITER_4ARRAY* iter,...);
 
 c8 hasNext_2div_4array(ITER_4ARRAY* iter, int direction);
 void* next_2divsion_4array(ITER_4ARRAY* iter, int direction);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 
 #endif

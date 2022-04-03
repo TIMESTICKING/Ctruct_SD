@@ -3,10 +3,15 @@
 
 #include "ds_globalVars.h"
 
+
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 typedef struct tree_n*	Tree_node_pointer;
 typedef struct tree_n {
-	Tree_node_pointer *branches;//½ÚµãÊý×é
-	void*	ele_addr;//´æ·ÅÔªËØµØÖ· 
+	Tree_node_pointer *branches;//ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
+	void*	ele_addr;//ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½Ö· 
 	c8 (*EDIT_Data_node)(struct tree_n*,void*);
 	Tree_node_pointer (*GET_BRANCH_node)(struct tree_n*,u32_ds);
 	c8 (*ADD_node)(struct tree_n*,u32_ds,struct tree_n*);
@@ -17,7 +22,7 @@ typedef struct tree_n {
 }Tree_node;
 
 typedef struct trees {
-	Tree_node *head;//Í·½Úµã
+	Tree_node *head;//Í·ï¿½Úµï¿½
 	char	*name;
 	c8 (*EDIT_Data_node)(Tree_node*,void*);
 	c8 (*ADD_node)(struct trees*,Tree_node*,u32_ds,Tree_node*);
@@ -29,6 +34,7 @@ typedef struct trees {
 	u32_ds	count;
 	c8		ifinitial;
 }Tree;
+
 
 c8 InitTree(Tree *tree);
 c8 CreateTree(Tree **tree);
@@ -48,5 +54,10 @@ void print_tree(Tree *tree);
 c8 set_head_tree(Tree *tree,Tree_node *head); 
 
 static c8 DFSnode(Tree_node *node);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
+
 #endif
 

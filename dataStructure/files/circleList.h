@@ -3,6 +3,10 @@
 
 #include "linkedList.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 typedef struct cList {
 	LinkedList linkList;
 	char *name;
@@ -19,6 +23,7 @@ typedef struct cList {
 	c8 ifinitial;
 }CircleList;
 
+
 c8 InitCircleList(CircleList *clist);
 c8 CreateCircleList(CircleList **clist);
 c8 add_ele_atTail_clist(CircleList *clist,void *ele);
@@ -34,6 +39,12 @@ u32_ds get_count_clist(CircleList *clist);
 c8 if_eleAddr_exsit_clist(CircleList *clist,void *ele); 
 
 static void head_tail_connect(CircleList *clist);
+
+
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif
 

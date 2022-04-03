@@ -6,6 +6,10 @@
 #define PREVIEW_LLIST	0
 #define NEXT_LLIST		1
 
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 typedef struct lList {
 	Tree tree;
 	char *name;
@@ -30,7 +34,9 @@ typedef struct lList {
 	void (*PRINT_llist)(struct lList*);
 	c8	ifinitial;
 }LinkedList;
-//½«Tree_node½ÚµãÊý×éÖÐ£¬0ÏÂ±êÎªÇ°Çý½Úµã £¬1Îªºó¼Ì 
+//ï¿½ï¿½Tree_nodeï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½0ï¿½Â±ï¿½ÎªÇ°ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½1Îªï¿½ï¿½ï¿½ 
+
+
 
 c8 InitLinkedList(LinkedList *llist);
 c8 CreateLinkedList(LinkedList **llist);
@@ -57,6 +63,10 @@ c8 if_eleAddr_exsit_llist(LinkedList *llist,void *ele);
 
 static c8 add_ele_emptyList(LinkedList *llist,void *ele);
 Tree_node* runthrough_llist(LinkedList *llist,int ind);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif
 

@@ -3,6 +3,10 @@
 
 #include "arraylist.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+
 typedef struct cirqueues {
 	char *name;
 	ArrayList cq_arr;
@@ -17,6 +21,7 @@ typedef struct cirqueues {
 	c8 ifInital;
 }CirQueues;
 
+
 c8 InitCirQueue(CirQueues *cq,int size);
 c8 CreateCirQueue(CirQueues **cq,int size);
 c8 enqueue_cq(CirQueues *cq,void *ele);
@@ -28,6 +33,11 @@ void print_cq(CirQueues *cq);
 
 static c8 isFull(CirQueues *cq);
 static c8 isEmpty(CirQueues *cq);
+
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif
 

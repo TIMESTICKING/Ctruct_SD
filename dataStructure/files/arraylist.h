@@ -5,13 +5,16 @@
 
 #define	EXPEND_SPACE(x)	(0.09 * x + 9.09)
 
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
 
 typedef struct arraylist {
 	char *name;
 	void* (*arr);
-	int length;//µ±Ç°ÒÑÌî×°µÄÊýÁ¿ 
-	int capacity;//×ÜÈÝÁ¿ 
-	//Àà·½·¨ 
+	int length;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	int capacity;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	//ï¿½à·½ï¿½ï¿½ 
 	void* (*GET_arr)(struct arraylist*,int);
 	c8 (*ADD_one)(struct arraylist*,void*);
 	c8 (*ADD_lots)(struct arraylist*,struct arraylist*);
@@ -27,8 +30,10 @@ typedef struct arraylist {
 	c8 (*DEL_arr)(struct arraylist*,int,int);
 	void (*PRINT_arr)(struct arraylist*);
 	void (*CLEAR_arr)(struct arraylist*);
-	c8 ifInital;//¸Ã½á¹¹ÌåÊÇ·ñ±»³õÊ¼»¯£¬yes£» 1 
+	c8 ifInital;//ï¿½Ã½á¹¹ï¿½ï¿½ï¿½Ç·ñ±»³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½yesï¿½ï¿½ 1 
 }ArrayList;
+
+
 
 void* get_list(ArrayList* arrlit,int ind);
 c8 InitArrayList(ArrayList* arrlit,u32_ds cap);
@@ -53,6 +58,9 @@ static c8 expand_list(ArrayList* arrlit,int expend_length);
 static c8 ifNeed_expand(ArrayList* arrlit,int moree);
 static c8 arr_move(ArrayList* arrlit,int ind,int step);
 
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif
 

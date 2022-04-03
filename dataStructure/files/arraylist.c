@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 
+
+
 #include "arraylist.h"
 
 
@@ -100,41 +102,41 @@ static c8 arr_move(ArrayList* arrlit,int ind,int step){
 
 /**
 	Description: 
-		»ñÈ¡Êý×éµÄindÏÂ±êµÄÔªËØµÄµØÖ· 
+		ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½indï¿½Â±ï¿½ï¿½Ôªï¿½ØµÄµï¿½Ö· 
 	Arguments:
 		ArrayList* arrlit	: (nothing)
-		int ind				: ÏÂ±ê¡£¿ÉÈ¡¸ºÖµ£¬Êý×éÄ©Î²Îª-1 
+		int ind				: ï¿½Â±ê¡£ï¿½ï¿½È¡ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä©Î²Îª-1 
 	Returns:
-		-1:	ARR_WRONG_INDEX 	indÏÂ±ê²»ºÏ·¨
-		-5:	ARR_UN_INIT 	ÁÐ±íÎ´³õÊ¼»¯ 
-		X:	ÔªËØµØÖ· 
+		-1:	ARR_WRONG_INDEX 	indï¿½Â±ê²»ï¿½Ï·ï¿½
+		-5:	ARR_UN_INIT 	ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
+		X:	Ôªï¿½Øµï¿½Ö· 
 */
 void* get_list(ArrayList* arrlit,int ind){
 	if ((*arrlit).ifInital == 0)
 		return (void*)ARR_UN_INIT;
 
-	ind = index_format(arrlit->length,ind);//ÏÂ±ê¸ñÊ½»¯ 
-	if (ind == ARR_WRONG_INDEX) return (void*)ARR_WRONG_INDEX;//²»ºÏ·¨
+	ind = index_format(arrlit->length,ind);//ï¿½Â±ï¿½ï¿½Ê½ï¿½ï¿½ 
+	if (ind == ARR_WRONG_INDEX) return (void*)ARR_WRONG_INDEX;//ï¿½ï¿½ï¿½Ï·ï¿½
 	return (*arrlit).arr[ind];
 }
 
 /**
 	Description: 
-		ÐÞ¸Älength³¤¶ÈÄÚµÄÊý¾Ý 
+		ï¿½Þ¸ï¿½lengthï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		int index£ºÏÂ±ê£¬¿É¸º£¬-1ÎªÄ©ÔªËØ
-		void* ele_addr£ºÒªÔÚindexÏÂ±ê´¦¸üÐÂµÄÐÂÔªËØ 
+		int indexï¿½ï¿½ï¿½Â±ê£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½
+		void* ele_addrï¿½ï¿½Òªï¿½ï¿½indexï¿½Â±ê´¦ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Ôªï¿½ï¿½ 
 	Returns:
-		1£ºARR_OK 	success
-		-1: ARR_WRONG_INDEX ÏÂ±ê³¬³ölength·¶Î§
-		-5: ARR_UN_INIT	ÁÐ±íÎ´³õÊ¼»¯ 
+		1ï¿½ï¿½ARR_OK 	success
+		-1: ARR_WRONG_INDEX ï¿½Â±ê³¬ï¿½ï¿½lengthï¿½ï¿½Î§
+		-5: ARR_UN_INIT	ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
 c8 edit_list(ArrayList* arrlit,int index,void* ele_addr){
 	if ((*arrlit).ifInital == 0)
 		return ARR_UN_INIT;
 	
-	index = index_format(arrlit->length,index);//ÏÂ±ê¸ñÊ½»¯
-	if (index == ARR_WRONG_INDEX) return ARR_WRONG_INDEX;//²»ºÏ·¨
+	index = index_format(arrlit->length,index);//ï¿½Â±ï¿½ï¿½Ê½ï¿½ï¿½
+	if (index == ARR_WRONG_INDEX) return ARR_WRONG_INDEX;//ï¿½ï¿½ï¿½Ï·ï¿½
 	
 	(*arrlit).arr[index] = ele_addr;
 	return ARR_OK;
@@ -142,12 +144,12 @@ c8 edit_list(ArrayList* arrlit,int index,void* ele_addr){
 
 /**
 	Description: 
-		·µ»ØÁÐ±í³¤¶È£¬¿ÉÖ±½Óarrlit.Length£¬±¾·½·¨Ö»Ôö¼Ó³õÊ¼»¯¼ì²â¹¦ÄÜ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ö±ï¿½ï¿½arrlit.Lengthï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ó³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½â¹¦ï¿½ï¿½ 
 	Arguments:
 		nothing
 	Returns:
-		-5:	ARR_UN_INIT	ÁÐ±íÎ´³õÊ¼»¯
-		X:	ÁÐ±í³¤¶È 
+		-5:	ARR_UN_INIT	ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		X:	ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
 int count_list(ArrayList* arrlit){
 	if ((*arrlit).ifInital == 0)
@@ -158,19 +160,19 @@ int count_list(ArrayList* arrlit){
 
 /**
 	Description: 
-		À©Õ¹Êý×é³¤¶È£¬²¢°ÑÔ­ÏÈµÄÄÚÈÝ¸´ÖÆµ½ÐÂÄÚ´æÖÐ£¬ÔÙÊÍ·ÅÔ­ÏÈµÄÄÚ´æ 
+		ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½é³¤ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½Èµï¿½ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ô­ï¿½Èµï¿½ï¿½Ú´ï¿½ 
 	Arguments:
-		int expend_length:	ÒªÀ©Õ¹µÄ´óÐ¡£¨×Ö½Ú£©; -1ÎªÄ¬ÈÏ£¬À©Õ¹ÖµÎª0.09 * x + 9.09£¬xÎªµ±Ç°ÈÝÁ¿ 
+		int expend_length:	Òªï¿½ï¿½Õ¹ï¿½Ä´ï¿½Ð¡ï¿½ï¿½ï¿½Ö½Ú£ï¿½; -1ÎªÄ¬ï¿½Ï£ï¿½ï¿½ï¿½Õ¹ÖµÎª0.09 * x + 9.09ï¿½ï¿½xÎªï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
 		1: ARR_OK	success
-		3: ARR_MALLOC_FAIL	·ÖÅäÄÚ´æÊ§°Ü 
-		2: ARR_MOVE_FAIL	¸´ÖÆÊ§°Ü
+		3: ARR_MALLOC_FAIL	ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ê§ï¿½ï¿½ 
+		2: ARR_MOVE_FAIL	ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 */
 static c8 expand_list(ArrayList* arrlit,int expend_length){
 	void* (*arr_new);
-	int expand_sp;//ÁÙÊ±±äÁ¿ 
+	int expand_sp;//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ 
 	if (expend_length == -1){
-		//Ä¬ÈÏ
+		//Ä¬ï¿½ï¿½
 		expand_sp = EXPEND_SPACE((*arrlit).capacity);
 	 	arr_new = (void*)SD_MALLOC(((*arrlit).capacity + expand_sp) * sizeof(void*));
 	}else{
@@ -180,14 +182,14 @@ static c8 expand_list(ArrayList* arrlit,int expend_length){
 	}
 	
  	if (arr_new == (void*)0)
- 		return ARR_MALLOC_FAIL;//·ÖÅäÄÚ´æÊ§°Ü 
-	//·ÖÅäÄÚ´æ³É¹¦ 
+ 		return ARR_MALLOC_FAIL;//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ê§ï¿½ï¿½ 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½É¹ï¿½ 
 	
- 	(*arrlit).capacity += expand_sp;//Ð´ÈëÀ©ÈÝ 
+ 	(*arrlit).capacity += expand_sp;//Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
  	
-	if ( memcpy(arr_new,(*arrlit).arr,(*arrlit).capacity * sizeof(void*)) == (void*)0)//¸´ÖÆÊý×éµ½ÐÂµÄ 
-		return ARR_MOVE_FAIL;//¸´ÖÆÊ§°Ü 
-	SD_FREE((*arrlit).arr);//ÊÍ·Å¾ÉµÄ
+	if ( memcpy(arr_new,(*arrlit).arr,(*arrlit).capacity * sizeof(void*)) == (void*)0)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½éµ½ï¿½Âµï¿½ 
+		return ARR_MOVE_FAIL;//ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 
+	SD_FREE((*arrlit).arr);//ï¿½Í·Å¾Éµï¿½
  	(*arrlit).arr = arr_new;
  	
  	return ARR_OK;
@@ -195,12 +197,12 @@ static c8 expand_list(ArrayList* arrlit,int expend_length){
 
 /**
 	Description: 
-		ÏòÁÐ±íÄ©Î²×·¼ÓÒ»¸öÔªËØµÄµØÖ· 
+		ï¿½ï¿½ï¿½Ð±ï¿½Ä©Î²×·ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ØµÄµï¿½Ö· 
 	Arguments:
-		void* ele_addr:	ÔªËØµÄµØÖ· 
+		void* ele_addr:	Ôªï¿½ØµÄµï¿½Ö· 
 	Returns:
 		1: ARR_OK success
-		-5:ARR_UN_INITÁÐ±íÎ´³õÊ¼»¯ 
+		-5:ARR_UN_INITï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 		else: refer to FUNC expand_list()
 */
 c8 add_list(ArrayList* arrlit,void* ele_addr){
@@ -209,9 +211,9 @@ c8 add_list(ArrayList* arrlit,void* ele_addr){
 		return ARR_UN_INIT;
 		
 	if ( ifNeed_expand(arrlit,1) == 1){
-		sta = expand_list(arrlit,-1);//À©ÈÝ 
+		sta = expand_list(arrlit,-1);//ï¿½ï¿½ï¿½ï¿½ 
 		if (sta != ARR_OK) return sta;
-		//À©Õ¹Êý×éÄÚ´æ·ÖÅä³É¹¦£¬ÇÒ¸´ÖÆ³É¹¦ 
+		//ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½Ò¸ï¿½ï¿½Æ³É¹ï¿½ 
 	}
 	(*arrlit).arr[(*arrlit).length] = ele_addr;
 	((*arrlit).length)++;
@@ -220,15 +222,15 @@ c8 add_list(ArrayList* arrlit,void* ele_addr){
 
 /**
 	Description: 
-		ÔÚÁÐ±íµÄÄ³ÏÂ±ê²åÈëÐÂÔªËØ 
+		ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ä³ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ 
 	Arguments:
-		int index£º 	ÏÂ±ê£¬¿É¸º£¬-1ÎªÄ©ÔªËØ
-	 	void* ele_addr: ÐÂÔªËØ 
+		int indexï¿½ï¿½ 	ï¿½Â±ê£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½
+	 	void* ele_addr: ï¿½ï¿½Ôªï¿½ï¿½ 
 	Returns:
 		1: success
-		-5: ARR_UN_INIT ÁÐ±íÎ´³õÊ¼»¯
-		-1: ÏÂ±ê²»ºÏ·¨
-		2: Êý×éºóÒÆÊ§°Ü
+		-5: ARR_UN_INIT ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1: ï¿½Â±ê²»ï¿½Ï·ï¿½
+		2: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 		else: refer to FUNC expand_list() 
 */
 c8 insert_at_list_one(ArrayList* arrlit,int index,void* ele_addr){
@@ -237,15 +239,15 @@ c8 insert_at_list_one(ArrayList* arrlit,int index,void* ele_addr){
 		return ARR_UN_INIT;
 
 	index = index_format(arrlit->length,index);
-	if (index == ARR_WRONG_INDEX) return ARR_WRONG_INDEX;//²»ºÏ·¨
+	if (index == ARR_WRONG_INDEX) return ARR_WRONG_INDEX;//ï¿½ï¿½ï¿½Ï·ï¿½
 	
-	if ( ifNeed_expand(arrlit,1) == ARR_OK)//Òª²»ÒªÀ©ÈÝ
+	if ( ifNeed_expand(arrlit,1) == ARR_OK)//Òªï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 	{ 
-		sta = expand_list(arrlit,-1);//À©ÈÝ 
-		if (sta != ARR_OK) return sta;//À©ÈÝÊ§°Ü ,sta refer to FUNC expand_list()
+		sta = expand_list(arrlit,-1);//ï¿½ï¿½ï¿½ï¿½ 
+		if (sta != ARR_OK) return sta;//ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ ,sta refer to FUNC expand_list()
 	}
 	
-	if ( arr_move(arrlit,index,1) == ARR_MOVE_FAIL) return ARR_MOVE_FAIL;//ÄÚ´æÒÆ¶¯Ê§°Ü 
+	if ( arr_move(arrlit,index,1) == ARR_MOVE_FAIL) return ARR_MOVE_FAIL;//ï¿½Ú´ï¿½ï¿½Æ¶ï¿½Ê§ï¿½ï¿½ 
 	(*arrlit).arr[index] = ele_addr;
 	(*arrlit).length ++;
 	return ARR_OK; 
@@ -254,15 +256,15 @@ c8 insert_at_list_one(ArrayList* arrlit,int index,void* ele_addr){
 
 /**
 	Description: 
-		ÔÚÁÐ±íµÄÄ³ÏÂ±ê²åÈëÐÂÁÐ±í 
+		ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ä³ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ 
 	Arguments:
-		int index£º 	ÏÂ±ê£¬¿É¸º£¬-1ÎªÄ©ÔªËØ
-	 	ArrayList* arrsub: ÐÂÁÐ±í 
+		int indexï¿½ï¿½ 	ï¿½Â±ê£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½
+	 	ArrayList* arrsub: ï¿½ï¿½ï¿½Ð±ï¿½ 
 	Returns:
 		1: success
-		-5: ÁÐ±íÎ´³õÊ¼»¯
-		-1: ÏÂ±ê²»ºÏ·¨
-		2: Êý×éÄÚ´æÒÆ¶¯Ê§°Ü 
+		-5: ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1: ï¿½Â±ê²»ï¿½Ï·ï¿½
+		2: ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Æ¶ï¿½Ê§ï¿½ï¿½ 
 		else: refer to FUNC expand_list() 
 */
 c8 insert_at_list_lots(ArrayList* arrlit,int index,ArrayList* arrsub){
@@ -271,19 +273,19 @@ c8 insert_at_list_lots(ArrayList* arrlit,int index,ArrayList* arrsub){
 		return ARR_UN_INIT;
 
 	index = index_format(arrlit->length,index);
-	if (index == ARR_WRONG_INDEX) return ARR_WRONG_INDEX;//²»ºÏ·¨
+	if (index == ARR_WRONG_INDEX) return ARR_WRONG_INDEX;//ï¿½ï¿½ï¿½Ï·ï¿½
 	
-	if ( ifNeed_expand(arrlit,(*arrsub).length) == ARR_OK)//Òª²»ÒªÀ©ÈÝ
+	if ( ifNeed_expand(arrlit,(*arrsub).length) == ARR_OK)//Òªï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 	{ 
-		sta = expand_list(arrlit,(*arrsub).capacity);//À©ÈÝ 
-		if (sta != ARR_OK) return sta;//À©ÈÝÊ§°Ü,sta refer to FUNC expand_list()
+		sta = expand_list(arrlit,(*arrsub).capacity);//ï¿½ï¿½ï¿½ï¿½ 
+		if (sta != ARR_OK) return sta;//ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½,sta refer to FUNC expand_list()
 	}
-	//arrlitµÄ index´¦ÓÒÒÆ (*arrsub).length¸ö³¤¶È 
+	//arrlitï¿½ï¿½ indexï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (*arrsub).lengthï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	if ( arr_move(arrlit,index,(*arrsub).length) == ARR_MOVE_FAIL)
-		return ARR_MOVE_FAIL;//ÄÚ´æÒÆ¶¯Ê§°Ü
-	//arrsubÄÚÈÝ¸´ÖÆµ½ arrlitµÄ indexÆðÊ¼´¦
+		return ARR_MOVE_FAIL;//ï¿½Ú´ï¿½ï¿½Æ¶ï¿½Ê§ï¿½ï¿½
+	//arrsubï¿½ï¿½ï¿½Ý¸ï¿½ï¿½Æµï¿½ arrlitï¿½ï¿½ indexï¿½ï¿½Ê¼ï¿½ï¿½
 	if ( memcpy((*arrlit).arr + index, (*arrsub).arr, (*arrsub).length * sizeof(void*)) == (void*)0 )
-		return ARR_MOVE_FAIL;//¸´ÖÆÊ§°Ü
+		return ARR_MOVE_FAIL;//ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 		
 	(*arrlit).length += (*arrsub).length;
 	return ARR_OK;
@@ -291,12 +293,12 @@ c8 insert_at_list_lots(ArrayList* arrlit,int index,ArrayList* arrsub){
 
 /**
 	Description: 
-		ÏòÁÐ±íÄ©Î²×·¼ÓÒ»¸öÁÐ±í 
+		ï¿½ï¿½ï¿½Ð±ï¿½Ä©Î²×·ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð±ï¿½ 
 	Arguments:
-		ArrayList* arrlit_tail:	½«Ëü¼Óµ½ arrlit Î²²¿ 
+		ArrayList* arrlit_tail:	ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ arrlit Î²ï¿½ï¿½ 
 	Returns:
 		1: success
-		-5:ÁÐ±íÎ´³õÊ¼»¯ 
+		-5:ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 		else: refer to FUNC expand_list()
 */
 c8 add_list_lots(ArrayList* arrlit,ArrayList* arrlit_tail){
@@ -305,20 +307,20 @@ c8 add_list_lots(ArrayList* arrlit,ArrayList* arrlit_tail){
 		return ARR_UN_INIT;
 		
 	if ( ifNeed_expand(arrlit, (*arrlit_tail).length) == ARR_OK ){
-		//Ê£ÓàÈÝÁ¿²»¹»£¬ÐëÀ©ÈÝ
+		//Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		sta = expand_list(arrlit,(*arrlit_tail).capacity);
-		if (sta != ARR_OK) return sta;//À©ÈÝÊ§°Ü
-		//À©ÈÝ³É¹¦ 
+		if (sta != ARR_OK) return sta;//ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		//ï¿½ï¿½ï¿½Ý³É¹ï¿½ 
 	}
-	if ( memcpy(&(((*arrlit).arr)[(*arrlit).length]), (*arrlit_tail).arr, (*arrlit_tail).length * sizeof(void*)) == (void*)0)//¸´ÖÆÊý×é 
-		return ARR_MOVE_FAIL;//¸´ÖÆÊ§°Ü 
+	if ( memcpy(&(((*arrlit).arr)[(*arrlit).length]), (*arrlit_tail).arr, (*arrlit_tail).length * sizeof(void*)) == (void*)0)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+		return ARR_MOVE_FAIL;//ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 
 	(*arrlit).length += (*arrlit_tail).length;
 	return ARR_OK;
 }
 
 /**
 	Description: 
-		Ïú»Ù¶¯Ì¬´´½¨µÄÁÐ±í 
+		ï¿½ï¿½ï¿½Ù¶ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ 
 	Arguments:
 		nothing
 	Returns:
@@ -326,18 +328,18 @@ c8 add_list_lots(ArrayList* arrlit,ArrayList* arrlit_tail){
 */
 void free_arr(ArrayList* arrlit){
 	if((*arrlit).ifInital == 1)
-		SD_FREE((*arrlit).arr);//ÊÍ·ÅÊý×é¿Õ¼ä
-	SD_FREE(arrlit);//ÊÍ·Å½á¹¹Ìå 
+		SD_FREE((*arrlit).arr);//ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½
+	SD_FREE(arrlit);//ï¿½Í·Å½á¹¹ï¿½ï¿½ 
 }
 
 /**
 	Description: 
-		¶ÔÁÐ±í½øÐÐ¿½±´ 
+		ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½ 
 	Arguments:
-		ArrayList** new_arr: ÁÐ±íÖ¸ÕëµÄµØÖ· 
+		ArrayList** new_arr: ï¿½Ð±ï¿½Ö¸ï¿½ï¿½Äµï¿½Ö· 
 	Returns:
 		1: success
-		-5: ÁÐ±íÎ´³õÊ¼»¯
+		-5: ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
 		else: refer to FUNC  CreateArrayList() and expand_list()
 */
 c8 copy_arr(ArrayList* arrlit,ArrayList** new_arr){
@@ -346,15 +348,15 @@ c8 copy_arr(ArrayList* arrlit,ArrayList** new_arr){
 	if ((*arrlit).ifInital == 0)
 		return ARR_UN_INIT;
 	
-	if (*new_arr == arrlit) return ARR_OK;//Á½ÕßÏàÍ¬ 
+	if (*new_arr == arrlit) return ARR_OK;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ 
 	
 	sta = CreateArrayList(new_arr,(*arrlit).length);
-	if (sta != ARR_OK) return sta;//¶¯Ì¬ÁÐ±í´´½¨Ê§°Ü£¬sta refer to FUNC CreateArrayList() 
+	if (sta != ARR_OK) return sta;//ï¿½ï¿½Ì¬ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½sta refer to FUNC CreateArrayList() 
 
-	sta = add_list_lots(*new_arr,arrlit);//¸´ÖÆÊý×é 
+	sta = add_list_lots(*new_arr,arrlit);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	if (sta != ARR_OK){
 		free_arr(*new_arr);
-		return sta;//¸´ÖÆÊý×éÊ§°Ü 
+		return sta;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 
 	}
 	
 	(**new_arr).length = (*arrlit).length;
@@ -364,16 +366,16 @@ c8 copy_arr(ArrayList* arrlit,ArrayList** new_arr){
 
 /**
 	Description: 
-		ÄæÐòÁÐ±í£¬Ô­ÁÐ±í»á±»ÐÞ¸Ä 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ô­ï¿½Ð±ï¿½ï¿½á±»ï¿½Þ¸ï¿½ 
 	Arguments:
 		nothing
 	Returns:
 		1: success
-		-5: ÁÐ±íÎ´³õÊ¼»¯ 
+		-5: ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
 c8 reverse_list(ArrayList* arrlit){
 	void* temp;
-	int n = (int)floor((*arrlit).length / 2.0);//Ñ­»·µÄ´ÎÊý¡£ÏòÏÂÈ¡Õû 
+	int n = (int)floor((*arrlit).length / 2.0);//Ñ­ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ 
 	int i,i_opp;
 	int l = (*arrlit).length;
 	if ((*arrlit).ifInital == 0)
@@ -391,12 +393,12 @@ c8 reverse_list(ArrayList* arrlit){
 
 /**
 	Description: 
-		ÉêÇëÄÚ´æ·ÅÖÃÄæÐòÁÐ±í£¬Ô­ÁÐ±í²»»á±»ÐÞ¸Ä£¬ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ô­ï¿½Ð±ï¿½ï¿½ï¿½ï¿½á±»ï¿½Þ¸Ä£ï¿½ 
 	Arguments:
-		ArrayList** arrcopy:	´æ·ÅÄæÐòÁÐ±íµÄÁÐ±íÖ¸ÕëµÄµØÖ· 
+		ArrayList** arrcopy:	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ð±ï¿½Ö¸ï¿½ï¿½Äµï¿½Ö· 
 	Returns:
 		1: success;
-		5: Î´³õÊ¼»¯
+		5: Î´ï¿½ï¿½Ê¼ï¿½ï¿½
 		else: refer to FUNC CreateArrayList()
 */
 c8 reverse_list_copy(ArrayList* arrlit,ArrayList** arrcopy){
@@ -408,7 +410,7 @@ c8 reverse_list_copy(ArrayList* arrlit,ArrayList** arrcopy){
 		return ARR_UN_INIT;
 
 	sta = CreateArrayList(&temp,l);
-	if (sta != ARR_OK) return sta;//¶¯Ì¬ÁÐ±í´´½¨Ê§°Ü£¬sta refer to FUNC CreateArrayList() 
+	if (sta != ARR_OK) return sta;//ï¿½ï¿½Ì¬ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½sta refer to FUNC CreateArrayList() 
 
 	for(i=0;i<l;i++){
 		(*temp).arr[i] = (*arrlit).arr[l - i -1];
@@ -421,21 +423,21 @@ c8 reverse_list_copy(ArrayList* arrlit,ArrayList** arrcopy){
 
 /**
 	Description: 
-		Ñ¡È¡ÁÐ±íµÄÄ³Ò»²¿·Ö£¬²¢ÒÔÐÂÁÐ±í·µ»Ø£¬Ô­ÁÐ±í²»±ä 
+		Ñ¡È¡ï¿½Ð±ï¿½ï¿½ï¿½Ä³Ò»ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ø£ï¿½Ô­ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		ArrayList** arrnew: ´æ·ÅÐÂÁÐ±íµÄÁÐ±íÖ¸ÕëµÄµØÖ·
-		int start:	´ÓÏÂ±êstart¿ªÊ¼½ØÈ¡£¬°üÀ¨ÕâÒ»Î»¡£¿É¸º£¬-1ÎªÄ©ÔªËØ 
-		int count:	Òª½ØÈ¡µÄ¸öÊý¡£¸ºÊý£ºstart¿ªÊ¼µ½Ä©Î²£»countÈô³¬³öÊ£ÓàÊýÁ¿£¬ÔòÒ²È¡µ½Ä©Î² 
+		ArrayList** arrnew: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ð±ï¿½Ö¸ï¿½ï¿½Äµï¿½Ö·
+		int start:	ï¿½ï¿½ï¿½Â±ï¿½startï¿½ï¿½Ê¼ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½ 
+		int count:	Òªï¿½ï¿½È¡ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½startï¿½ï¿½Ê¼ï¿½ï¿½Ä©Î²ï¿½ï¿½countï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²È¡ï¿½ï¿½Ä©Î² 
 	Returns:
 		1: success
-		-5:	ÁÐ±íÎ´³õÊ¼»¯
-		-1:	ÏÂ±ê²»ºÏ·¨
-		2:	Êý×é¸´ÖÆÊ§°Ü
+		-5:	ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1:	ï¿½Â±ê²»ï¿½Ï·ï¿½
+		2:	ï¿½ï¿½ï¿½é¸´ï¿½ï¿½Ê§ï¿½ï¿½
 		else: refer to FUNC  CreateArrayList()
 */
 c8 slice_list_copy(ArrayList* arrlit,ArrayList** arrnew,int start,int count){
 	c8 sta;
-	ArrayList* temp;//ÓÐÁËÁÙÊ±±äÁ¿¿ÉÊ¹ arrnewÎª arrlitµÄµØÖ· 
+	ArrayList* temp;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ arrnewÎª arrlitï¿½Äµï¿½Ö· 
 	if ((*arrlit).ifInital == 0)
 		return ARR_UN_INIT;
 	
@@ -444,13 +446,13 @@ c8 slice_list_copy(ArrayList* arrlit,ArrayList** arrnew,int start,int count){
 	
 	if (count == 0) return ARR_OK;
 	if (count > (*arrlit).length - start || count < 0)
-		count = (*arrlit).length - start;//countÈô³¬¹ýÁËÊ£ÓàÊýÁ¿»òÊÇ¸ºÊý£¬Ôò½ØÈ¡Ê£ÓàµÄÈ«²¿ 
+		count = (*arrlit).length - start;//countï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ê£ï¿½ï¿½ï¿½È«ï¿½ï¿½ 
 
 	sta = CreateArrayList(&temp,count);
-	if (sta != ARR_OK) return sta;//¶¯Ì¬ÁÐ±í´´½¨Ê§°Ü£¬sta refer to FUNC CreateArrayList() 
+	if (sta != ARR_OK) return sta;//ï¿½ï¿½Ì¬ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½sta refer to FUNC CreateArrayList() 
 
 	if (memcpy((*temp).arr, (*arrlit).arr + start, sizeof(void*)*count ) == (void*)0 )
-		return ARR_MOVE_FAIL;//¸´ÖÆÊý×éÊ§°Ü
+		return ARR_MOVE_FAIL;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 		
 	(*temp).length += count;
 	*arrnew = temp;
@@ -459,15 +461,15 @@ c8 slice_list_copy(ArrayList* arrlit,ArrayList** arrnew,int start,int count){
 
 /**
 	Description: 
-		É¾³ýÁÐ±íÖÐµÄ²¿·ÖÔªËØ£¬Ô­ÁÐ±í»á±»ÐÞ¸Ä 
+		É¾ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ÐµÄ²ï¿½ï¿½ï¿½Ôªï¿½Ø£ï¿½Ô­ï¿½Ð±ï¿½ï¿½á±»ï¿½Þ¸ï¿½ 
 	Arguments:
-		int start:	ÆðÊ¼Î»£¬°üÀ¨´ËÎ»¡£¿É¸º£¬-1ÎªÄ©ÔªËØ
-		int count:	ÒªÉ¾³ýµÄ¸öÊý ¡£Èô³¬¹ýÁËÊ£ÓàÊýÁ¿»òÊÇ¸ºÊý£¬Ôò½ØÈ¡Ê£ÓàµÄÈ«²¿ 
+		int start:	ï¿½ï¿½Ê¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½
+		int count:	ÒªÉ¾ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ê£ï¿½ï¿½ï¿½È«ï¿½ï¿½ 
 	Returns:
 		1: success
-		-5: ÁÐ±íÎ´³õÊ¼»¯
-		-1:	ÏÂ±ê²»ºÏ·¨
-		2:	Êý×éÄÚ´æÒÆ¶¯Ê§°Ü 
+		-5: ï¿½Ð±ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1:	ï¿½Â±ê²»ï¿½Ï·ï¿½
+		2:	ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Æ¶ï¿½Ê§ï¿½ï¿½ 
 */
 c8 delete_list(ArrayList* arrlit,int start,int count){
 	c8 sta;
@@ -479,7 +481,7 @@ c8 delete_list(ArrayList* arrlit,int start,int count){
 	
 	if (count == 0) return ARR_OK;
 	if (count > (*arrlit).length - start || count < 0)
-		count = (*arrlit).length - start;//countÈô³¬¹ýÁËÊ£ÓàÊýÁ¿»òÊÇ¸ºÊý£¬Ôò½ØÈ¡Ê£ÓàµÄÈ«²¿ 
+		count = (*arrlit).length - start;//countï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ê£ï¿½ï¿½ï¿½È«ï¿½ï¿½ 
 
 	if (arr_move(arrlit,start+count,-count) == ARR_MOVE_FAIL)
 		return ARR_MOVE_FAIL;
@@ -490,7 +492,7 @@ c8 delete_list(ArrayList* arrlit,int start,int count){
 
 /**
 	Description: 
-		Çå¿ÕÁÐ±í£¬µ«ÈÝÁ¿²»±ä 
+		ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing
 	Returns:
