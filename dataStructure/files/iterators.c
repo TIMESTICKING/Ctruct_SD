@@ -10,7 +10,7 @@
 		init ITER_4ARRAY struct
 	Arguments:
 		ITER_4ARRAY* iter: address of a var which has type ITER_4ARRAY
-		ArrayList* arr£ºaddress of a list which has type ArrayList
+		ArrayList* arrï¿½ï¿½address of a list which has type ArrayList
 	Return:
 		1: ARR_OK
 */
@@ -51,14 +51,20 @@ c8 InitITER_4array(ITER_4ARRAY* iter, ArrayList* arr, ENUM_ITERTYPE_4ARRAY type)
 		ITER_4ARRAY* iter: address of a var which has type ITER_4ARRAY
 	Returns:
 		-5: ARR_UN_INIT: not inited
-		1£ºhas next
-		0£ºno next
+		1ï¿½ï¿½has next
+		0ï¿½ï¿½no next
 */
 c8 hasNext_4array(ITER_4ARRAY* iter){
+	c8 ret;
 	if (iter->ifInital != 1)
 		return ARR_UN_INIT; 
 		
-	return iter->pos < iter->array->length;
+	ret = iter->pos < iter->array->length;
+	if (ret == 0){
+		// pos reset to 0
+		iter->pos = 0;
+	}
+	return ret;
 }
 
 /**
@@ -69,7 +75,7 @@ c8 hasNext_4array(ITER_4ARRAY* iter){
 	Returns:
 		-1:	ARR_WRONG_INDEX  illegal index of array
 		-5: ARR_UN_INIT: no inited
-		x£ºaddr
+		xï¿½ï¿½addr
 */
 void* next_reverse_4array(ITER_4ARRAY* iter,...){
 	if (iter->ifInital != 1)
@@ -90,7 +96,7 @@ void* next_reverse_4array(ITER_4ARRAY* iter,...){
 	Returns:
 		-1:	ARR_WRONG_INDEX  illegal index of array
 		-5: ARR_UN_INIT: no inited
-		x£ºaddr
+		xï¿½ï¿½addr
 */
 void* next_4array(ITER_4ARRAY* iter,...){
 	if (iter->ifInital != 1)
@@ -103,20 +109,26 @@ void* next_4array(ITER_4ARRAY* iter,...){
 	Description: 
 		does it has next(2divsion iteration)
 	Arguments:
-		ITER_4ARRAY* iter£ºaddress of a var which has type ITER_4ARRAY
-		int direction£ºgo to the right branch or left, values can be
-					ITERDIREC_LEFT=-1£¬ITERDIREC_INIT=0£¬ITERDIREC_RIGHT=1 
+		ITER_4ARRAY* iterï¿½ï¿½address of a var which has type ITER_4ARRAY
+		int directionï¿½ï¿½go to the right branch or left, values can be
+					ITERDIREC_LEFT=-1ï¿½ï¿½ITERDIREC_INIT=0ï¿½ï¿½ITERDIREC_RIGHT=1 
 	Returns:
-		-5  ARR_UN_INIT£ºnot inited
-		0£ºno next
-		1£ºhas next
+		-5  ARR_UN_INITï¿½ï¿½not inited
+		0ï¿½ï¿½no next
+		1ï¿½ï¿½has next
 */
 c8 hasNext_2div_4array(ITER_4ARRAY* iter, int direction){
+	c8 ret;
 	if (iter->ifInital != 1)
 		return ARR_UN_INIT; 
 	
 	int *temp = iter->temp;
-	return (temp[1] >= temp[0]);
+	ret = (temp[1] >= temp[0]);
+	if (ret == 0){
+		// reset pos to init
+		iter->pos = ((iter->array)->length - 1) / 2;
+	}
+	return ;
 }
 
 
@@ -124,9 +136,9 @@ c8 hasNext_2div_4array(ITER_4ARRAY* iter, int direction){
 	Description: 
 		next value in 2divsion
 	Arguments:
-		ITER_4ARRAY* iter£ºaddress of a var which has type ITER_4ARRAY
-		int direction£ºgo to the right branch or left, values can be
-					ITERDIREC_LEFT=-1£¬ITERDIREC_INIT=0£¬ITERDIREC_RIGHT=1 
+		ITER_4ARRAY* iterï¿½ï¿½address of a var which has type ITER_4ARRAY
+		int directionï¿½ï¿½go to the right branch or left, values can be
+					ITERDIREC_LEFT=-1ï¿½ï¿½ITERDIREC_INIT=0ï¿½ï¿½ITERDIREC_RIGHT=1 
 	Returns:
 		-1:	ARR_WRONG_INDEX   illegal index
 		-5:	ARR_UN_INIT      list no inited
