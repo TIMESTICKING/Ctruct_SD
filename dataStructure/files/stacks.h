@@ -10,13 +10,13 @@ extern "C"{
 
 
 typedef struct stacks {
-	ArrayList sta_arr;
+	ArrayList* sta_arr;
 	char *name;
 	c8 (*INSERT_sta)(struct stacks*,void*);
-	int (*COUNT_sta)(struct stacks*);
+	int (*COUNT)(struct stacks*);
 	void* (*POP_sta)(struct stacks*);
-	void (*FREE_sta)(struct stacks*);
-	void (*PRINT_sta)(struct stacks*);
+	void (*FREE)(struct stacks*);
+	void (*PRINT)(struct stacks*);
 	c8 ifInital;
 }Stacks;
 

@@ -36,11 +36,11 @@ c8 InitArrayList(ArrayList* arrlit,u32_ds cap){
 	(*arrlit).COUNT = count_list;
 	(*arrlit).REVERSE_arr = reverse_list;
 	(*arrlit).REVERSE_arr_copy = reverse_list_copy;
-	(*arrlit).FREE_arr = free_arr;
+	(*arrlit).FREE = free_arr;
 	(*arrlit).SLICE_arr_copy = slice_list_copy;
 	(*arrlit).DEL_arr = delete_list;
 	(*arrlit).CLEAR_arr = clear_arr;
-	(*arrlit).PRINT_arr = print_arl;
+	(*arrlit).PRINT = print_arl;
 	
 	return ARR_OK;
 }

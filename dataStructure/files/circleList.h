@@ -8,17 +8,17 @@ extern "C"{
 #endif // __cplusplus
 
 typedef struct cList {
-	LinkedList linkList;
+	LinkedList* linkList;
 	char *name;
 	c8 (*INSERT_ele_atTail)(struct cList*,void*);
 	c8 (*INSERT_ele_atHead)(struct cList*,void*);
-	void (*FREE_clist)(struct cList*);
+	void (*FREE)(struct cList*);
 	Tree_node* (*GET_tail_llist)(struct cList*);
 	Tree_node* (*GET_head_llist)(struct cList*);
-	void (*PRINT_clist)(struct cList*);
+	void (*PRINT)(struct cList*);
 	c8 (*DEL_byAddr_clist)(struct cList*,Tree_node*);
 	c8 (*DEL_byInd_clist)(struct cList*,int);
-	u32_ds (*GET_COUNT_clist)(struct cList*);
+	u32_ds (*COUNT)(struct cList*);
 	c8 (*IF_ELEaddr_exsit_clist)(struct cList*,void*);
 	c8 ifinitial;
 }CircleList;

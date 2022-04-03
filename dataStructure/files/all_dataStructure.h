@@ -13,6 +13,7 @@ extern "C"{
 #include "linkedList.h"
 #include "circleList.h"
 #include "iterators.h"
+#include "dictionary.h"
 
 #ifdef __cplusplus
 }

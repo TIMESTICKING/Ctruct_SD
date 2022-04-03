@@ -10,7 +10,7 @@
 		1：success 
 */
 c8 InitLinkedList(LinkedList *llist){
-	InitTree(&(llist->tree));
+	CreateTree(&(llist->tree));
 	llist->ifinitial = 1;
 	llist->name = "linkedlist_def";
 	llist->tail = NULL_node;
@@ -19,7 +19,7 @@ c8 InitLinkedList(LinkedList *llist){
 	llist->INSERT_ele_atTail = add_ele_atTail;
 	llist->INSERT_ele_atHead = add_ele_atHead;
 	llist->DEL_byAddr_llist = delete_node_llist;
-	llist->PRINT_llist = print_llist;
+	llist->PRINT = print_llist;
 	llist->GET_tail_llist = get_tailNode_llist;
 	llist->GET_head_llist = get_headNode_llist;
 	llist->GET_addr_byIndex = getAddr_llist;
@@ -29,9 +29,9 @@ c8 InitLinkedList(LinkedList *llist){
 	llist->ADD_llist_atInd = insert_llist_byInd;
 	llist->COPY_llist = copy_llist;
 	llist->REVERSE_llist = reverse_llist;
-	llist->GET_COUNT_llist = get_count_llist;
+	llist->COUNT = get_count_llist;
 	llist->IF_ELEaddr_exsit_llist = if_eleAddr_exsit_llist;
-	llist->FREE_llist = free_llist;
+	llist->FREE = free_llist;
 	
 	return ARR_OK;
 }
@@ -103,7 +103,7 @@ c8 insert_ele_atMid(LinkedList *llist,Tree_node *node,u8_ds position,void *ele){
 	//把B的前驱指向C
 	add_node(temp,0,new_node);
 	//节点数量+1
-	(llist->tree).count++;
+    (llist->tree)->count++;
 	
 	return ARR_OK;
 }
@@ -128,9 +128,9 @@ static c8 add_ele_emptyList(LinkedList *llist,void *ele){
 	if (sta != ARR_OK)	return sta;//返回错误
 	put_in_data_node(new_node,ele);//存入数据到新节点
 
-	(llist->tree).head = new_node;//头节点指向它
+    (llist->tree)->head = new_node;//头节点指向它
 	llist->tail = new_node;//尾节点指向它 
-	(llist->tree).count++;
+    (llist->tree)->count++;
 	
 	return ARR_OK;
 }
@@ -160,7 +160,7 @@ c8 add_ele_atTail(LinkedList *llist,void *ele){
 	add_node(llist->tail,NEXT_LLIST,new_node);//尾节点后继指向新节点
 	add_node(new_node,PREVIEW_LLIST,llist->tail);//新节点前驱指向尾节点
 	llist->tail = new_node;
-	(llist->tree).count++;
+    (llist->tree)->count++;
 	
 	return ARR_OK;
 }
@@ -179,7 +179,7 @@ c8 add_ele_atHead(LinkedList *llist,void *ele){
 	Tree_node *new_node;
 	Tree_node *head;
 	c8 sta;
-	head = (llist->tree).head;//头节点重赋值，方便操作 
+    head = (llist->tree)->head;//头节点重赋值，方便操作
 	if (head == NULL_node)
 		return add_ele_emptyList(llist,ele);
 	if(llist->ifinitial != 1)
@@ -191,8 +191,8 @@ c8 add_ele_atHead(LinkedList *llist,void *ele){
 	
 	add_node(head,PREVIEW_LLIST,new_node);//头节点的前驱指向新节点
 	add_node(new_node,NEXT_LLIST,head);//新节点前驱指向尾节点
-	(llist->tree).head = new_node;
-	(llist->tree).count++;
+    (llist->tree)->head = new_node;
+    (llist->tree)->count++;
 	
 	return ARR_OK;
 }
@@ -228,7 +228,7 @@ c8 add_ele_byInd_llist(LinkedList *llist,int ind,void *ele){
 		1：success 
 */
 c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist){
-	Tree_node *head = (llist->tree).head;
+    Tree_node *head = (llist->tree)->head;
 	Tree_node *tail = add_llist->tail;
 	if (llist == add_llist)
 		return ARR_INPUT_SAME;
@@ -239,9 +239,9 @@ c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist){
 	add_node(tail,NEXT_LLIST,head);
 	add_node(head,PREVIEW_LLIST,tail);
 	//头指针复位
-	(llist->tree).head = (add_llist->tree).head;
+    (llist->tree)->head = (add_llist->tree)->head;
 	//+count
-	(llist->tree).count += (add_llist->tree).count;
+    (llist->tree)->count += (add_llist->tree)->count;
 	
 	return ARR_OK;
 }
@@ -257,7 +257,7 @@ c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist){
 		1：success 
 */
 c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist){
-	Tree_node *head = (add_llist->tree).head;
+    Tree_node *head = (add_llist->tree)->head;
 	Tree_node *tail = llist->tail;
 	if (llist == add_llist)
 		return ARR_INPUT_SAME;
@@ -270,7 +270,7 @@ c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist){
 	//尾指针复位
 	llist->tail = add_llist->tail;
 	//+count
-	(llist->tree).count += (add_llist->tree).count;
+    (llist->tree)->count += (add_llist->tree)->count;
 	
 	return ARR_OK;
 }
@@ -290,7 +290,7 @@ c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist){
 c8 insert_llist_byInd(LinkedList *llist,int ind,LinkedList *add_llist){
 	Tree_node *res;
 	Tree_node *prev;
-	Tree_node *head = (add_llist->tree).head;
+    Tree_node *head = (add_llist->tree)->head;
 	Tree_node *tail = add_llist->tail;
 	if (llist == add_llist)
 		return ARR_INPUT_SAME;
@@ -309,7 +309,7 @@ c8 insert_llist_byInd(LinkedList *llist,int ind,LinkedList *add_llist){
 	add_node(tail,NEXT_LLIST,res);
 	add_node(res,PREVIEW_LLIST,tail);
 	//+count
-	(llist->tree).count += (add_llist->tree).count;
+    (llist->tree)->count += (add_llist->tree)->count;
 	
 	return ARR_OK;
 }
@@ -339,7 +339,7 @@ c8 delete_node_llist(LinkedList *llist,Tree_node *node_del){
 		add_node(prev,NEXT_LLIST,next);
 	else{
 		//删除头节点的情况 
-		(llist->tree).head = next; 
+        (llist->tree)->head = next;
 	}
 	if (next != NULL_node)
 		//C的前驱指向A/null
@@ -349,7 +349,7 @@ c8 delete_node_llist(LinkedList *llist,Tree_node *node_del){
 		llist->tail = prev; 
 	}
 	//节点个数--
-	(llist->tree).count--;
+    (llist->tree)->count--;
 	//销毁节点
 	free_node(node_del);
 	
@@ -369,7 +369,7 @@ c8 delete_node_llist(LinkedList *llist,Tree_node *node_del){
 Tree_node* get_headNode_llist(LinkedList *llist){
 	if(llist->ifinitial != 1)
 		return (Tree_node*)ARR_UN_INIT;
-	return (llist->tree).head;
+    return (llist->tree)->head;
 }
 
 /**
@@ -480,11 +480,11 @@ c8 reverse_llist(LinkedList *llist){
 		return ARR_UN_INIT;
 	
 	temp = llist->tail;
-	llist->tail = (llist->tree).head;
-	(llist->tree).head = temp;
+    llist->tail = (llist->tree)->head;
+    (llist->tree)->head = temp;
 	
 	//把每个节点的prev和next对调
-	for(temp=(llist->tree).head;temp!=NULL_node;temp=get_branch_node(temp,NEXT_LLIST)){
+    for(temp=(llist->tree)->head;temp!=NULL_node;temp=get_branch_node(temp,NEXT_LLIST)){
 		node_t = (temp->branches)[0];
 		(temp->branches)[0] = (temp->branches)[1];
 		(temp->branches)[1] = node_t; 
@@ -505,7 +505,7 @@ c8 reverse_llist(LinkedList *llist){
 u32_ds get_count_llist(LinkedList *llist){
 	if (llist->ifinitial != 1)	return ARR_UN_INIT;
 	
-	return (llist->tree).count;
+    return (llist->tree)->count;
 }
 
 /**
@@ -523,17 +523,17 @@ c8 copy_llist(LinkedList *llist,LinkedList **new_llist){
 	Tree_node *last = NULL_node;
 	Tree_node *cur;
 	Tree_node *newn;
-	u32_ds n,length = (llist->tree).count;
+    u32_ds n,length = (llist->tree)->count;
 	c8 sta;
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
 	
 	sta = CreateLinkedList(&newl);
 	if (sta != ARR_OK)	return sta;
-	(newl->tree).count = length;
+    (newl->tree)->count = length;
 	//预先申请length-1的长度的队列 
 	
-	for(cur=(llist->tree).head,n=0;cur!=NULL_node && n<length;cur=get_branch_node(cur,NEXT_LLIST),n++){
+    for(cur=(llist->tree)->head,n=0;cur!=NULL_node && n<length;cur=get_branch_node(cur,NEXT_LLIST),n++){
 		sta = CreateNode(&newn,2);
 		if (sta != ARR_OK){
 			free_llist(newl);
@@ -545,7 +545,7 @@ c8 copy_llist(LinkedList *llist,LinkedList **new_llist){
 			add_node(last,NEXT_LLIST,newn);
 			add_node(newn,PREVIEW_LLIST,last);
 		}else{
-			(newl->tree).head = newn;//设置头节点 
+            (newl->tree)->head = newn;//设置头节点
 		}
 		if (n == length-1){
 			newl->tail = newn;//设置尾节点 
@@ -558,16 +558,17 @@ c8 copy_llist(LinkedList *llist,LinkedList **new_llist){
 }
 
 void free_llist(LinkedList *llist){
-	if(llist->ifinitial == 1)
-		free_tree(&(llist->tree));
+    if(llist->ifinitial == 1){
+		free_tree(llist->tree);
+    }
 	SD_FREE(llist);
 }
 
 void print_llist_main(LinkedList *llist){
 	SD_PRINT("=>linkedlist=>ifinitial:	%d",llist->ifinitial);
-	SD_PRINT("=>linkedlist=>head node:	%#x",(llist->tree).head);
+    SD_PRINT("=>linkedlist=>head node:	%#x",(llist->tree)->head);
 	SD_PRINT("=>linkedlist=>tail node:	%#x",llist->tail);
-	print_tree_main(&(llist->tree));
+	print_tree_main(llist->tree);
 }
 
 void print_llist(LinkedList *llist){

@@ -17,10 +17,10 @@ c8 InitTree(Tree *tree){
 	tree->name = "tree_def";
 	tree->EDIT_Data_node = put_in_data_node;
 	tree->ADD_node = add_node_tree;
-	tree->COUNT_tree = count_tree;
+	tree->COUNT = count_tree;
 	tree->GET_BRANCH_node = get_branch_node;
-	tree->PRINT_tree = print_tree;
-	tree->FREE_tree = free_tree;
+	tree->PRINT = print_tree;
+	tree->FREE = free_tree;
 	tree->SET_head = set_head_tree;
 	
 	return ARR_OK;
@@ -243,7 +243,7 @@ c8 free_tree(Tree *tree){
 		
 	DFSnode(tree->head);//深度优先遍历 
 	tree->ifinitial = 0;
-//	SD_FREE(tree);
+	SD_FREE(tree);
     
     return ARR_OK;
 }

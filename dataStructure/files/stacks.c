@@ -15,16 +15,16 @@
 */
 c8 InitStacks(Stacks* stack){
 	c8 sta;
-	sta = InitArrayList(&(stack->sta_arr),7);
+	sta = CreateArrayList(&(stack->sta_arr),7);
 	if ( sta != ARR_OK )
 		return sta;
 	(*stack).ifInital = 1;
 	(*stack).name = "stack_def";
 	(*stack).INSERT_sta = insert_stack;
-	(*stack).COUNT_sta = count_sta;
+	(*stack).COUNT = count_sta;
 	(*stack).POP_sta = pop_sta;
-	(*stack).FREE_sta = free_sta;
-	(*stack).PRINT_sta = print_sta;
+	(*stack).FREE = free_sta;
+	(*stack).PRINT = print_sta;
 	
 	return ARR_OK;
 }
@@ -66,7 +66,7 @@ c8 insert_stack(Stacks* stack,void* ele){
 	if ((*stack).ifInital == 0)
 		return ARR_UN_INIT;
 	
-	sta = add_list(&(stack->sta_arr),ele);
+	sta = add_list(stack->sta_arr,ele);
 	if (sta != ARR_OK)
 		return sta;
 		
@@ -86,7 +86,7 @@ int count_sta(Stacks *stack){
 	if ((*stack).ifInital == 0)
 		return ARR_UN_INIT;
 
-	return (stack->sta_arr).length;
+    return (stack->sta_arr)->length;
 }
 
 /**
@@ -107,11 +107,11 @@ void* pop_sta(Stacks *stack){
 	if (count_sta(stack) == 0)
 		return NULL_void;
 	
-	res = get_list(&(stack->sta_arr),(stack->sta_arr).length - 1);
+    res = get_list(stack->sta_arr,(stack->sta_arr)->length - 1);
 	if (res == (void*)ARR_WRONG_INDEX)
 		return res;
 	
-	(stack->sta_arr).length --;
+    (stack->sta_arr)->length --;
 	return res;
 }
 
@@ -125,13 +125,13 @@ void* pop_sta(Stacks *stack){
 */
 void free_sta(Stacks *stack){
 	if ((*stack).ifInital == 1)
-		free_arr(&(stack->sta_arr));
+		free_arr(stack->sta_arr);
 	SD_FREE(stack);
 }
 
 void print_sta(Stacks *stack){
 	SD_PRINT_HEAD("Stacks",stack->name);
 	SD_PRINT("=>stack=>ifinitial:	%d",stack->ifInital);
-	print_arr_main(&(stack->sta_arr));
+	print_arr_main(stack->sta_arr);
 	SD_PRINT_END;
 }

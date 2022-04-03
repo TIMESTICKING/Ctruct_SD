@@ -36,7 +36,7 @@ void test_array(void){
 		printf("get: %d\n",*buff);
 	}
 	
-	arr1->PRINT_arr(arr1);
+	arr1->PRINT(arr1);
 	
 }
 
@@ -56,16 +56,16 @@ void test_stack(void){
 	sa.INSERT_sta(&sa,&a);
 	sa.INSERT_sta(&sa,&b);
 	sa.INSERT_sta(&sa,&c);
-	n = sa.COUNT_sta(&sa);
+	n = sa.COUNT(&sa);
 
-	sa.PRINT_sta(&sa);	
+	sa.PRINT(&sa);
 	
 	for(i = 0;i<n;i++){
 		buff = sa.POP_sta(&sa);
 		if (buff != NULL_void){
 			buff = (int*)buff;
 			printf("ele is %d\n",*buff);
-			printf("stack number %d\n",sa.COUNT_sta(&sa));
+			printf("stack number %d\n",sa.COUNT(&sa));
 		}
 	}
 }
@@ -83,8 +83,8 @@ void test_cirqueue(){
 	cq2->name = "cq2";
 	cq.name = "cq1";
 	
-	cq.PRINT_cq(&cq);
-	cq2->PRINT_cq(cq2);
+	cq.PRINT(&cq);
+	cq2->PRINT(cq2);
 	
 	cq.ENQUEUE_cq(&cq,&a);
 	cq.ENQUEUE_cq(&cq,&b);
@@ -95,7 +95,7 @@ void test_cirqueue(){
 		buff = cq.DEQUEUE_cq(&cq);
 		if (buff != NULL_void){
 			printf("buff %d\n",*buff);
-			cq.PRINT_cq(&cq);	
+			cq.PRINT(&cq);
 		}else break;
 	}
 	
@@ -108,9 +108,11 @@ void test_cirqueue(){
 		buff = cq2->DEQUEUE_cq(cq2);
 		if (buff != NULL_void){
 			printf("buff %d\n",*buff);
-			cq2->PRINT_cq(cq2);	
+			cq2->PRINT(cq2);
 		}else break;
 	}
+    
+    cq2->FREE(cq2);
 }
 
 void test_tree(void){
@@ -150,7 +152,7 @@ void test_tree(void){
 	
 	tree.head = a;
 	
-	tree.FREE_tree(&tree);
+	tree.FREE(&tree);
 }
 
 void test_linkedList(void){
@@ -169,7 +171,7 @@ void test_linkedList(void){
 	
 	llist.INSERT_ele_atTail(&llist,&a);
 	llist.INSERT_ele_atTail(&llist,&b);
-	llist.PRINT_llist(&llist);
+	llist.PRINT(&llist);
 	
 	
 	for(n = llist.GET_head_llist(&llist);n!=NULL_node;n = n->GET_BRANCH_node(n,NEXT_LLIST)){
@@ -200,21 +202,23 @@ void testCircleLinkedList(void){
 	CreateCircleList(&clist);
 	clist->INSERT_ele_atTail(clist,&a);
 	clist->INSERT_ele_atTail(clist,&b);
-	clist->PRINT_clist(clist);
+	clist->PRINT(clist);
 	
 	
 	clist->DEL_byInd_clist(clist,-1);
-	clist->PRINT_clist(clist);
+	clist->PRINT(clist);
 	
 	if (clist->IF_ELEaddr_exsit_clist(clist,&a) != ARR_OK)
 		clist->INSERT_ele_atTail(clist,&a);
-	clist->PRINT_clist(clist);
+	clist->PRINT(clist);
 	
 	
 	for(n=get_head_clist(clist),c=0;n!=NULL_node && c<10;n=n->GET_BRANCH_node(n,NEXT_LLIST),c++){
 		buff = (int*)(n->ele_addr);
 		printf("data is %d\n",*buff);
 	}
+    
+    clist->FREE(clist);
 }
 
 void test_iterators(void){
@@ -262,16 +266,68 @@ void test_iterators(void){
 }
 
 
+void test_uthash(void){
+    typedef struct {
+        char* id;
+        int field;
+        UT_hash_handle hh;
+    }HashStruct;
+    
+    HashStruct* global=NULL;
+    
+    HashStruct mynumber;
+    mynumber.id = "first";
+    mynumber.field = 6;
+    
+    HashStruct mynumber2;
+    mynumber2.id = "first";
+    mynumber2.field = 8;
+    
+    HASH_ADD_STR(global, id, &mynumber);
+    HASH_ADD_STR(global, id, &mynumber2);
+    HashStruct *res;
+    HASH_FIND_STR(global, "first", res);
+    printf("find number: %d\n", res->field);
+}
+
+
+void test_dict(void){
+    Dictionary mydict;
+    
+    InitDictionary(&mydict);
+    mydict.name = "dict1";
+    mydict.ADD_EDIT_dict(&mydict,"a",INT_new(3));
+    mydict.ADD_EDIT_dict(&mydict,"a",INT_new(7));
+    mydict.ADD_EDIT_dict(&mydict,"b",INT_new(73));
+    
+    Dictionary mydict2;
+    
+    InitDictionary(&mydict2);
+    mydict2.name = "dict2";
+    mydict2.ADD_EDIT_dict(&mydict2,"a",INT_new(5));
+    mydict2.ADD_EDIT_dict(&mydict2,"b",INT_new(11));
+    
+    int* res;
+    res = (int*)mydict.GET_dict(&mydict, "b");
+    SD_PRINT("res is %d", *res);
+    
+    res = (int*)mydict2.GET_dict(&mydict2, "b");
+    SD_PRINT("res is %d", *res);
+}
+
+
 int main(int argc, char *argv[])
 {
-//	test_stack();
-	test_array();
+	test_stack();
+//	test_array();
 //	test_cirqueue();
 //	
 //	test_linkedList();
 //	test_tree();
 //	testCircleLinkedList();
 //	test_iterators();
+//    test_uthash();
+//    test_dict();
 	return 0;
 }
 

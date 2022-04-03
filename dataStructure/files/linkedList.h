@@ -11,7 +11,7 @@ extern "C"{
 #endif // __cplusplus
 
 typedef struct lList {
-	Tree tree;
+	Tree *tree;
 	char *name;
 	Tree_node *tail;
 	c8 (*INSERT_ele_byAddr)(struct lList*,Tree_node*,u8_ds,void*);
@@ -28,10 +28,10 @@ typedef struct lList {
 	Tree_node* (*GET_addr_byIndex)(struct lList*,int);
 	c8 (*COPY_llist)(struct lList*,struct lList**);
 	c8 (*REVERSE_llist)(struct lList*);
-	u32_ds (*GET_COUNT_llist)(struct lList*);
+	u32_ds (*COUNT)(struct lList*);
 	c8 (*IF_ELEaddr_exsit_llist)(struct lList*,void*);
-	void (*FREE_llist)(struct lList*);
-	void (*PRINT_llist)(struct lList*);
+	void (*FREE)(struct lList*);
+	void (*PRINT)(struct lList*);
 	c8	ifinitial;
 }LinkedList;
 //��Tree_node�ڵ������У�0�±�Ϊǰ���ڵ� ��1Ϊ��� 

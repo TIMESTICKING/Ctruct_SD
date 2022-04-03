@@ -9,15 +9,15 @@ extern "C"{
 
 typedef struct cirqueues {
 	char *name;
-	ArrayList cq_arr;
+	ArrayList* cq_arr;
 	int front;
 	int rear;
 	int size;
 	c8 (*ENQUEUE_cq)(struct cirqueues*,void*);
 	void* (*DEQUEUE_cq)(struct cirqueues*);
-	int (*COUNT_cq)(struct cirqueues*);
-	void (*FREE_cq)(struct cirqueues*);
-	void (*PRINT_cq)(struct cirqueues*);
+	int (*COUNT)(struct cirqueues*);
+	void (*FREE)(struct cirqueues*);
+	void (*PRINT)(struct cirqueues*);
 	c8 ifInital;
 }CirQueues;
 

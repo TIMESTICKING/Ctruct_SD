@@ -13,10 +13,10 @@
 */
 c8 InitCirQueue(CirQueues *cq,int size){
 	c8 sta;
-	sta = InitArrayList(&(cq->cq_arr),size);
+	sta = CreateArrayList(&(cq->cq_arr),size);
 	if ( sta != ARR_OK )
 		return sta;
-	(cq->cq_arr).length = size;
+    (cq->cq_arr)->length = size;
 	cq->front = -1;
 	cq->rear = -1;
 	cq->size= size;
@@ -24,9 +24,9 @@ c8 InitCirQueue(CirQueues *cq,int size){
 	cq->name = "cirqueue_def";
 	cq->ENQUEUE_cq = enqueue_cq;
 	cq->DEQUEUE_cq = dequeue_cq;
-	cq->COUNT_cq = count_cq;
-	cq->FREE_cq = free_cq;
-	cq->PRINT_cq = print_cq;
+	cq->COUNT = count_cq;
+	cq->FREE = free_cq;
+	cq->PRINT = print_cq;
 	
 	return ARR_OK;
 }
@@ -84,7 +84,7 @@ c8 enqueue_cq(CirQueues *cq,void *ele){
 		return ARR_FALSE;
 	}
 	
-	sta = edit_list(&(cq->cq_arr),(cq->rear + 1) % cq->size,ele);
+	sta = edit_list(cq->cq_arr,(cq->rear + 1) % cq->size,ele);
 	if ( sta != ARR_OK ){
 		return sta;
 	}
@@ -116,7 +116,7 @@ void* dequeue_cq(CirQueues *cq){
 	if (isEmpty(cq)){
 		return NULL_void;
 	}
-	temp = get_list(&(cq->cq_arr),cq->front);
+	temp = get_list(cq->cq_arr,cq->front);
 	if (temp == (void*)ARR_WRONG_INDEX)
 		return (void*)ARR_WRONG_INDEX;
 		
@@ -158,7 +158,7 @@ int count_cq(CirQueues *cq){
 */
 void free_cq(CirQueues *cq){
 	if (cq->ifInital == 1)
-		free_arr(&(cq->cq_arr));
+		free_arr(cq->cq_arr);
 	SD_FREE(cq);
 }
 
@@ -166,9 +166,9 @@ void print_cq(CirQueues *cq){
 	SD_PRINT_HEAD("CirqQueues",cq->name);
 	SD_PRINT("=>cirqueue=>ifinitial:	%d",cq->ifInital);
 	SD_PRINT("=>cirqueue=>size:	%d",cq->size);
-	SD_PRINT("=>cirqueue=>count:	%d",cq->COUNT_cq(cq));
+	SD_PRINT("=>cirqueue=>count:	%d",cq->COUNT(cq));
 	SD_PRINT("=>cirqueue=>front:	%d",cq->front);
 	SD_PRINT("=>cirqueue=>rear:	%d",cq->rear);
-	print_arr_main(&(cq->cq_arr));
+	print_arr_main(cq->cq_arr);
 	SD_PRINT_END;
 }
