@@ -1,14 +1,14 @@
 #ifndef __CIRCLELIST_H__
 #define __CIRCLELIST_H__
 
-#include "linkedList.h"
+#include "LinkedList_SD.h"
 
 #ifdef __cplusplus
 extern "C"{
 #endif // __cplusplus
 
 typedef struct cList {
-	LinkedList* linkList;
+	LinkedList_SD* linkList;
 	char *name;
 	c8 (*INSERT_ele_atTail)(struct cList*,void*);
 	c8 (*INSERT_ele_atHead)(struct cList*,void*);

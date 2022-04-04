@@ -1,18 +1,18 @@
 #include <stdio.h>
-#include "linkedList.h"
+#include "LinkedList_SD.h"
 
 /**
 	Description: 
-		¾²Ì¬³õÊ¼»¯Á´±í 
+		ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		1£ºsuccess 
+		1ï¿½ï¿½success 
 */
-c8 InitLinkedList(LinkedList *llist){
+c8 InitLinkedList_SD(LinkedList_SD *llist){
 	CreateTree(&(llist->tree));
 	llist->ifinitial = 1;
-	llist->name = "linkedlist_def";
+	llist->name = "LinkedList_SD_def";
 	llist->tail = NULL_node;
 	llist->INSERT_ele_byAddr = insert_ele_atMid;
 	llist->INSERT_ele_atInd = add_ele_byInd_llist;
@@ -38,33 +38,33 @@ c8 InitLinkedList(LinkedList *llist){
 
 /**
 	Description: 
-		¶¯Ì¬´´½¨Á´±í 
+		ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		¶þ¼¶Ö¸Õë 
+		ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ 
 	Returns:
-		3£ºÄÚ´æÉêÇëÊ§°Ü
-		1£ºsuccess 
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 CreateLinkedList(LinkedList **llist){
-	*llist = (LinkedList*)SD_MALLOC(sizeof(LinkedList));
-	if (*llist == (LinkedList*)0)	return ARR_MALLOC_FAIL;
+c8 CreateLinkedList_SD(LinkedList_SD **llist){
+	*llist = (LinkedList_SD*)SD_MALLOC(sizeof(LinkedList_SD));
+	if (*llist == (LinkedList_SD*)0)	return ARR_MALLOC_FAIL;
 	
-	return InitLinkedList(*llist);
+	return InitLinkedList_SD(*llist);
 }
 
 /**
 	Description: 
-		ÔÚÄ³½ÚµãµÄÇ°Çý»òºó¼Ì²åÈëÐÂÔªËØ£¬ÐÂ½Úµã»áÔÚÄÚ²¿ÊµÏÖ 
+		ï¿½ï¿½Ä³ï¿½Úµï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø£ï¿½ï¿½Â½Úµï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½Êµï¿½ï¿½ 
 	Arguments:
-		Tree_node *node£ºÔÚ¸Ã½Úµã²åÈë
-		u8_ds position£ºPREVIEW_LLIST|NEXT_LLIST£¬Ç°Çý|ºó¼Ì
-		void *ele£ºÐÂÔªËØµØÖ· 
+		Tree_node *nodeï¿½ï¿½ï¿½Ú¸Ã½Úµï¿½ï¿½ï¿½ï¿½
+		u8_ds positionï¿½ï¿½PREVIEW_LLIST|NEXT_LLISTï¿½ï¿½Ç°ï¿½ï¿½|ï¿½ï¿½ï¿½
+		void *eleï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½Ö· 
 	Returns:
-		1£ºsuccess
-		-5£ºÎ´³õÊ¼»¯
-		-1£ºÏÂ±êposition´íÎó 
+		1ï¿½ï¿½success
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1ï¿½ï¿½ï¿½Â±ï¿½positionï¿½ï¿½ï¿½ï¿½ 
 */
-c8 insert_ele_atMid(LinkedList *llist,Tree_node *node,u8_ds position,void *ele){
+c8 insert_ele_atMid(LinkedList_SD *llist,Tree_node *node,u8_ds position,void *ele){
 	Tree_node *new_node;
 	Tree_node *temp;
 	c8 sta;
@@ -75,34 +75,34 @@ c8 insert_ele_atMid(LinkedList *llist,Tree_node *node,u8_ds position,void *ele){
 	if (position != 0 && position != 1)
 		return ARR_WRONG_INDEX;
 	
-	//²åÈëÐÂ½Úµã,ÈçÔÚABÖ®¼ä²åÈëC
-	//Èôposition=1£¬ÔòA = node£»Ê²Ã´¶¼²»×ö
-	//Èôposition=0£¬ÔòA = node.prev
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Â½Úµï¿½,ï¿½ï¿½ï¿½ï¿½ABÖ®ï¿½ï¿½ï¿½ï¿½ï¿½C
+	//ï¿½ï¿½position=1ï¿½ï¿½ï¿½ï¿½A = nodeï¿½ï¿½Ê²Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ï¿½position=0ï¿½ï¿½ï¿½ï¿½A = node.prev
 	if (position == PREVIEW_LLIST){
 		node = (node->branches)[PREVIEW_LLIST];
 		if (node == NULL_node){
-			//ÐèÒªÍ·²å
+			//ï¿½ï¿½ÒªÍ·ï¿½ï¿½
 			return add_ele_atHead(llist,ele);
 		}
 	} 
-	//±£´æBµØÖ·
-	temp = get_branch_node(node,1);//»ñµÃAµÄºó¼Ì½Úµã£¬¼´B
+	//ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½Ö·
+	temp = get_branch_node(node,1);//ï¿½ï¿½ï¿½Aï¿½Äºï¿½Ì½Úµã£¬ï¿½ï¿½B
 	if (temp == NULL_node){
-		//ÐèÒªÎ²²å
+		//ï¿½ï¿½ÒªÎ²ï¿½ï¿½
 		return add_ele_atTail(llist,ele); 
 	}
-	sta = CreateNode(&new_node,2);//´´½¨ÐÂ½Úµã
-	if (sta != ARR_OK)	return sta;//·µ»Ø´íÎó
-	put_in_data_node(new_node,ele);//´æÈëÊý¾Ýµ½ÐÂ½Úµã
-	//C½ÚµãµÄºó¼ÌÖ¸ÏòB
+	sta = CreateNode(&new_node,2);//ï¿½ï¿½ï¿½ï¿½ï¿½Â½Úµï¿½
+	if (sta != ARR_OK)	return sta;//ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+	put_in_data_node(new_node,ele);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Â½Úµï¿½
+	//Cï¿½Úµï¿½Äºï¿½ï¿½Ö¸ï¿½ï¿½B
 	add_node(new_node,1,temp);
-	//°ÑAµÄºó¼ÌÖ¸ÏòC
+	//ï¿½ï¿½Aï¿½Äºï¿½ï¿½Ö¸ï¿½ï¿½C
 	add_node(node,1,new_node);
-	//°ÑCµÄÇ°ÇýÖ¸ÏòA
+	//ï¿½ï¿½Cï¿½ï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½A
 	add_node(new_node,0,node);
-	//°ÑBµÄÇ°ÇýÖ¸ÏòC
+	//ï¿½ï¿½Bï¿½ï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½C
 	add_node(temp,0,new_node);
-	//½ÚµãÊýÁ¿+1
+	//ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½+1
     (llist->tree)->count++;
 	
 	return ARR_OK;
@@ -110,26 +110,26 @@ c8 insert_ele_atMid(LinkedList *llist,Tree_node *node,u8_ds position,void *ele){
 
 /**
 	Description: 
-		µ±Á´±íÎª¿ÕÊ±µÄ²åÈë·½·¨ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±ï¿½Ä²ï¿½ï¿½ë·½ï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		1£ºsuccess
-		3£ºÄÚ´æÉêÇëÊ§°Ü
-		-5£ºÎ´³õÊ¼»¯Á´±í 
+		1ï¿½ï¿½success
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
-static c8 add_ele_emptyList(LinkedList *llist,void *ele){
+static c8 add_ele_emptyList(LinkedList_SD *llist,void *ele){
 	Tree_node *new_node;
 	c8 sta;
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
 
-	sta = CreateNode(&new_node,2);//´´½¨ÐÂ½Úµã
-	if (sta != ARR_OK)	return sta;//·µ»Ø´íÎó
-	put_in_data_node(new_node,ele);//´æÈëÊý¾Ýµ½ÐÂ½Úµã
+	sta = CreateNode(&new_node,2);//ï¿½ï¿½ï¿½ï¿½ï¿½Â½Úµï¿½
+	if (sta != ARR_OK)	return sta;//ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+	put_in_data_node(new_node,ele);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Â½Úµï¿½
 
-    (llist->tree)->head = new_node;//Í·½ÚµãÖ¸ÏòËü
-	llist->tail = new_node;//Î²½ÚµãÖ¸ÏòËü 
+    (llist->tree)->head = new_node;//Í·ï¿½Úµï¿½Ö¸ï¿½ï¿½ï¿½ï¿½
+	llist->tail = new_node;//Î²ï¿½Úµï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ 
     (llist->tree)->count++;
 	
 	return ARR_OK;
@@ -137,15 +137,15 @@ static c8 add_ele_emptyList(LinkedList *llist,void *ele){
 
 /**
 	Description: 
-		ÔÚÁ´±íÎ²²¿²åÈëÐÂÔªËØ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ 
 	Arguments:
-		void *ele£ºÐÂÔªËØµÄµØÖ· 
+		void *eleï¿½ï¿½ï¿½ï¿½Ôªï¿½ØµÄµï¿½Ö· 
 	Returns:
-		1£ºsuccess
-		3£ºÄÚ´æÉêÇëÊ§°Ü
-		-5£ºÎ´³õÊ¼»¯Á´±í 
+		1ï¿½ï¿½success
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
-c8 add_ele_atTail(LinkedList *llist,void *ele){
+c8 add_ele_atTail(LinkedList_SD *llist,void *ele){
 	Tree_node *new_node;
 	c8 sta;
 	if (llist->tail == NULL_node)
@@ -153,12 +153,12 @@ c8 add_ele_atTail(LinkedList *llist,void *ele){
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
 		
-	sta = CreateNode(&new_node,2);//´´½¨ÐÂ½Úµã
-	if (sta != ARR_OK)	return sta;//·µ»Ø´íÎó
-	put_in_data_node(new_node,ele);//´æÈëÊý¾Ýµ½ÐÂ½Úµã
+	sta = CreateNode(&new_node,2);//ï¿½ï¿½ï¿½ï¿½ï¿½Â½Úµï¿½
+	if (sta != ARR_OK)	return sta;//ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+	put_in_data_node(new_node,ele);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Â½Úµï¿½
 	
-	add_node(llist->tail,NEXT_LLIST,new_node);//Î²½Úµãºó¼ÌÖ¸ÏòÐÂ½Úµã
-	add_node(new_node,PREVIEW_LLIST,llist->tail);//ÐÂ½ÚµãÇ°ÇýÖ¸ÏòÎ²½Úµã
+	add_node(llist->tail,NEXT_LLIST,new_node);//Î²ï¿½Úµï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Â½Úµï¿½
+	add_node(new_node,PREVIEW_LLIST,llist->tail);//ï¿½Â½Úµï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½Î²ï¿½Úµï¿½
 	llist->tail = new_node;
     (llist->tree)->count++;
 	
@@ -167,30 +167,30 @@ c8 add_ele_atTail(LinkedList *llist,void *ele){
 
 /**
 	Description: 
-		ÔÚÁ´±íÍ·²¿²åÈëÐÂÔªËØ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ 
 	Arguments:
-		void *ele£ºÐÂÔªËØµÄµØÖ· 
+		void *eleï¿½ï¿½ï¿½ï¿½Ôªï¿½ØµÄµï¿½Ö· 
 	Returns:
-		1£ºsuccess
-		3£ºÄÚ´æÉêÇëÊ§°Ü
-		-5£ºÎ´³õÊ¼»¯Á´±í 
+		1ï¿½ï¿½success
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
-c8 add_ele_atHead(LinkedList *llist,void *ele){
+c8 add_ele_atHead(LinkedList_SD *llist,void *ele){
 	Tree_node *new_node;
 	Tree_node *head;
 	c8 sta;
-    head = (llist->tree)->head;//Í·½ÚµãÖØ¸³Öµ£¬·½±ã²Ù×÷
+    head = (llist->tree)->head;//Í·ï¿½Úµï¿½ï¿½Ø¸ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (head == NULL_node)
 		return add_ele_emptyList(llist,ele);
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
 	
-	sta = CreateNode(&new_node,2);//´´½¨ÐÂ½Úµã
-	if (sta != ARR_OK)	return sta;//·µ»Ø´íÎó
-	put_in_data_node(new_node,ele);//´æÈëÊý¾Ýµ½ÐÂ½Úµã
+	sta = CreateNode(&new_node,2);//ï¿½ï¿½ï¿½ï¿½ï¿½Â½Úµï¿½
+	if (sta != ARR_OK)	return sta;//ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+	put_in_data_node(new_node,ele);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Â½Úµï¿½
 	
-	add_node(head,PREVIEW_LLIST,new_node);//Í·½ÚµãµÄÇ°ÇýÖ¸ÏòÐÂ½Úµã
-	add_node(new_node,NEXT_LLIST,head);//ÐÂ½ÚµãÇ°ÇýÖ¸ÏòÎ²½Úµã
+	add_node(head,PREVIEW_LLIST,new_node);//Í·ï¿½Úµï¿½ï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Â½Úµï¿½
+	add_node(new_node,NEXT_LLIST,head);//ï¿½Â½Úµï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½Î²ï¿½Úµï¿½
     (llist->tree)->head = new_node;
     (llist->tree)->count++;
 	
@@ -199,16 +199,16 @@ c8 add_ele_atHead(LinkedList *llist,void *ele){
 
 /**
 	Description: 
-		ÔÚÖ¸¶¨ÏÂ±ê²åÈëÐÂÔªËØ 
+		ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ 
 	Arguments:
-		int ind£ºÏÂ±ê£¬¿É¸º£¬-1ÎªÄ©ÔªËØ
-		void *ele£ºÔªËØÖ¸Õë 
+		int indï¿½ï¿½ï¿½Â±ê£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½
+		void *eleï¿½ï¿½Ôªï¿½ï¿½Ö¸ï¿½ï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		0£ºÏÂ±ê´íÎó
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		0ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 add_ele_byInd_llist(LinkedList *llist,int ind,void *ele){
+c8 add_ele_byInd_llist(LinkedList_SD *llist,int ind,void *ele){
 	Tree_node *temp;
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
@@ -219,15 +219,15 @@ c8 add_ele_byInd_llist(LinkedList *llist,int ind,void *ele){
 
 /**
 	Description: 
-		ÔÚÍ·²¿²åÈëÐÂÁ´±í 
+		ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		LinkedList *add_llist£ºÒª²åÈëµ½llistÍ·²¿µÄÁ´±í 
+		LinkedList_SD *add_llistï¿½ï¿½Òªï¿½ï¿½ï¿½ëµ½llistÍ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		-2£º add_llistºÍllistÊÇÍ¬Ò»¸ö£¬²»±»ÔÊÐí
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
+		-2ï¿½ï¿½ add_llistï¿½ï¿½llistï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist){
+c8 insert_llist_atHead(LinkedList_SD *llist,LinkedList_SD *add_llist){
     Tree_node *head = (llist->tree)->head;
 	Tree_node *tail = add_llist->tail;
 	if (llist == add_llist)
@@ -235,10 +235,10 @@ c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist){
 	if(llist->ifinitial != 1 || add_llist->ifinitial != 1)
 		return ARR_UN_INIT;
 
-	//Í·Î²ÏàÁ¬
+	//Í·Î²ï¿½ï¿½ï¿½ï¿½
 	add_node(tail,NEXT_LLIST,head);
 	add_node(head,PREVIEW_LLIST,tail);
-	//Í·Ö¸Õë¸´Î»
+	//Í·Ö¸ï¿½ë¸´Î»
     (llist->tree)->head = (add_llist->tree)->head;
 	//+count
     (llist->tree)->count += (add_llist->tree)->count;
@@ -248,15 +248,15 @@ c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist){
 
 /**
 	Description: 
-		ÔÚÎ²²¿²åÈëÐÂÁ´±í 
+		ï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		LinkedList *add_llist£ºÒª²åÈëµ½llistÎ²²¿µÄÁ´±í 
+		LinkedList_SD *add_llistï¿½ï¿½Òªï¿½ï¿½ï¿½ëµ½llistÎ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		-2£º add_llistºÍllistÊÇÍ¬Ò»¸ö£¬²»±»ÔÊÐí
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
+		-2ï¿½ï¿½ add_llistï¿½ï¿½llistï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist){
+c8 insert_llist_atTail(LinkedList_SD *llist,LinkedList_SD *add_llist){
     Tree_node *head = (add_llist->tree)->head;
 	Tree_node *tail = llist->tail;
 	if (llist == add_llist)
@@ -264,10 +264,10 @@ c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist){
 	if(llist->ifinitial != 1 || add_llist->ifinitial != 1)
 		return ARR_UN_INIT;
 
-	//Í·Î²ÏàÁ¬
+	//Í·Î²ï¿½ï¿½ï¿½ï¿½
 	add_node(tail,NEXT_LLIST,head);
 	add_node(head,PREVIEW_LLIST,tail);
-	//Î²Ö¸Õë¸´Î»
+	//Î²Ö¸ï¿½ë¸´Î»
 	llist->tail = add_llist->tail;
 	//+count
     (llist->tree)->count += (add_llist->tree)->count;
@@ -277,17 +277,17 @@ c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist){
 
 /**
 	Description: 
-		ÔÚind´¦²åÈëÐÂÁ´±í 
+		ï¿½ï¿½indï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		int ind£ºÏÂ±ê£¬¿É¸º£¬-1ÎªÄ©ÔªËØ
-		LinkedList *add_llist£ºÒªÔÚllistµÄind´¦²åÈëµÄÐÂÁ´±í 
+		int indï¿½ï¿½ï¿½Â±ê£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½
+		LinkedList_SD *add_llistï¿½ï¿½Òªï¿½ï¿½llistï¿½ï¿½indï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		-2£º add_llistºÍllistÏàÍ¬£¬²»±»Ö§³Ö
-		-5£ºÎ´³õÊ¼»¯
-		-1£ºÏÂ±ê´íÎó
-		1£ºsuccess 
+		-2ï¿½ï¿½ add_llistï¿½ï¿½llistï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 insert_llist_byInd(LinkedList *llist,int ind,LinkedList *add_llist){
+c8 insert_llist_byInd(LinkedList_SD *llist,int ind,LinkedList_SD *add_llist){
 	Tree_node *res;
 	Tree_node *prev;
     Tree_node *head = (add_llist->tree)->head;
@@ -301,11 +301,11 @@ c8 insert_llist_byInd(LinkedList *llist,int ind,LinkedList *add_llist){
 	if (res == NULL_node)	return ARR_WRONG_INDEX;
 	
 	prev = get_branch_node(res,PREVIEW_LLIST);
-	if (prev == NULL_node)	return insert_llist_atHead(llist,add_llist);//Ö´ÐÐÍ·²å
-	//Á´½ÓµÚÒ»¸ö½Úµã 
+	if (prev == NULL_node)	return insert_llist_atHead(llist,add_llist);//Ö´ï¿½ï¿½Í·ï¿½ï¿½
+	//ï¿½ï¿½ï¿½Óµï¿½Ò»ï¿½ï¿½ï¿½Úµï¿½ 
 	add_node(prev,NEXT_LLIST,head);
 	add_node(head,PREVIEW_LLIST,prev);
-	//Á´½ÓµÚ¶þ¸ö½Úµã
+	//ï¿½ï¿½ï¿½ÓµÚ¶ï¿½ï¿½ï¿½ï¿½Úµï¿½
 	add_node(tail,NEXT_LLIST,res);
 	add_node(res,PREVIEW_LLIST,tail);
 	//+count
@@ -316,41 +316,41 @@ c8 insert_llist_byInd(LinkedList *llist,int ind,LinkedList *add_llist){
 
 /**
 	Description: 
-		É¾³ýÄ³¸ö½Úµã 
+		É¾ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Úµï¿½ 
 	Arguments:
-		Tree_node *node_del£ºÒªÉ¾³ýµÄ½ÚµãµÄµØÖ· 
+		Tree_node *node_delï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½Ä½Úµï¿½Äµï¿½Ö· 
 	Returns:
-		1£ºsuccess
-		-5£ºÎ´³õÊ¼»¯ 
+		1ï¿½ï¿½success
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
-c8 delete_node_llist(LinkedList *llist,Tree_node *node_del){
+c8 delete_node_llist(LinkedList_SD *llist,Tree_node *node_del){
 	Tree_node *next;
 	Tree_node *prev;
 	if(llist->ifinitial != 1 || node_del->ifinitial != 1)
 		return ARR_UN_INIT;
 
-	//É¾³ý½ÚµãABCÖÐµÄB 
-	//±£´æBµÄºó¼Ì£¬¼´C
+	//É¾ï¿½ï¿½ï¿½Úµï¿½ABCï¿½Ðµï¿½B 
+	//ï¿½ï¿½ï¿½ï¿½Bï¿½Äºï¿½Ì£ï¿½ï¿½ï¿½C
 	next = (node_del->branches)[NEXT_LLIST];
-	//±£´æBµÄÇ°Çý£¬¼´A
+	//ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A
 	prev = (node_del->branches)[PREVIEW_LLIST];
 	if (prev != NULL_node)
-		//AµÄºó¼ÌÖ¸ÏòC/null
+		//Aï¿½Äºï¿½ï¿½Ö¸ï¿½ï¿½C/null
 		add_node(prev,NEXT_LLIST,next);
 	else{
-		//É¾³ýÍ·½ÚµãµÄÇé¿ö 
+		//É¾ï¿½ï¿½Í·ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ 
         (llist->tree)->head = next;
 	}
 	if (next != NULL_node)
-		//CµÄÇ°ÇýÖ¸ÏòA/null
+		//Cï¿½ï¿½Ç°ï¿½ï¿½Ö¸ï¿½ï¿½A/null
 		add_node(next,PREVIEW_LLIST,prev);
 	else{
-		//É¾³ýÎ²½ÚµãµÄÇé¿ö
+		//É¾ï¿½ï¿½Î²ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½
 		llist->tail = prev; 
 	}
-	//½Úµã¸öÊý--
+	//ï¿½Úµï¿½ï¿½ï¿½ï¿½--
     (llist->tree)->count--;
-	//Ïú»Ù½Úµã
+	//ï¿½ï¿½ï¿½Ù½Úµï¿½
 	free_node(node_del);
 	
 	return ARR_OK;
@@ -360,13 +360,13 @@ c8 delete_node_llist(LinkedList *llist,Tree_node *node_del){
 
 /**
 	Description: 
-		·µ»ØÁ´±íÍ·½Úµã 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Úµï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯ 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
-Tree_node* get_headNode_llist(LinkedList *llist){
+Tree_node* get_headNode_llist(LinkedList_SD *llist){
 	if(llist->ifinitial != 1)
 		return (Tree_node*)ARR_UN_INIT;
     return (llist->tree)->head;
@@ -374,13 +374,13 @@ Tree_node* get_headNode_llist(LinkedList *llist){
 
 /**
 	Description: 
-		·µ»ØÁ´±íÎ²½Úµã 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½Úµï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯ 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
-Tree_node* get_tailNode_llist(LinkedList *llist){
+Tree_node* get_tailNode_llist(LinkedList_SD *llist){
 	if(llist->ifinitial != 1)
 		return (Tree_node*)ARR_UN_INIT;
 	return llist->tail;
@@ -388,19 +388,19 @@ Tree_node* get_tailNode_llist(LinkedList *llist){
 
 /**
 	Description: 
-		¸ù¾ÝÏÂ±ê·µ»ØµØÖ· 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Â±ê·µï¿½Øµï¿½Ö· 
 */
-Tree_node* runthrough_llist(LinkedList *llist,int ind){
+Tree_node* runthrough_llist(LinkedList_SD *llist,int ind){
 	int i;
 	Tree_node *n;
 	
 	if (ind>=0){
-		//´ÓÍ·Ïòºó±éÀú 
+		//ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 		for(i=0,n=get_headNode_llist(llist);\
 			i<ind && n!=NULL_node;\
 			i++,n=(n->branches)[NEXT_LLIST]);
 	}else{
-		//´ÓÎ²ÏòÇ°±éÀú
+		//ï¿½ï¿½Î²ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 		for(i=-1,n=get_tailNode_llist(llist);\
 			i>ind && n!=NULL_node;\
 			i--,n=(n->branches)[PREVIEW_LLIST]);
@@ -410,15 +410,15 @@ Tree_node* runthrough_llist(LinkedList *llist,int ind){
 
 /**
 	Description: 
-		Ä³¸öÔªËØÖ¸ÕëÊÇ·ñÔÚÁ´±íÖÐ 
+		Ä³ï¿½ï¿½Ôªï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		ele£ºÔªËØµØÖ· 
+		eleï¿½ï¿½Ôªï¿½Øµï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºÔÚÁ´±íÖÐ
-		0£º²»ÔÚ 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
-c8 if_eleAddr_exsit_llist(LinkedList *llist,void *ele){
+c8 if_eleAddr_exsit_llist(LinkedList_SD *llist,void *ele){
 	Tree_node *n;
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
@@ -433,14 +433,14 @@ c8 if_eleAddr_exsit_llist(LinkedList *llist,void *ele){
 
 /**
 	Description: 
-		¸ù¾ÝÏÂ±ê·µ»Ø½ÚµãÖ¸Õë£¬ÏÂ±ê¿É¸º£¬-1ÎªÄ©ÔªËØ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Â±ê·µï¿½Ø½Úµï¿½Ö¸ï¿½ë£¬ï¿½Â±ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½ 
 	Arguments:
-		int ind£ºÏÂ±ê£¬¿É¸º 
+		int indï¿½ï¿½ï¿½Â±ê£¬ï¿½É¸ï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		X£ºÖ¸Õë 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		Xï¿½ï¿½Ö¸ï¿½ï¿½ 
 */
-Tree_node* getAddr_llist(LinkedList *llist,int ind){
+Tree_node* getAddr_llist(LinkedList_SD *llist,int ind){
 	if(llist->ifinitial != 1)
 		return (Tree_node*)ARR_UN_INIT;
 
@@ -449,19 +449,19 @@ Tree_node* getAddr_llist(LinkedList *llist,int ind){
 
 /**
 	Description: 
-		¸ù¾ÝÏÂ±êÉ¾³ý½Úµã£¬¿É¸º£¬-1ÎªÄ©ÔªËØ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½É¾ï¿½ï¿½ï¿½Úµã£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Ôªï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 delete_byInd_llist(LinkedList *llist,int ind){
+c8 delete_byInd_llist(LinkedList_SD *llist,int ind){
 	Tree_node *res;
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
 	
-	res = runthrough_llist(llist,ind);//²éÕÒµØÖ·
+	res = runthrough_llist(llist,ind);//ï¿½ï¿½ï¿½Òµï¿½Ö·
 	if (res == NULL_node)	return ARR_WRONG_INDEX;
 	
 	return delete_node_llist(llist,res);
@@ -469,12 +469,12 @@ c8 delete_byInd_llist(LinkedList *llist,int ind){
 
 /**
 	Description: 
-		ÄæÐòÁ´±í 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 reverse_llist(LinkedList *llist){
+c8 reverse_llist(LinkedList_SD *llist){
 	Tree_node *temp,*node_t;
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
@@ -483,7 +483,7 @@ c8 reverse_llist(LinkedList *llist){
     llist->tail = (llist->tree)->head;
     (llist->tree)->head = temp;
 	
-	//°ÑÃ¿¸ö½ÚµãµÄprevºÍnext¶Ôµ÷
+	//ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Úµï¿½ï¿½prevï¿½ï¿½nextï¿½Ôµï¿½
     for(temp=(llist->tree)->head;temp!=NULL_node;temp=get_branch_node(temp,NEXT_LLIST)){
 		node_t = (temp->branches)[0];
 		(temp->branches)[0] = (temp->branches)[1];
@@ -495,14 +495,14 @@ c8 reverse_llist(LinkedList *llist){
 
 /**
 	Description: 
-		·µ»ØÁ´±í³¤¶È 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		x:	³¤¶È 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		x:	ï¿½ï¿½ï¿½ï¿½ 
 */
-u32_ds get_count_llist(LinkedList *llist){
+u32_ds get_count_llist(LinkedList_SD *llist){
 	if (llist->ifinitial != 1)	return ARR_UN_INIT;
 	
     return (llist->tree)->count;
@@ -510,16 +510,16 @@ u32_ds get_count_llist(LinkedList *llist){
 
 /**
 	Description: 
-		¿½±´Á´±í£¬³ýÁË´æ´¢µÄÔªËØ 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´æ´¢ï¿½ï¿½Ôªï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		3£ºÄÚ´æÉêÇëÊ§°Ü
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
-c8 copy_llist(LinkedList *llist,LinkedList **new_llist){
-	LinkedList *newl;
+c8 copy_llist(LinkedList_SD *llist,LinkedList_SD **new_llist){
+	LinkedList_SD *newl;
 	Tree_node *last = NULL_node;
 	Tree_node *cur;
 	Tree_node *newn;
@@ -528,27 +528,27 @@ c8 copy_llist(LinkedList *llist,LinkedList **new_llist){
 	if(llist->ifinitial != 1)
 		return ARR_UN_INIT;
 	
-	sta = CreateLinkedList(&newl);
+	sta = CreateLinkedList_SD(&newl);
 	if (sta != ARR_OK)	return sta;
     (newl->tree)->count = length;
-	//Ô¤ÏÈÉêÇëlength-1µÄ³¤¶ÈµÄ¶ÓÁÐ 
+	//Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½length-1ï¿½Ä³ï¿½ï¿½ÈµÄ¶ï¿½ï¿½ï¿½ 
 	
     for(cur=(llist->tree)->head,n=0;cur!=NULL_node && n<length;cur=get_branch_node(cur,NEXT_LLIST),n++){
 		sta = CreateNode(&newn,2);
 		if (sta != ARR_OK){
 			free_llist(newl);
-			return sta;//½ÚµãÉêÇëÊ§°Ü
+			return sta;//ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 		}
-		newn->ele_addr = cur->ele_addr;//ÔªËØµØÖ·¸³Öµ
+		newn->ele_addr = cur->ele_addr;//Ôªï¿½Øµï¿½Ö·ï¿½ï¿½Öµ
 		if (n!=0){
-			//°ÑÉÏ¸öÐÂ½ÚµãµÄnextÖ¸Ïòµ±Ç°µÄÐÂ½Úµã,°Ñµ±Ç°µÄprevÖ¸ÏòÉÏÒ»¸ö 
+			//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Â½Úµï¿½ï¿½nextÖ¸ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Â½Úµï¿½,ï¿½Ñµï¿½Ç°ï¿½ï¿½prevÖ¸ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ 
 			add_node(last,NEXT_LLIST,newn);
 			add_node(newn,PREVIEW_LLIST,last);
 		}else{
-            (newl->tree)->head = newn;//ÉèÖÃÍ·½Úµã
+            (newl->tree)->head = newn;//ï¿½ï¿½ï¿½ï¿½Í·ï¿½Úµï¿½
 		}
 		if (n == length-1){
-			newl->tail = newn;//ÉèÖÃÎ²½Úµã 
+			newl->tail = newn;//ï¿½ï¿½ï¿½ï¿½Î²ï¿½Úµï¿½ 
 		}
 		last = newn; 
 	}
@@ -557,22 +557,22 @@ c8 copy_llist(LinkedList *llist,LinkedList **new_llist){
 	return ARR_OK;
 }
 
-void free_llist(LinkedList *llist){
+void free_llist(LinkedList_SD *llist){
     if(llist->ifinitial == 1){
 		free_tree(llist->tree);
     }
 	SD_FREE(llist);
 }
 
-void print_llist_main(LinkedList *llist){
-	SD_PRINT("=>linkedlist=>ifinitial:	%d",llist->ifinitial);
-    SD_PRINT("=>linkedlist=>head node:	%#x",(llist->tree)->head);
-	SD_PRINT("=>linkedlist=>tail node:	%#x",llist->tail);
+void print_llist_main(LinkedList_SD *llist){
+	SD_PRINT("=>LinkedList_SD=>ifinitial:	%d",llist->ifinitial);
+    SD_PRINT("=>LinkedList_SD=>head node:	%#x",(llist->tree)->head);
+	SD_PRINT("=>LinkedList_SD=>tail node:	%#x",llist->tail);
 	print_tree_main(llist->tree);
 }
 
-void print_llist(LinkedList *llist){
-	SD_PRINT_HEAD("LinkedList",llist->name);
+void print_llist(LinkedList_SD *llist){
+	SD_PRINT_HEAD("LinkedList_SD",llist->name);
 	print_llist_main(llist);
 	SD_PRINT_END;
 }

@@ -4,14 +4,14 @@
 
 /**
 	Description: 
-		¾²Ì¬³õÊ¼»¯Ñ­»·Á´±í 
+		ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		1£ºsuccess 
+		1ï¿½ï¿½success 
 */
 c8 InitCircleList(CircleList *clist){
-	CreateLinkedList(&(clist->linkList));
+	CreateLinkedList_SD(&(clist->linkList));
 	clist->name = "circleList_def";
 	clist->ifinitial = 1;
 	
@@ -31,11 +31,11 @@ c8 InitCircleList(CircleList *clist){
 
 /**
 	Description: 
-		¶¯Ì¬³õÊ¼»¯Ñ­»·Á´±í 
+		ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		1£ºsuccess 
+		1ï¿½ï¿½success 
 */
 c8 CreateCircleList(CircleList **clist){
 	*clist = (CircleList*)SD_MALLOC(sizeof(CircleList));
@@ -54,13 +54,13 @@ static void head_tail_connect(CircleList *clist){
 
 /**
 	Description: 
-		Î²²å 
+		Î²ï¿½ï¿½ 
 	Arguments:
-		ele£ºÔªËØµØÖ· 
+		eleï¿½ï¿½Ôªï¿½Øµï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
-		3£ºÄÚ´æÉêÇëÊ§°Ü
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 */
 c8 add_ele_atTail_clist(CircleList *clist,void *ele){
 	c8 sta;
@@ -70,7 +70,7 @@ c8 add_ele_atTail_clist(CircleList *clist,void *ele){
 	sta = add_ele_atTail(clist->linkList,ele);
 	if (sta != ARR_OK)	return sta;
 	
-	//Í·Î²ÏàÁ¬
+	//Í·Î²ï¿½ï¿½ï¿½ï¿½
 	head_tail_connect(clist);
 	
 	return ARR_OK;
@@ -78,13 +78,13 @@ c8 add_ele_atTail_clist(CircleList *clist,void *ele){
 
 /**
 	Description: 
-		Í·²å 
+		Í·ï¿½ï¿½ 
 	Arguments:
-		ele£ºÔªËØµØÖ· 
+		eleï¿½ï¿½Ôªï¿½Øµï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
-		3£ºÄÚ´æÉêÇëÊ§°Ü
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 */
 c8 add_ele_atHead_clist(CircleList *clist,void *ele){
 	c8 sta;
@@ -94,7 +94,7 @@ c8 add_ele_atHead_clist(CircleList *clist,void *ele){
 	sta = add_ele_atHead(clist->linkList,ele);
 	if (sta != ARR_OK)	return sta;
 	
-	//Í·Î²ÏàÁ¬
+	//Í·Î²ï¿½ï¿½ï¿½ï¿½
 	head_tail_connect(clist);
 	
 	return ARR_OK;
@@ -102,7 +102,7 @@ c8 add_ele_atHead_clist(CircleList *clist,void *ele){
 
 /**
 	Description: 
-		Ïú»ÙÑ­»·Á´±í 
+		ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
 void free_clist(CircleList *clist){
 	if (clist->ifinitial != 1)
@@ -112,9 +112,9 @@ void free_clist(CircleList *clist){
 
 /**
 	Description: 
-		»ñÈ¡Í·½Úµã 
+		ï¿½ï¿½È¡Í·ï¿½Úµï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯ 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
 Tree_node* get_head_clist(CircleList *clist){
 	return get_headNode_llist(clist->linkList);
@@ -122,9 +122,9 @@ Tree_node* get_head_clist(CircleList *clist){
 
 /**
 	Description: 
-		»ñÈ¡Î²½Úµã 
+		ï¿½ï¿½È¡Î²ï¿½Úµï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯ 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
 Tree_node* get_tail_clist(CircleList *clist){
 	return get_tailNode_llist(clist->linkList);
@@ -132,13 +132,13 @@ Tree_node* get_tail_clist(CircleList *clist){
 
 /**
 	Description: 
-		ÔªËØµØÖ·ÊÇ·ñ´æÔÚÓÚÁ´±í 
+		Ôªï¿½Øµï¿½Ö·ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		ele£ºÔªËØÖ¸Õë 
+		eleï¿½ï¿½Ôªï¿½ï¿½Ö¸ï¿½ï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºÔÚÁ´±íÖÐ
-		0£º²»ÔÚ 		 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 		 
 */
 c8 if_eleAddr_exsit_clist(CircleList *clist,void *ele){
 	Tree_node *n;
@@ -157,36 +157,36 @@ c8 if_eleAddr_exsit_clist(CircleList *clist,void *ele){
 
 /**
 	Description: 
-		¸ù¾ÝµØÖ·É¾³ý½Úµã 
+		ï¿½ï¿½ï¿½Ýµï¿½Ö·É¾ï¿½ï¿½ï¿½Úµï¿½ 
 	Arguments:
-		addr£º½ÚµãµØÖ· 
+		addrï¿½ï¿½ï¿½Úµï¿½ï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
 c8 del_byAddr_clist(CircleList *clist,Tree_node *addr){
 	Tree_node *prev,*next;
-	LinkedList *llist = clist->linkList;
+	LinkedList_SD *llist = clist->linkList;
 	if (clist->ifinitial != 1 || addr->ifinitial != 1)	return ARR_UN_INIT;	
 	
     (llist->tree)->count--;
 	prev = (addr->branches)[PREVIEW_LLIST];
 	next = (addr->branches)[NEXT_LLIST];
-	free_node(addr);//ÊÍ·Å½Úµã 
+	free_node(addr);//ï¿½Í·Å½Úµï¿½ 
     if (llist->tail == addr && (llist->tree)->head == addr){
-		//½ö´Ë½Úµã
+		//ï¿½ï¿½ï¿½Ë½Úµï¿½
 		llist->tail = NULL_node;
         (llist->tree)->head = NULL_node;
 		return ARR_OK;
 	}
-	//Á¬½ÓprevºÍnext
+	//ï¿½ï¿½ï¿½ï¿½prevï¿½ï¿½next
 	add_node(prev,NEXT_LLIST,next);
 	add_node(next,PREVIEW_LLIST,prev);
 	if (addr == llist->tail){
-		//É¾³ýµÄ½ÚµãÊÇÎ²½Úµã
+		//É¾ï¿½ï¿½ï¿½Ä½Úµï¿½ï¿½ï¿½Î²ï¿½Úµï¿½
 		llist->tail = prev; 
 	}else if (addr == (llist->tree)->head){
-		//É¾³ýµÄ½ÚµãÊÇÍ·½Úµã
+		//É¾ï¿½ï¿½ï¿½Ä½Úµï¿½ï¿½ï¿½Í·ï¿½Úµï¿½
 		(llist->tree)->head = next;
 	}
 	
@@ -195,19 +195,19 @@ c8 del_byAddr_clist(CircleList *clist,Tree_node *addr){
 
 /**
 	Description: 
-		¸ù¾ÝÏÂ±êÉ¾³ý½Úµã 
+		ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½É¾ï¿½ï¿½ï¿½Úµï¿½ 
 	Arguments:
-		ind£ºÏÂ±ê£¬¿É¸º£¬-1ÎªÄ©Î² 
+		indï¿½ï¿½ï¿½Â±ê£¬ï¿½É¸ï¿½ï¿½ï¿½-1ÎªÄ©Î² 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		1ï¿½ï¿½success 
 */
 c8 delete_byInd_clist(CircleList *clist,int ind){
 	Tree_node *res;
 	if(clist->ifinitial != 1)
 		return ARR_UN_INIT;
 	
-	res = runthrough_llist(clist->linkList,ind);//²éÕÒµØÖ·
+	res = runthrough_llist(clist->linkList,ind);//ï¿½ï¿½ï¿½Òµï¿½Ö·
 	if (res == NULL_node)	return ARR_EMPTY_CLIST;
 	
 	return del_byAddr_clist(clist,res);
@@ -215,12 +215,12 @@ c8 delete_byInd_clist(CircleList *clist,int ind){
 
 /**
 	Description: 
-		·µ»ØÁ´±í³¤¶È 
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		x£º³¤¶È 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
 u32_ds get_count_clist(CircleList *clist){
 	if (clist->ifinitial != 1)	return ARR_UN_INIT;
@@ -229,12 +229,12 @@ u32_ds get_count_clist(CircleList *clist){
 }
 
 void print_clist_main(CircleList *clist){
-	SD_PRINT("=>CircleLinkedList=>ifinitial:	%d",clist->ifinitial);
+	SD_PRINT("=>CircleLinkedList_SD=>ifinitial:	%d",clist->ifinitial);
 	print_llist_main(clist->linkList);
 }
 
 void print_clist(CircleList *clist){
-	SD_PRINT_HEAD("CircleLinkedList",clist->name);
+	SD_PRINT_HEAD("CircleLinkedList_SD",clist->name);
 	print_clist_main(clist);
 	SD_PRINT_END;
 }

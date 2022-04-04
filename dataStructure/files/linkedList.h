@@ -1,5 +1,5 @@
-#ifndef __LINKEDLIST_H__
-#define __LINKEDLIST_H__
+#ifndef __LinkedList_SD_H__
+#define __LinkedList_SD_H__
 
 #include "tree_base.h"
 
@@ -33,36 +33,36 @@ typedef struct lList {
 	void (*FREE)(struct lList*);
 	void (*PRINT)(struct lList*);
 	c8	ifinitial;
-}LinkedList;
+}LinkedList_SD;
 //��Tree_node�ڵ������У�0�±�Ϊǰ���ڵ� ��1Ϊ��� 
 
 
 
-c8 InitLinkedList(LinkedList *llist);
-c8 CreateLinkedList(LinkedList **llist);
-c8 insert_ele_atMid(LinkedList *llist,Tree_node *node,u8_ds position,void *ele);
-c8 add_ele_atTail(LinkedList *llist,void *ele);
-c8 add_ele_atHead(LinkedList *llist,void *ele);
-c8 add_ele_byInd_llist(LinkedList *llist,int ind,void *ele);
-c8 insert_llist_atHead(LinkedList *llist,LinkedList *add_llist);
-c8 insert_llist_atTail(LinkedList *llist,LinkedList *add_llist);
-c8 insert_llist_byInd(LinkedList *llist,int ind,LinkedList *add_llist);
-c8 delete_node_llist(LinkedList *llist,Tree_node *node_del);
-void print_llist_main(LinkedList *llist);
-void print_llist(LinkedList *llist);
-Tree_node* get_headNode_llist(LinkedList *llist);
-Tree_node* get_tailNode_llist(LinkedList *llist);
-Tree_node* getAddr_llist(LinkedList *llist,int ind);
-c8 delete_byInd_llist(LinkedList *llist,int ind);
-c8 reverse_llist(LinkedList *llist);
-u32_ds get_count_llist(LinkedList *llist);
-c8 copy_llist(LinkedList *llist,LinkedList **new_llist);
-void free_llist(LinkedList *llist);
-c8 if_eleAddr_exsit_llist(LinkedList *llist,void *ele);
+c8 InitLinkedList_SD(LinkedList_SD *llist);
+c8 CreateLinkedList_SD(LinkedList_SD **llist);
+c8 insert_ele_atMid(LinkedList_SD *llist,Tree_node *node,u8_ds position,void *ele);
+c8 add_ele_atTail(LinkedList_SD *llist,void *ele);
+c8 add_ele_atHead(LinkedList_SD *llist,void *ele);
+c8 add_ele_byInd_llist(LinkedList_SD *llist,int ind,void *ele);
+c8 insert_llist_atHead(LinkedList_SD *llist,LinkedList_SD *add_llist);
+c8 insert_llist_atTail(LinkedList_SD *llist,LinkedList_SD *add_llist);
+c8 insert_llist_byInd(LinkedList_SD *llist,int ind,LinkedList_SD *add_llist);
+c8 delete_node_llist(LinkedList_SD *llist,Tree_node *node_del);
+void print_llist_main(LinkedList_SD *llist);
+void print_llist(LinkedList_SD *llist);
+Tree_node* get_headNode_llist(LinkedList_SD *llist);
+Tree_node* get_tailNode_llist(LinkedList_SD *llist);
+Tree_node* getAddr_llist(LinkedList_SD *llist,int ind);
+c8 delete_byInd_llist(LinkedList_SD *llist,int ind);
+c8 reverse_llist(LinkedList_SD *llist);
+u32_ds get_count_llist(LinkedList_SD *llist);
+c8 copy_llist(LinkedList_SD *llist,LinkedList_SD **new_llist);
+void free_llist(LinkedList_SD *llist);
+c8 if_eleAddr_exsit_llist(LinkedList_SD *llist,void *ele);
 
 
-static c8 add_ele_emptyList(LinkedList *llist,void *ele);
-Tree_node* runthrough_llist(LinkedList *llist,int ind);
+static c8 add_ele_emptyList(LinkedList_SD *llist,void *ele);
+Tree_node* runthrough_llist(LinkedList_SD *llist,int ind);
 
 #ifdef __cplusplus
 }
