@@ -1,10 +1,6 @@
 <Projects version="2.0">
 	<Project active="1">datastructure.cfp</Project>
-	<File active="0">files\set.c</File>
-	<File active="0">files\linkedList.c</File>
-	<File active="0">files\tree_base.h</File>
+	<File active="0">files\tree_base.c</File>
 	<File active="0">main.c</File>
-	<File active="0">files\ds_globalVars.c</File>
-	<File active="0">files\linkedList.h</File>
-	<File active="1">files\tree_base.c</File>
+	<File active="1">..\DATAST~1\files\all_dataStructure.h</File>
 </Projects>

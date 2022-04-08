@@ -318,14 +318,14 @@ void test_dict(void){
 
 int main(int argc, char *argv[])
 {
-	test_stack();
+//	test_stack();
 //	test_array();
 //	test_cirqueue();
 //	
 //	test_linkedList();
 //	test_tree();
 //	testCircleLinkedList();
-//	test_iterators();
+	test_iterators();
 //    test_uthash();
 //    test_dict();
 	return 0;
