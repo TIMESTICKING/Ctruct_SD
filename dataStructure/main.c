@@ -156,7 +156,7 @@ void test_tree(void){
 }
 
 void test_linkedList(void){
-	LinkedList llist,ant,*copyer;
+	LinkedList_SD llist,ant,*copyer;
 	Tree_node *n;
 	int a = 0;
 	int b = 1;
@@ -164,9 +164,9 @@ void test_linkedList(void){
 	int *buff;
 	c8 sta;
 	
-	InitLinkedList(&llist);
+	InitLinkedList_SD(&llist);
 	llist.name="list1";
-	InitLinkedList(&ant);
+	InitLinkedList_SD(&ant);
 	ant.name="ant";
 	
 	llist.INSERT_ele_atTail(&llist,&a);
@@ -190,7 +190,7 @@ void test_linkedList(void){
 	}
 }
 
-void testCircleLinkedList(void){
+void testCircleLinkedList_SD(void){
 	CircleList *clist;
 	int a = 3;
 	int b = 2;
@@ -324,7 +324,7 @@ int main(int argc, char *argv[])
 //	
 //	test_linkedList();
 //	test_tree();
-//	testCircleLinkedList();
+//	testCircleLinkedList_SD();
 	test_iterators();
 //    test_uthash();
 //    test_dict();
