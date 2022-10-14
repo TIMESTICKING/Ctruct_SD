@@ -128,7 +128,7 @@ c8 hasNext_2div_4array(ITER_4ARRAY* iter, int direction){
 		// reset pos to init
 		iter->pos = ((iter->array)->length - 1) / 2;
 	}
-	return ;
+	return ret;
 }
 
 
