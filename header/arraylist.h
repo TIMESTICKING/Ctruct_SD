@@ -27,7 +27,7 @@ typedef struct arraylist {
 	c8 (*REVERSE_arr_copy)(struct arraylist*,struct arraylist**);
 	void (*FREE)(struct arraylist*);
 	c8 (*SLICE_arr_copy)(struct arraylist*,struct arraylist**,int,int);
-	c8 (*DEL_arr)(struct arraylist*,int,int);
+	c8 (*DEL_arr)(struct arraylist*,int start,int count);
 	void (*PRINT)(struct arraylist*);
 	void (*CLEAR_arr)(struct arraylist*);
 	c8 ifInital;//�ýṹ���Ƿ񱻳�ʼ����yes�� 1 

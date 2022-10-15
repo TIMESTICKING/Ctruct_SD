@@ -2,41 +2,35 @@
 #include "all_dataStructure.h"
 
 void test_array(void){
-	ArrayList *arr1;
-	ArrayList *arr2;
-	int a = 1;
-	int b = 2;
-	int c = 4;
-	int d = 7;
+	ArrayList *int_arr;
 	int i;
 	int *buff;
 	
-	CreateArrayList(&arr1,1);
-	CreateArrayList(&arr2,1);
+	CreateArrayList(&int_arr,1);
 	
-	arr1->name = "arr1";
-	arr1->ADD_one(arr1,&a);
-	arr1->ADD_one(arr1,&c);	
-	arr1->ADD_one(arr1,&d);
+	int_arr->name = "int_arr";
+	int_arr->ADD_one(int_arr,INT_new(1));
+	int_arr->ADD_one(int_arr,INT_new(4));
+	int_arr->ADD_one(int_arr,INT_new(13));
 	
-	arr1->REVERSE_arr(arr1);
+	int_arr->REVERSE_arr(int_arr);
 
-	printf("arr1,print-------\n");
-	for (i=0;i<arr1->length;i++){
-		buff = (int*)(arr1->GET_arr(arr1,i));
+	printf("int_arr now looks like-------\n");
+	for (i=0;i<int_arr->length;i++){
+		buff = (int*)(int_arr->GET_arr(int_arr,i));
 		printf("get: %d\n",*buff);
 	}
 	
-	arr1->DEL_arr(arr1,-1,1);
-	printf("\ndel arr1 last ele\n");
+	int_arr->DEL_arr(int_arr,-1,1);
+	printf("\ndelete last element of int_arr\n");
 	
-	printf("arr1,print-------\n");
-	for (i=0;i<arr1->length;i++){
-		buff = (int*)(arr1->GET_arr(arr1,i));
+	printf("int_arr now looks like-------\n");
+	for (i=0;i<int_arr->length;i++){
+		buff = (int*)(int_arr->GET_arr(int_arr,i));
 		printf("get: %d\n",*buff);
 	}
 	
-	arr1->PRINT(arr1);
+	int_arr->PRINT(int_arr); // output the infomation of this array
 	
 }
 
@@ -190,32 +184,30 @@ void test_linkedList(void){
 	}
 }
 
-void testCircleLinkedList_SD(void){
+void testCircleList(void){
 	CircleList *clist;
-	int a = 3;
-	int b = 2;
 	int *buff;
 	Tree_node *n;
-	int c;
-	c8 sta;
 	
+	// init it, and put into something
 	CreateCircleList(&clist);
-	clist->INSERT_ele_atTail(clist,&a);
-	clist->INSERT_ele_atTail(clist,&b);
+	clist->INSERT_ele_atTail(clist, "string alpha");
+	clist->INSERT_ele_atTail(clist, "string beta");
 	clist->PRINT(clist);
 	
-	
+	// delete the last element
 	clist->DEL_byInd_clist(clist,-1);
 	clist->PRINT(clist);
 	
-	if (clist->IF_ELEaddr_exsit_clist(clist,&a) != ARR_OK)
-		clist->INSERT_ele_atTail(clist,&a);
+	// add something at head
+	clist->INSERT_ele_atHead(clist, "I'm the newer");
 	clist->PRINT(clist);
 	
-	
-	for(n=get_head_clist(clist),c=0;n!=NULL_node && c<10;n=n->GET_BRANCH_node(n,NEXT_LLIST),c++){
-		buff = (int*)(n->ele_addr);
-		printf("data is %d\n",*buff);
+	int t; // bc it's circleList, it'll print forever, use t to handle the output times.
+	for(n=get_head_clist(clist), t=0;n!=NULL_node && t<10;
+			n=n->GET_BRANCH_node(n,NEXT_LLIST), t++){
+		buff = (char*)(n->ele_addr);
+		printf("data is: %s\n",buff);
 	}
     
     clist->FREE(clist);
@@ -296,35 +288,29 @@ void test_dict(void){
     
     InitDictionary(&mydict);
     mydict.name = "dict1";
-    mydict.ADD_EDIT_dict(&mydict,"a",INT_new(3));
-    mydict.ADD_EDIT_dict(&mydict,"a",INT_new(7));
-    mydict.ADD_EDIT_dict(&mydict,"b",INT_new(73));
-    
-    Dictionary mydict2;
-    
-    InitDictionary(&mydict2);
-    mydict2.name = "dict2";
-    mydict2.ADD_EDIT_dict(&mydict2,"a",INT_new(5));
-    mydict2.ADD_EDIT_dict(&mydict2,"b","this is the string test");
+    mydict.ADD_EDIT_dict(&mydict,"number",INT_new(3)); //keys and values
+    mydict.ADD_EDIT_dict(&mydict,"string","hello my baby~");
     
     int* res;
-    res = (int*)mydict.GET_dict(&mydict, "b");
-    SD_PRINT("res is %d", *res);
-    
-    char* bstr = (int*)mydict2.GET_dict(&mydict2, "b");
-    SD_PRINT("res is %s", bstr);
+    res = (int*)mydict.GET_dict(&mydict, "number");
+    SD_PRINT("res is: %d", *res);
+
+	// you'd better check the existence of the key if u'r not sure
+	void* res3 = mydict.GET_dict(&mydict, "string");
+	if (res3)
+		SD_PRINT("res is: %s", (char*)res3);
 }
 
 
 int main(int argc, char *argv[])
 {
 //	test_stack();
-//	test_array();
+	// test_array();
 //	test_cirqueue();
 //	
 //	test_linkedList();
 //	test_tree();
-//	testCircleLinkedList_SD();
+	// testCircleList();
 	// test_iterators();
 //    test_uthash();
    test_dict();
