@@ -305,14 +305,14 @@ void test_dict(void){
     InitDictionary(&mydict2);
     mydict2.name = "dict2";
     mydict2.ADD_EDIT_dict(&mydict2,"a",INT_new(5));
-    mydict2.ADD_EDIT_dict(&mydict2,"b",INT_new(11));
+    mydict2.ADD_EDIT_dict(&mydict2,"b","this is the string test");
     
     int* res;
     res = (int*)mydict.GET_dict(&mydict, "b");
     SD_PRINT("res is %d", *res);
     
-    res = (int*)mydict2.GET_dict(&mydict2, "b");
-    SD_PRINT("res is %d", *res);
+    char* bstr = (int*)mydict2.GET_dict(&mydict2, "b");
+    SD_PRINT("res is %s", bstr);
 }
 
 
@@ -325,9 +325,9 @@ int main(int argc, char *argv[])
 //	test_linkedList();
 //	test_tree();
 //	testCircleLinkedList_SD();
-	test_iterators();
+	// test_iterators();
 //    test_uthash();
-//    test_dict();
+   test_dict();
 	return 0;
 }
 

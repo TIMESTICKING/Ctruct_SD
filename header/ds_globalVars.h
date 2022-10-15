@@ -8,7 +8,8 @@
 extern "C"{
 #endif // __cplusplus
 
-
+//********************************************
+// this is part for users to customize
 #define SD_DEBUG    0
 
 #define SD_MALLOC(size)	(malloc(size))
@@ -19,6 +20,7 @@ extern "C"{
 				printf(__VA_ARGS__);\
 				printf("\n");
 #endif // __USER_PRINT
+//********************************************
 
 #define LN	SD_PRINT("");
 #define SD_PRINT_HEAD(bigtype,subname)	 SD_PRINT("======%s:%s======",bigtype,subname)
