@@ -25,6 +25,6 @@ visit github project <a href="https://github.com/TIMESTICKING/Ctruct_SD">here</a
 
 ## 🔭 Topology <a name = "topology"></a>
 
-各结构的“继承”关系如下
-![image](https://github.com/TIMESTICKING/Ctruct_SD/blob/master/images/Ctruct_SD.png)
+各结构的“继承”关系如下<br>
+![image](./images/Ctruct_SD.png)
 
