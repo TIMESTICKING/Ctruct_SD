@@ -27,7 +27,7 @@
 ## 🔭 Topology <a name = "topology"></a>
 
 各结构的“继承”关系如下
-![image](https://github.com/TIMESTICKING/Ctruct_SD/blob/master/images/Ctruct_SD.png)
+![image](https://github.com/TIMESTICKING/Ctruct_SD/blob/master/docs/images/Ctruct_SD.png)
 
 ## 👀 Take a glance <a name = "take_a_glance"></a>
 
