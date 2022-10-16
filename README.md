@@ -198,7 +198,7 @@ make
 
 ## 🚀 APIs <a name = "APIs"></a>
 
-visit API document [here](#https://timesticking.github.io/Ctruct_SD/).
+visit API document <a href="https://timesticking.github.io/Ctruct_SD/">here</a>.
 
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
