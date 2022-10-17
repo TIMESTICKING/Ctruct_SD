@@ -12,7 +12,7 @@ extern "C"{
 typedef struct stacks {
 	ArrayList* sta_arr;
 	char *name;
-	c8 (*INSERT_sta)(struct stacks*,void*);
+	c8 (*INSERT_sta)(struct stacks*,void* ele);
 	int (*COUNT)(struct stacks*);
 	void* (*POP_sta)(struct stacks*);
 	void (*FREE)(struct stacks*);

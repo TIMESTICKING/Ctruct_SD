@@ -51,7 +51,7 @@ void test_stack(void){
 	InitStacks(&sa);
 	sa.name = "sa";
 	
-	sa.INSERT_sta(&sa,&a);
+	sa.INSERT_sta(&sa,INT_new(5));
 	sa.INSERT_sta(&sa,&b);
 	sa.INSERT_sta(&sa,&c);
 	n = sa.COUNT(&sa);
