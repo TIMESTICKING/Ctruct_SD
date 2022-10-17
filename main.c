@@ -118,6 +118,7 @@ void test_tree(void){
 	Tree_node *a,*b,*c,*d,*e,*f,*g;
 	
 	InitTree(&tree);
+	
 	CreateNode(&a,3);
 	a->EDIT_Data_node(a,INT_new(1));
 	CreateNode(&b,2);

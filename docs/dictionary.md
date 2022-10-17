@@ -60,5 +60,5 @@ Delete a key-value pair from the dictionary.
 
 It is okay if the key doesn't exist, it'll return `ARR_OK`
 
-If the key exists, return the address in case if you need to free the memory of it.
+If the key exists, return the address in case if you need to free the memory of it. 
 
