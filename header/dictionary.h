@@ -24,9 +24,9 @@ typedef struct {
 
 
 typedef struct dictionary {
-    void* (*ADD_EDIT_dict)(struct dictionary*, char*, void*);
-    void* (*GET_dict)(struct dictionary*, char*);
-    void* (*DEL_dict)(struct dictionary*, char*);
+    void* (*ADD_EDIT_dict)(struct dictionary*, char* key, void* value);
+    void* (*GET_dict)(struct dictionary*, char* key);
+    void* (*DEL_dict)(struct dictionary*, char* key);
     HashNode* head;
     char* name;
     c8 ifinitial;

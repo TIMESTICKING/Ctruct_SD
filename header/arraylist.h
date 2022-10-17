@@ -20,7 +20,7 @@ typedef struct arraylist {
 	c8 (*ADD_lots)(struct arraylist*,struct arraylist* arrlit_tail);
 	c8 (*EDIT_arr)(struct arraylist*,int index,void* ele_addr);
 	c8 (*INSERT_one)(struct arraylist*,int index,void* ele_addr);
-	c8 (*INSERT_lots)(struct arraylist*,int index,ArrayList* arrsub);
+	c8 (*INSERT_lots)(struct arraylist*,int index,struct arraylist* arrsub);
 	c8 (*COPY_arr)(struct arraylist*,struct arraylist** new_arr);
 	int (*COUNT)(struct arraylist*);
 	c8 (*REVERSE_arr)(struct arraylist*);

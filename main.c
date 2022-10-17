@@ -294,6 +294,7 @@ void test_dict(void){
     mydict.name = "dict1";
     mydict.ADD_EDIT_dict(&mydict,"number",INT_new(3)); //keys and values
     mydict.ADD_EDIT_dict(&mydict,"string","hello my baby~");
+	mydict.ADD_EDIT_dict(&mydict,"number",INT_new(155));
     
     int* res;
     res = (int*)mydict.GET_dict(&mydict, "number");
