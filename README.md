@@ -7,6 +7,7 @@
 <p align="left"> 这是一个由纯C编写的多种数据结构项目，项目起初是用于学习，后可拓展到嵌入式编程领域。我感觉还是用于学习比较好，因为它的适用场景并不多。
     <br> 
 </p>
+Project page in English <a href="https://timesticking.github.io/Ctruct_SD">here</a>.
 
 ## 📝 Table of Contents
 
