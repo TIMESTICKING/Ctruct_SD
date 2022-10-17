@@ -84,10 +84,53 @@ Make a duplicate of the `arraylist` given an address `new_arr` of the pointer of
 Success if it returns `ARR_OK`.
 
 #### int COUNT(struct arraylist*);
+
+Get the element number of `arraylist`.
+
 #### c8 REVERSE_arr(struct arraylist*);
+
+In-place reverse the `arraylist`.
+
+Success if it returns `ARR_OK`.
+
 #### c8 REVERSE_arr_copy(struct arraylist*,struct arraylist** arrcopy);
+
+Reverse the `arraylist` and make a copy to the `arrcopy`.
+```clike
+	ArrayList* copyarr;
+	int_arr->REVERSE_arr_copy(int_arr, &copyarr);
+	copyarr->PRINT(copyarr);
+```
+Success if it returns `ARR_OK`.
+
 #### void FREE(struct arraylist*);
+
+Free the memory of the `arraylist` if it was created instead of initialized.
+
 #### c8 SLICE_arr_copy(struct arraylist*,struct arraylist** arrnew,int start,int count);
+
+Obtain a specific duplicated part, from index of `start` with `count` number of elements,  of the `arraylist` to the `arrnew`.
+
+Success if it returns `ARR_OK`.
+
 #### c8 DEL_arr(struct arraylist*,int start,int count);
+
+In-place delete a specific part, from index of `start` with `count` number of elements,  of the `arraylist`.
+
+Success if it returns `ARR_OK`.
+
 #### void PRINT(struct arraylist*);
+
+Print the status of the `arraylist`. Outputs are like
+```clike
+======ArrayList:int_arr======
+=>arraylist=>ifinitial: 1
+=>arraylist=>length:    2
+=>arraylist=>capacity:  10
+=======================
+```
+
 #### void CLEAR_arr(struct arraylist*);
+
+Clear the elements in the `arraylist` but not wipe them out in the memory. It simply set the length of the `arraylist` to `0`.
+
