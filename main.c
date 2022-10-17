@@ -31,6 +31,10 @@ void test_array(void){
 	}
 	
 	int_arr->PRINT(int_arr); // output the infomation of this array
+
+	ArrayList* copyarr;
+	int_arr->COPY_arr(int_arr, &copyarr);
+	copyarr->PRINT(copyarr);
 	
 }
 

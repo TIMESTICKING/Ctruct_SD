@@ -185,7 +185,7 @@ res3 is: hello my baby~
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-所有数据结构的样例都在`main.c`中存在，API可能不全，往后将在[这里](#APIs)列出。您可修改`main.c`文件来熟悉各个数据结构，亦可阅读它们的源码。
+所有数据结构的样例都在`main.c`中存在，API可能不全，往后将在<a href="https://timesticking.github.io/Ctruct_SD/">这里</a>列出。您可修改`main.c`文件来熟悉各个数据结构，亦可阅读它们的源码。
 
 ### 编译并运行这个项目
 ```

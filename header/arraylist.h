@@ -15,18 +15,18 @@ typedef struct arraylist {
 	int length;//��ǰ����װ������ 
 	int capacity;//������ 
 	//�෽�� 
-	void* (*GET_arr)(struct arraylist*,int);
-	c8 (*ADD_one)(struct arraylist*,void*);
-	c8 (*ADD_lots)(struct arraylist*,struct arraylist*);
-	c8 (*EDIT_arr)(struct arraylist*,int,void*);
-	c8 (*INSERT_one)(struct arraylist*,int,void*);
-	c8 (*INSERT_lots)(struct arraylist*,int,struct arraylist*);
-	c8 (*COPY_arr)(struct arraylist*,struct arraylist**);
+	void* (*GET_arr)(struct arraylist*,int ind);
+	c8 (*ADD_one)(struct arraylist*,void* ele_addr);
+	c8 (*ADD_lots)(struct arraylist*,struct arraylist* arrlit_tail);
+	c8 (*EDIT_arr)(struct arraylist*,int index,void* ele_addr);
+	c8 (*INSERT_one)(struct arraylist*,int index,void* ele_addr);
+	c8 (*INSERT_lots)(struct arraylist*,int index,ArrayList* arrsub);
+	c8 (*COPY_arr)(struct arraylist*,struct arraylist** new_arr);
 	int (*COUNT)(struct arraylist*);
 	c8 (*REVERSE_arr)(struct arraylist*);
-	c8 (*REVERSE_arr_copy)(struct arraylist*,struct arraylist**);
+	c8 (*REVERSE_arr_copy)(struct arraylist*,struct arraylist** arrcopy);
 	void (*FREE)(struct arraylist*);
-	c8 (*SLICE_arr_copy)(struct arraylist*,struct arraylist**,int,int);
+	c8 (*SLICE_arr_copy)(struct arraylist*,struct arraylist** arrnew,int start,int count);
 	c8 (*DEL_arr)(struct arraylist*,int start,int count);
 	void (*PRINT)(struct arraylist*);
 	void (*CLEAR_arr)(struct arraylist*);

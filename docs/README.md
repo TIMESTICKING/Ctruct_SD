@@ -1,7 +1,6 @@
 
 <h3 align="center">纯C语言的多种数据结构——Ctruct</h3>
 
-
 ---
 
 <p align="left"> 这是一个由纯C编写的多种数据结构项目，项目起初是用于学习，后可拓展到嵌入式编程领域。我感觉还是用于学习比较好，因为它的适用场景并不多。
@@ -15,6 +14,7 @@ visit github project <a href="https://github.com/TIMESTICKING/Ctruct_SD">here</a
 
 - [About](#about)
 - [Topology](#topology)
+- [Return Values](#return)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -28,3 +28,15 @@ visit github project <a href="https://github.com/TIMESTICKING/Ctruct_SD">here</a
 各结构的“继承”关系如下<br>
 ![image](./images/Ctruct_SD.png)
 
+## Return Values <a name = "return"></a>
+
+```clike
+#define ARR_OK			1
+#define ARR_UN_INIT		-5
+#define ARR_WRONG_INDEX	-1
+#define ARR_MALLOC_FAIL	3
+#define ARR_MOVE_FAIL	2
+#define ARR_INPUT_SAME	-2
+#define ARR_FALSE		0
+#define ARR_EMPTY_CLIST	-3
+```
