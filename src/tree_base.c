@@ -4,9 +4,9 @@
 
 /**
 	Description: 
-		¾²Ì¬³õÊ¼»¯Ê÷ £¬Í¬Ê±Ò²¾²Ì¬³õÊ¼»¯ÁËÍ·½Úµã 
+		ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Í¬Ê±Ò²ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í·ï¿½Úµï¿½ 
 	Arguments:
-		u32_ds head_node_branch_num£ºÍ·½ÚµãµÄ·Ö²æÊý 
+		u32_ds head_node_branch_numï¿½ï¿½Í·ï¿½Úµï¿½Ä·Ö²ï¿½ï¿½ï¿½ 
 	Returns:
 		1: success
 */
@@ -16,7 +16,8 @@ c8 InitTree(Tree *tree){
 	tree->ifinitial = 1;
 	tree->name = "tree_def";
 	tree->EDIT_Data_node = put_in_data_node;
-	tree->ADD_node = add_node_tree;
+	tree->EDIT_branch = add_node_tree;
+	tree->DELETE_branch = delete_node_tree;
 	tree->COUNT = count_tree;
 	tree->GET_BRANCH_node = get_branch_node;
 	tree->PRINT = print_tree;
@@ -28,12 +29,12 @@ c8 InitTree(Tree *tree){
 
 /**
 	Description: 
-		¶¯Ì¬´´½¨Ê÷ £¬Í¬Ê±Ò²¾²Ì¬³õÊ¼»¯ÁËÍ·½Úµã 
+		ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Í¬Ê±Ò²ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í·ï¿½Úµï¿½ 
 	Arguments:
-		u32_ds head_node_branch_num£ºÍ·½ÚµãµÄ·Ö²æÊý
+		u32_ds head_node_branch_numï¿½ï¿½Í·ï¿½Úµï¿½Ä·Ö²ï¿½ï¿½ï¿½
 	Returns:
 		1: success
-		3: ÄÚ´æÉêÇëÊ§°Ü 
+		3: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 
 */
 c8 CreateTree(Tree **tree){
 	*tree = (Tree*)SD_MALLOC(sizeof(Tree)); 
@@ -45,12 +46,12 @@ c8 CreateTree(Tree **tree){
 
 /**
 	Description: 
-		¾²Ì¬³õÊ¼»¯½Úµã 
+		ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Úµï¿½ 
 	Arguments:
-		u32_ds branch_num£º ½Úµã·ÖÖ§ÊýÁ¿ 
+		u32_ds branch_numï¿½ï¿½ ï¿½Úµï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		1£ºsuccess
-		3£ºÄÚ´æÉêÇëÊ§°Ü 
+		1ï¿½ï¿½success
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 
 */
 c8 InitNode(Tree_node *node,u32_ds branch_num){
 	u32_ds i;
@@ -63,7 +64,8 @@ c8 InitNode(Tree_node *node,u32_ds branch_num){
 	}
 	node->EDIT_Data_node = put_in_data_node;
 	node->GET_BRANCH_node = get_branch_node;
-	node->ADD_node = add_node;
+	node->EDIT_branch = add_node;
+	node->DELETE_branch = delete_node_tree;
 	node->FREE_node= free_node;
 	node->PRINT_node = print_treeNode;
 	node->ele_addr = NULL_void;
@@ -75,12 +77,12 @@ c8 InitNode(Tree_node *node,u32_ds branch_num){
 
 /**
 	Description: 
-		¶¯Ì¬´´½¨½Úµã 
+		ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 
 	Arguments:
-		u32_ds branch_num£º½Úµã·ÖÖ§ÊýÁ¿ 
+		u32_ds branch_numï¿½ï¿½ï¿½Úµï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ 
 	Returns:
-		1£ºsuccess
-		3£ºÄÚ´æÉêÇëÊ§°Ü 
+		1ï¿½ï¿½success
+		3ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 
 */
 c8 CreateNode(Tree_node **node,u32_ds branch_num){
 	*node = (Tree_node*)SD_MALLOC(sizeof(Tree_node));
@@ -96,12 +98,12 @@ c8 CreateNode(Tree_node **node,u32_ds branch_num){
 
 /**
 	Description: 
-		Íù½Úµã·ÅÈëÊý¾ÝµÄÖ¸Õë 
+		ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½Ö¸ï¿½ï¿½ 
 	Arguments:
-		void *ele£ºÊý¾ÝµØÖ· 
+		void *eleï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯½Úµã
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Úµï¿½
+		1ï¿½ï¿½success 
 */
 c8 put_in_data_node(Tree_node *node,void *ele){
 	if (node->ifinitial != 1)
@@ -113,14 +115,15 @@ c8 put_in_data_node(Tree_node *node,void *ele){
 
 /**
 	Description: 
-		ÔÚa½ÚµãµÄind´¦²åÈëb½Úµã 
+		edit branch of the node points to at ind
 	Arguments:
-		u32_ds ind£º½ÚµãÊý×éµÄÏÂ±ê
-		Tree_node *node_ele£ºÐÂ½ÚµãµÄµØÖ· 
+		u32_ds indï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½
+		Tree_node *node_eleï¿½ï¿½ï¿½Â½Úµï¿½Äµï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		-1£ºÏÂ±ê²»ºÏ·¨
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1ï¿½ï¿½ï¿½Â±ê²»ï¿½Ï·ï¿½
+		1ï¿½ï¿½success and count++
+		11 success but no count++
 */
 c8 add_node(Tree_node *node,u32_ds ind,Tree_node *node_ele){
 	if (node->ifinitial != 1)
@@ -128,21 +131,24 @@ c8 add_node(Tree_node *node,u32_ds ind,Tree_node *node_ele){
 	if (ind > node->branch_num - 1)
 		return ARR_WRONG_INDEX;
 
+	Tree_node* temp = (node->branches)[ind];
 	(node->branches)[ind] = node_ele;
-	
-	return ARR_OK;
+	if (temp == NULL_node)
+		return ARR_OK;
+
+	return 11;
 }
 
 /**
 	Description: 
-		ÔÚa½ÚµãµÄind´¦²åÈëb½Úµã£¬Ê÷µÄ½Úµã¸öÊý×ÔÔö 
+		ï¿½ï¿½aï¿½Úµï¿½ï¿½indï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Úµã£¬ï¿½ï¿½ï¿½Ä½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
-		u32_ds ind£º½ÚµãÊý×éµÄÏÂ±ê
-		Tree_node *node_ele£ºÐÂ½ÚµãµÄµØÖ· 
+		u32_ds indï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½
+		Tree_node *node_eleï¿½ï¿½ï¿½Â½Úµï¿½Äµï¿½Ö· 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		-1£ºÏÂ±ê²»ºÏ·¨
-		1£ºsuccess 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		-1ï¿½ï¿½ï¿½Â±ê²»ï¿½Ï·ï¿½
+		1ï¿½ï¿½success 
 */
 c8 add_node_tree(Tree *tree,Tree_node *node,u32_ds ind,Tree_node *node_ele){
 	c8 sta;
@@ -150,20 +156,40 @@ c8 add_node_tree(Tree *tree,Tree_node *node,u32_ds ind,Tree_node *node_ele){
 		return ARR_UN_INIT;
 
 	sta = add_node(node,ind,node_ele);
-	if (sta != ARR_OK)	return sta;
-	tree->count++;
+	if (sta == ARR_OK)	tree->count++;
+	else if (sta == 11)	{}
+	else return sta;
 	
 	return ARR_OK;
 }
 
+void* delete_node_tree(Tree *tree,Tree_node *node,u32_ds ind){
+	if (tree->ifinitial != 1)
+		return ARR_UN_INIT;
+
+	if ((node->branches)[ind] == NULL_node)
+		return (void*)ARR_OK;
+
+	Tree_node_pointer node_t = (node->branches)[ind];
+	if (node_t->ifinitial != 1)
+		return ARR_UN_INIT;
+
+	(node->branches)[ind] = NULL_node;
+	void* ele = node_t->ele_addr;
+	tree->count--;
+	free_node(node_t);
+
+	return ele;
+}
+
 /**
 	Description: 
-		Ê÷µÄ½Úµã¸öÊý 
+		ï¿½ï¿½ï¿½Ä½Úµï¿½ï¿½ï¿½ï¿½ 
 	Arguments:
 		nothing 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		X£º¸öÊý 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 */
 u32_ds count_tree(Tree *tree){
 	if (tree->ifinitial != 1)
@@ -173,12 +199,12 @@ u32_ds count_tree(Tree *tree){
 
 /**
 	Description: 
-		»ñÈ¡½ÚµãµÄµÚind²æ½Úµã 
+		ï¿½ï¿½È¡ï¿½Úµï¿½Äµï¿½indï¿½ï¿½Úµï¿½ 
 	Arguments:
-		u32_ds ind£ºµÚind²æ½ÚµãµÄÊý×éÏÂ±ê 
+		u32_ds indï¿½ï¿½ï¿½ï¿½indï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯
-		x£ºÄ¿±ê¡¤½Úµã 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½
+		xï¿½ï¿½Ä¿ï¿½ê¡¤ï¿½Úµï¿½ 
 */
 Tree_node* get_branch_node(Tree_node *node,u32_ds ind){
 	if (node->ifinitial != 1)
@@ -189,9 +215,9 @@ Tree_node* get_branch_node(Tree_node *node,u32_ds ind){
 
 /**
 	Description: 
-		ÉèÖÃÍ·½Úµã 
+		ï¿½ï¿½ï¿½ï¿½Í·ï¿½Úµï¿½ 
 	Returns:
-		-5£ºÎ´³õÊ¼»¯ 
+		-5ï¿½ï¿½Î´ï¿½ï¿½Ê¼ï¿½ï¿½ 
 */
 c8 set_head_tree(Tree *tree,Tree_node *head){
 	if (tree->ifinitial != 1)
@@ -204,7 +230,7 @@ c8 set_head_tree(Tree *tree,Tree_node *head){
 
 /**
 	Description: 
-		ÊÍ·Å½Úµã 
+		ï¿½Í·Å½Úµï¿½ 
 */
 void free_node(Tree_node *node){
 	if (node->ifinitial == 1)
@@ -218,13 +244,13 @@ static c8 DFSnode(Tree_node *node){
 		return ARR_UN_INIT;
 
 	num = node->branch_num;
-	//±ê¼Ç½Úµã±»·ÃÎÊ¹ýÁË 
+	//ï¿½ï¿½Ç½Úµã±»ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ 
 	node->ifinitial = 2;
 	for(i=0;i<num;i++){
-		//±éÀúÃ¿¸ö·ÖÖ§
+		//ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Ö§
 		DFSnode((node->branches)[i]); 
 	}
-	//±¨·Ï´Ë½Úµã
+	//ï¿½ï¿½ï¿½Ï´Ë½Úµï¿½
 	SD_FREE(node->branches);
 	SD_FREE(node);
     
@@ -233,7 +259,7 @@ static c8 DFSnode(Tree_node *node){
 
 /**
 	Description: 
-		Ê¹ÓÃÉî¶ÈÓÅÏÈ±éÀú£¬µÝ¹éº¯ÊýµÄ·½Ê½ÊÍ·ÅÃ¿¸ö½Úµã 
+		Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¹éº¯ï¿½ï¿½ï¿½Ä·ï¿½Ê½ï¿½Í·ï¿½Ã¿ï¿½ï¿½ï¿½Úµï¿½ 
 	Returns:
 
 */
@@ -241,7 +267,7 @@ c8 free_tree(Tree *tree){
 	if (tree->ifinitial != 1)
 		return ARR_UN_INIT;
 		
-	DFSnode(tree->head);//Éî¶ÈÓÅÏÈ±éÀú 
+	DFSnode(tree->head);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±ï¿½ï¿½ï¿½ 
 	tree->ifinitial = 0;
 	SD_FREE(tree);
     

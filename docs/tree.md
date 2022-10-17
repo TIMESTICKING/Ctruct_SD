@@ -71,24 +71,104 @@ a quick look of how to combine the nodes together to complete the tree.
 	CreateNode(&g,1);
 	a->EDIT_Data_node(g,INT_new(7));
 	
-	add_node_tree(&tree,a,0,c); //the first branch of 'a' node is pointing to the node 'c', and 'a' has 3 branches
-	add_node_tree(&tree,a,1,d);
-	add_node_tree(&tree,a,2,f);
-	add_node_tree(&tree,c,0,a);
-	add_node_tree(&tree,c,1,d);
-	add_node_tree(&tree,c,2,b);
-	add_node_tree(&tree,b,0,c);
-	add_node_tree(&tree,b,1,e);
-	add_node_tree(&tree,e,0,b); //the first branch of 'e' node is pointing to the node 'b', and 'e' only has 1 branch
-	add_node_tree(&tree,d,0,a);
-	add_node_tree(&tree,d,1,c);
-	add_node_tree(&tree,f,0,a);
-	add_node_tree(&tree,f,1,g);
-	add_node_tree(&tree,g,0,f);
-	
-	tree.head = a;  //complete the tree, the head of the tree is now 'a' node.
+	tree.EDIT_branch(&tree,a,0,c); //the first branch of 'a' node is pointing to the node 'c', and 'a' has 3 branches
+	tree.EDIT_branch(&tree,a,0,c);
+	tree.EDIT_branch(&tree,a,1,d);
+	tree.EDIT_branch(&tree,a,2,f);
+	tree.EDIT_branch(&tree,c,0,a);
+	tree.EDIT_branch(&tree,c,1,d);
+	tree.EDIT_branch(&tree,c,2,b);
+	tree.EDIT_branch(&tree,b,0,c);
+	tree.EDIT_branch(&tree,b,1,e);
+	tree.EDIT_branch(&tree,e,0,b); //the first branch of 'e' node is pointing to the node 'b', and 'e' only has 1 branch
+	tree.EDIT_branch(&tree,d,0,a);
+	tree.EDIT_branch(&tree,d,1,c);
+	tree.EDIT_branch(&tree,f,0,a);
+	tree.EDIT_branch(&tree,f,1,g);
+	tree.EDIT_branch(&tree,g,0,f);
+	tree.PRINT(&tree);
+
+	tree.DELETE_branch(&tree,c,2);
+	tree.PRINT(&tree);
+
+	tree.EDIT_branch(&tree,c,2,b);
+	tree.PRINT(&tree);
+
+	tree.head = a;  //complete the tree, the root of the tree is now 'a' node.
 	
 	tree.FREE(&tree);
 ```
+output is like
+```clike
+======Tree:tree_def======
+=>Tree=>ifinitial:      1
+=>Tree=>count:  14
+=======================
+======Tree:tree_def======
+=>Tree=>ifinitial:      1
+=>Tree=>count:  13
+=======================
+======Tree:tree_def======
+=>Tree=>ifinitial:      1
+=>Tree=>count:  14
+=======================
+```
+
 
 # functions
+
+#### c8 EDIT_Data_node(struct tree_n*,void* ele)
+
+- can be called from both type of `struct trees` and `struct tree_n`
+
+Given a tree node, modify the pointer of the element of it.
+
+Success if it returns `ARR_OK`.
+
+#### Tree_node_pointer GET_BRANCH_node(struct tree_n*,u32_ds ind)
+
+- can be called from both type of `struct trees` and `struct tree_n`
+
+Get a tree node which `ind`th branch linked to.
+```clike
+// because node 'a' has 3 branches (shown in above), now obtain the node that the third branch points to.
+Tree_node_pointer node = tree.GET_BRANCH_node(a, 2);
+```
+
+Return the address of the node.
+
+#### c8 EDIT_branch(struct trees *tree,Tree_node_pointer node,u32_ds ind,Tree_node_pointer node_ele)
+
+Give a node `node`, point or re-point the `ind`th branch to the new node `node_ele`.
+
+Success if it returns `ARR_OK`.
+
+#### void* DELETE_branch(struct trees *tree,Tree_node_pointer node,u32_ds ind)
+
+Give a node `node`, delete the `ind`th branch of the node.
+
+return the element address you set in the deleted node *not the pointer of the deleted node*.
+
+#### void FREE_node(struct tree_n*)
+
+Free the memory of the `tree_n`, be careful to take care of your own element. You need to free it by yourself.
+
+#### void PRINT_node(struct tree_n*)
+
+Print the status or the infomations of the node.
+
+#### c8 SET_head(struct trees*,Tree_node*)
+
+Set the root node of the tree, because `DFS` algorithm in `FREE(struct trees*)` relies on it.
+
+#### u32_ds COUNT(struct trees*)
+
+Get the node number in the tree.
+
+#### void PRINT(struct trees*)
+
+Print the status or the infomations of the tree.
+
+#### c8 FREE(struct trees*)
+
+Free the memory of the tree, be careful to take care of your own elements. You need to free them by yourself.

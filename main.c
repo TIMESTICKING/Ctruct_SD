@@ -118,7 +118,7 @@ void test_tree(void){
 	Tree_node *a,*b,*c,*d,*e,*f,*g;
 	
 	InitTree(&tree);
-	
+
 	CreateNode(&a,3);
 	a->EDIT_Data_node(a,INT_new(1));
 	CreateNode(&b,2);
@@ -134,20 +134,28 @@ void test_tree(void){
 	CreateNode(&g,1);
 	a->EDIT_Data_node(g,INT_new(7));
 	
-	add_node_tree(&tree,a,0,c);
-	add_node_tree(&tree,a,1,d);
-	add_node_tree(&tree,a,2,f);
-	add_node_tree(&tree,c,0,a);
-	add_node_tree(&tree,c,1,d);
-	add_node_tree(&tree,c,2,b);
-	add_node_tree(&tree,b,0,c);
-	add_node_tree(&tree,b,1,e);
-	add_node_tree(&tree,e,0,b);
-	add_node_tree(&tree,d,0,a);
-	add_node_tree(&tree,d,1,c);
-	add_node_tree(&tree,f,0,a);
-	add_node_tree(&tree,f,1,g);
-	add_node_tree(&tree,g,0,f);
+	tree.EDIT_branch(&tree,a,0,c);
+	tree.EDIT_branch(&tree,a,0,c);
+	tree.EDIT_branch(&tree,a,1,d);
+	tree.EDIT_branch(&tree,a,2,f);
+	tree.EDIT_branch(&tree,c,0,a);
+	tree.EDIT_branch(&tree,c,1,d);
+	tree.EDIT_branch(&tree,c,2,b);
+	tree.EDIT_branch(&tree,b,0,c);
+	tree.EDIT_branch(&tree,b,1,e);
+	tree.EDIT_branch(&tree,e,0,b);
+	tree.EDIT_branch(&tree,d,0,a);
+	tree.EDIT_branch(&tree,d,1,c);
+	tree.EDIT_branch(&tree,f,0,a);
+	tree.EDIT_branch(&tree,f,1,g);
+	tree.EDIT_branch(&tree,g,0,f);
+	tree.PRINT(&tree);
+
+	tree.DELETE_branch(&tree,c,2);
+	tree.PRINT(&tree);
+
+	tree.EDIT_branch(&tree,c,2,b);
+	tree.PRINT(&tree);
 	
 	tree.head = a;
 	
@@ -315,11 +323,11 @@ int main(int argc, char *argv[])
 //	test_cirqueue();
 //	
 //	test_linkedList();
-//	test_tree();
+	test_tree();
 	// testCircleList();
 	// test_iterators();
 //    test_uthash();
-   test_dict();
+//    test_dict();
 	return 0;
 }
 
