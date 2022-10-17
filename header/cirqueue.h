@@ -13,7 +13,7 @@ typedef struct cirqueues {
 	int front;
 	int rear;
 	int size;
-	c8 (*ENQUEUE_cq)(struct cirqueues*,void*);
+	c8 (*ENQUEUE_cq)(struct cirqueues*,void* ele);
 	void* (*DEQUEUE_cq)(struct cirqueues*);
 	int (*COUNT)(struct cirqueues*);
 	void (*FREE)(struct cirqueues*);

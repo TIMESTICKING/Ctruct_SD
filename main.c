@@ -84,7 +84,7 @@ void test_cirqueue(){
 	cq.PRINT(&cq);
 	cq2->PRINT(cq2);
 	
-	cq.ENQUEUE_cq(&cq,&a);
+	cq.ENQUEUE_cq(&cq,INT_new(3));
 	cq.ENQUEUE_cq(&cq,&b);
 	cq.ENQUEUE_cq(&cq,&a);
 	cq.ENQUEUE_cq(&cq,&b);

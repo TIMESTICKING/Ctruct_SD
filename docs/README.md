@@ -39,4 +39,7 @@ visit github project <a href="https://github.com/TIMESTICKING/Ctruct_SD">here</a
 #define ARR_INPUT_SAME	-2
 #define ARR_FALSE		0
 #define ARR_EMPTY_CLIST	-3
+
+#define NULL_void	((void*)0)
+#define	NULL_node	(Tree_node*)0
 ```
