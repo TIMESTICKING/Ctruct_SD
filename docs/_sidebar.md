@@ -1,4 +1,4 @@
-- [项目简介](README.md)
+- [About the project](README.md)
 
 - [Auto-Increment ArrayList](arraylist.md)
 - [Stack](stack.md)
