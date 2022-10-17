@@ -78,8 +78,8 @@ c8 insert_ele_atMid(LinkedList_SD *llist,Tree_node *node,u8_ds position,void *el
 	//�����½ڵ�,����AB֮�����C
 	//��position=1����A = node��ʲô������
 	//��position=0����A = node.prev
-	if (position == PREVIEW_LLIST){
-		node = (node->branches)[PREVIEW_LLIST];
+	if (position == PREV_LLIST){
+		node = (node->branches)[PREV_LLIST];
 		if (node == NULL_node){
 			//��Ҫͷ��
 			return add_ele_atHead(llist,ele);
@@ -158,7 +158,7 @@ c8 add_ele_atTail(LinkedList_SD *llist,void *ele){
 	put_in_data_node(new_node,ele);//�������ݵ��½ڵ�
 	
 	add_node(llist->tail,NEXT_LLIST,new_node);//β�ڵ���ָ���½ڵ�
-	add_node(new_node,PREVIEW_LLIST,llist->tail);//�½ڵ�ǰ��ָ��β�ڵ�
+	add_node(new_node,PREV_LLIST,llist->tail);//�½ڵ�ǰ��ָ��β�ڵ�
 	llist->tail = new_node;
     (llist->tree)->count++;
 	
@@ -189,7 +189,7 @@ c8 add_ele_atHead(LinkedList_SD *llist,void *ele){
 	if (sta != ARR_OK)	return sta;//���ش���
 	put_in_data_node(new_node,ele);//�������ݵ��½ڵ�
 	
-	add_node(head,PREVIEW_LLIST,new_node);//ͷ�ڵ��ǰ��ָ���½ڵ�
+	add_node(head,PREV_LLIST,new_node);//ͷ�ڵ��ǰ��ָ���½ڵ�
 	add_node(new_node,NEXT_LLIST,head);//�½ڵ�ǰ��ָ��β�ڵ�
     (llist->tree)->head = new_node;
     (llist->tree)->count++;
@@ -237,7 +237,7 @@ c8 insert_llist_atHead(LinkedList_SD *llist,LinkedList_SD *add_llist){
 
 	//ͷβ����
 	add_node(tail,NEXT_LLIST,head);
-	add_node(head,PREVIEW_LLIST,tail);
+	add_node(head,PREV_LLIST,tail);
 	//ͷָ�븴λ
     (llist->tree)->head = (add_llist->tree)->head;
 	//+count
@@ -266,7 +266,7 @@ c8 insert_llist_atTail(LinkedList_SD *llist,LinkedList_SD *add_llist){
 
 	//ͷβ����
 	add_node(tail,NEXT_LLIST,head);
-	add_node(head,PREVIEW_LLIST,tail);
+	add_node(head,PREV_LLIST,tail);
 	//βָ�븴λ
 	llist->tail = add_llist->tail;
 	//+count
@@ -300,14 +300,14 @@ c8 insert_llist_byInd(LinkedList_SD *llist,int ind,LinkedList_SD *add_llist){
 	res = runthrough_llist(llist,ind);
 	if (res == NULL_node)	return ARR_WRONG_INDEX;
 	
-	prev = get_branch_node(res,PREVIEW_LLIST);
+	prev = get_branch_node(res,PREV_LLIST);
 	if (prev == NULL_node)	return insert_llist_atHead(llist,add_llist);//ִ��ͷ��
 	//���ӵ�һ���ڵ� 
 	add_node(prev,NEXT_LLIST,head);
-	add_node(head,PREVIEW_LLIST,prev);
+	add_node(head,PREV_LLIST,prev);
 	//���ӵڶ����ڵ�
 	add_node(tail,NEXT_LLIST,res);
-	add_node(res,PREVIEW_LLIST,tail);
+	add_node(res,PREV_LLIST,tail);
 	//+count
     (llist->tree)->count += (add_llist->tree)->count;
 	
@@ -333,7 +333,7 @@ c8 delete_node_llist(LinkedList_SD *llist,Tree_node *node_del){
 	//����B�ĺ�̣���C
 	next = (node_del->branches)[NEXT_LLIST];
 	//����B��ǰ������A
-	prev = (node_del->branches)[PREVIEW_LLIST];
+	prev = (node_del->branches)[PREV_LLIST];
 	if (prev != NULL_node)
 		//A�ĺ��ָ��C/null
 		add_node(prev,NEXT_LLIST,next);
@@ -343,7 +343,7 @@ c8 delete_node_llist(LinkedList_SD *llist,Tree_node *node_del){
 	}
 	if (next != NULL_node)
 		//C��ǰ��ָ��A/null
-		add_node(next,PREVIEW_LLIST,prev);
+		add_node(next,PREV_LLIST,prev);
 	else{
 		//ɾ��β�ڵ�����
 		llist->tail = prev; 
@@ -403,7 +403,7 @@ Tree_node* runthrough_llist(LinkedList_SD *llist,int ind){
 		//��β��ǰ����
 		for(i=-1,n=get_tailNode_llist(llist);\
 			i>ind && n!=NULL_node;\
-			i--,n=(n->branches)[PREVIEW_LLIST]);
+			i--,n=(n->branches)[PREV_LLIST]);
 	}
 	return n;
 }
@@ -543,7 +543,7 @@ c8 copy_llist(LinkedList_SD *llist,LinkedList_SD **new_llist){
 		if (n!=0){
 			//���ϸ��½ڵ��nextָ��ǰ���½ڵ�,�ѵ�ǰ��prevָ����һ�� 
 			add_node(last,NEXT_LLIST,newn);
-			add_node(newn,PREVIEW_LLIST,last);
+			add_node(newn,PREV_LLIST,last);
 		}else{
             (newl->tree)->head = newn;//����ͷ�ڵ�
 		}

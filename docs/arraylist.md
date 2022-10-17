@@ -4,7 +4,7 @@
 
 <p align="left">ArrayList is based on C array, and is a sequential storage structure.</p>
 
-It contains four properties. But you should only care about the first two, the other two are maintained by the program.
+It contains four properties. But you should only care about the first two, the other two are maintained by the program. Negative numbers of index are supported.
 ```clike
 	char *name;
 	void* (*arr);

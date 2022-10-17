@@ -3,7 +3,7 @@
 
 #include "tree_base.h"
 
-#define PREVIEW_LLIST	0
+#define PREV_LLIST		0
 #define NEXT_LLIST		1
 
 #ifdef __cplusplus
@@ -14,22 +14,22 @@ typedef struct lList {
 	Tree *tree;
 	char *name;
 	Tree_node *tail;
-	c8 (*INSERT_ele_byAddr)(struct lList*,Tree_node*,u8_ds,void*);
-	c8 (*INSERT_ele_atInd)(struct lList*,int,void*);
-	c8 (*INSERT_ele_atTail)(struct lList*,void*);
-	c8 (*INSERT_ele_atHead)(struct lList*,void*);
-	c8 (*ADD_llist_atHead)(struct lList*,struct lList*);
-	c8 (*ADD_llist_atTail)(struct lList*,struct lList*);
-	c8 (*ADD_llist_atInd)(struct lList*,int,struct lList*);
-	c8 (*DEL_byAddr_llist)(struct lList*,Tree_node*);
-	c8 (*DEL_byInd_llist)(struct lList*,int);
+	c8 (*INSERT_ele_byAddr)(struct lList*,Tree_node*,u8_ds position,void *ele);
+	c8 (*INSERT_ele_atInd)(struct lList*,int ind,void *ele);
+	c8 (*INSERT_ele_atTail)(struct lList*,void*ele);
+	c8 (*INSERT_ele_atHead)(struct lList*,void*ele);
+	c8 (*ADD_llist_atHead)(struct lList*,struct lList* add_llist);
+	c8 (*ADD_llist_atTail)(struct lList*,struct lList* add_llist);
+	c8 (*ADD_llist_atInd)(struct lList*,int ind,struct lList* add_llist);
+	c8 (*DEL_byAddr_llist)(struct lList*,Tree_node* node_del);
+	c8 (*DEL_byInd_llist)(struct lList*,int ind);
 	Tree_node* (*GET_tail_llist)(struct lList*);
 	Tree_node* (*GET_head_llist)(struct lList*);
-	Tree_node* (*GET_addr_byIndex)(struct lList*,int);
-	c8 (*COPY_llist)(struct lList*,struct lList**);
+	Tree_node* (*GET_addr_byIndex)(struct lList*,int ind);
+	c8 (*COPY_llist)(struct lList* llist,struct lList** new_llist);
 	c8 (*REVERSE_llist)(struct lList*);
 	u32_ds (*COUNT)(struct lList*);
-	c8 (*IF_ELEaddr_exsit_llist)(struct lList*,void*);
+	c8 (*IF_ELEaddr_exsit_llist)(struct lList*,void* ele);
 	void (*FREE)(struct lList*);
 	void (*PRINT)(struct lList*);
 	c8	ifinitial;

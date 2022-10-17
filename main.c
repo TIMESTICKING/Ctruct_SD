@@ -176,7 +176,7 @@ void test_linkedList(void){
 	InitLinkedList_SD(&ant);
 	ant.name="ant";
 	
-	llist.INSERT_ele_atTail(&llist,&a);
+	llist.INSERT_ele_atTail(&llist,INT_new(45));
 	llist.INSERT_ele_atTail(&llist,&b);
 	llist.PRINT(&llist);
 	
@@ -322,8 +322,8 @@ int main(int argc, char *argv[])
 	// test_array();
 //	test_cirqueue();
 //	
-//	test_linkedList();
-	test_tree();
+	test_linkedList();
+	// test_tree();
 	// testCircleList();
 	// test_iterators();
 //    test_uthash();

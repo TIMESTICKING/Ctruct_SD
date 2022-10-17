@@ -159,7 +159,7 @@ Print the status or the infomations of the node.
 
 #### c8 SET_head(struct trees*,Tree_node*)
 
-Set the root node of the tree, because `DFS` algorithm in `FREE(struct trees*)` relies on it.
+Set the root node of the tree, because the `DFS` algorithm in `FREE(struct trees*)` relies on it.
 
 #### u32_ds COUNT(struct trees*)
 

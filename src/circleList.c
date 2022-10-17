@@ -48,7 +48,7 @@ static void head_tail_connect(CircleList *clist){
 	Tree_node *tail,*head;
 	head = get_headNode_llist(clist->linkList);
 	tail = get_tailNode_llist(clist->linkList);
-	(head->branches)[PREVIEW_LLIST] = tail;
+	(head->branches)[PREV_LLIST] = tail;
 	(tail->branches)[NEXT_LLIST] = head;
 }
 
@@ -170,7 +170,7 @@ c8 del_byAddr_clist(CircleList *clist,Tree_node *addr){
 	if (clist->ifinitial != 1 || addr->ifinitial != 1)	return ARR_UN_INIT;	
 	
     (llist->tree)->count--;
-	prev = (addr->branches)[PREVIEW_LLIST];
+	prev = (addr->branches)[PREV_LLIST];
 	next = (addr->branches)[NEXT_LLIST];
 	free_node(addr);//�ͷŽڵ� 
     if (llist->tail == addr && (llist->tree)->head == addr){
@@ -181,7 +181,7 @@ c8 del_byAddr_clist(CircleList *clist,Tree_node *addr){
 	}
 	//����prev��next
 	add_node(prev,NEXT_LLIST,next);
-	add_node(next,PREVIEW_LLIST,prev);
+	add_node(next,PREV_LLIST,prev);
 	if (addr == llist->tail){
 		//ɾ���Ľڵ���β�ڵ�
 		llist->tail = prev; 
