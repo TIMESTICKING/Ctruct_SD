@@ -1,11 +1,11 @@
 
-<h3 align="center">Ctruct: multiple data structures in pure C</h3>
+<h3 align="center">Ctruct: A variety of  data structures in pure C</h3>
 
 ---
 
 <p align="left"> 这是一个由纯C编写的多种数据结构项目，项目起初是用于学习，后可拓展到嵌入式编程领域。我感觉还是用于学习比较好，因为它的适用场景并不多。
     <br> 
-    This is a variety of data structures written in pure C project, the project was originally used for learning, and then can be extended to the embedded programming field. I think it's better to use it for study because it doesn't apply to many scenarios.
+    This is a variety of data structures written in pure C project, the project was originally used for learning, and then can be extended to the embedded programming field. I think it's better to use it for study because it seems doesn't apply to many scenarios.
 </p>
 <p>
 visit github project <a href="https://github.com/TIMESTICKING/Ctruct_SD">here</a>
@@ -20,7 +20,7 @@ visit github project <a href="https://github.com/TIMESTICKING/Ctruct_SD">here</a
 ## 🧐 About <a name = "about"></a>
 
 项目采用结构体来**模拟面向对象**的编程方式，但受语言限制，“方法”仍需传入“类”自身。同时下标采用了负数表示法，例如-1表示最后一个元素。<br>
-项目包含的数据结构可以存储**任意类型**的数据，因为存数据的指针是`void`类型。同时也支持静态和动态初始化。<br>
+项目包含的数据结构可以存储**任意类型**的数据，因为存数据的指针是`void*`类型。同时也支持静态和动态初始化。<br>
 数据结构有，可**自动扩展长度**的`ArrayList`、双向链表`LinkedList`、双向循环链表`CircularList`、环形队列`CircularQueue`、**任意叉**树`Tree`、栈`Stack`、字典（基于<a href="https://troydhanson.github.io/uthash/">uthash</a>）`Dictionary`。 <br>
 设计模式有，迭代器`Iterator`。
 
